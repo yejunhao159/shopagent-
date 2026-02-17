@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ProductDemo } from "@/components/ProductDemo";
+import { Showcase } from "@/components/Showcase";
 import { FadeInUp, StaggerContainer, StaggerItem } from "@/components/Motion";
 import { motion } from "framer-motion";
 
@@ -257,6 +258,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ===== SHOWCASE ===== */}
+      <Showcase />
 
       {/* ===== HOW IT WORKS ===== */}
       <section className="py-24 bg-gray-50 relative overflow-hidden">
