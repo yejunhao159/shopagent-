@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const showcaseItems = [
-  { src: "/showcase/seedream-coat.jpg", engine: "Seedream", label: "模特棚拍" },
-  { src: "/showcase/qwen-dress-garden.jpg", engine: "Qwen", label: "场景替换" },
-  { src: "/showcase/zimage-poster.jpg", engine: "Z-Image", label: "小红书海报" },
-  { src: "/showcase/gemini-street.jpg", engine: "Gemini", label: "街拍风格" },
-  { src: "/showcase/seedream-shoes.jpg", engine: "Seedream", label: "白底产品图" },
-  { src: "/showcase/zimage-promo.jpg", engine: "Z-Image", label: "促销海报" },
-  { src: "/showcase/gemini-flatlay.jpg", engine: "Gemini", label: "平铺摆拍" },
-  { src: "/showcase/qwen-cherry.jpg", engine: "Qwen", label: "换背景" },
+  { src: "/showcase/fashion1.jpg", engine: "Seedream", label: "时尚大片" },
+  { src: "/showcase/editorial2.jpg", engine: "Gemini", label: "编辑风格" },
+  { src: "/showcase/fashion3.jpg", engine: "Seedream", label: "模特棚拍" },
+  { src: "/showcase/editorial4.jpg", engine: "Gemini", label: "杂志封面" },
+  { src: "/showcase/fashion4.jpg", engine: "Qwen", label: "街拍风格" },
+  { src: "/showcase/product2.jpg", engine: "Seedream", label: "氛围摆拍" },
+  { src: "/showcase/editorial1.jpg", engine: "Z-Image", label: "人像写真" },
+  { src: "/showcase/fashion2.jpg", engine: "Qwen", label: "场景替换" },
 ];
 
 const engineColors: Record<string, string> = {

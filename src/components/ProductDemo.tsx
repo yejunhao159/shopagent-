@@ -6,34 +6,35 @@ import Image from "next/image";
 
 const conversations = [
   {
-    user: "帮我把这条裙子的背景换成户外花园场景",
+    user: "帮我生成一组高级感的服装模特图，用在小红书首图",
     agent: "冠华 · 生图专家",
-    reply: "已完成背景替换，使用 Qwen 引擎保持商品不变，生成了花园场景版本：",
+    reply: "已用 Seedream + Gemini 双引擎生成 3 个方案，风格各异：",
     agentColor: "bg-blue-50 text-blue-700 border-blue-100",
     images: [
-      { src: "/showcase/seedream-dress-plain.jpg", label: "原图" },
-      { src: "/showcase/qwen-dress-garden.jpg", label: "花园场景" },
+      { src: "/showcase/fashion1.jpg", label: "方案 A · Seedream" },
+      { src: "/showcase/fashion3.jpg", label: "方案 B · Gemini" },
+      { src: "/showcase/editorial2.jpg", label: "方案 C · Seedream" },
     ],
   },
   {
-    user: "做一张年终大促的电商海报，要有中文大标题",
+    user: "把这件大衣的模特换成街拍风格，背景要有城市感",
     agent: "冠华 · 生图专家",
-    reply: "已用 Z-Image 引擎生成，中文文字渲染清晰：",
+    reply: "已用 Qwen 引擎完成模特替换和背景生成，保持服装不变：",
     agentColor: "bg-blue-50 text-blue-700 border-blue-100",
     images: [
-      { src: "/showcase/zimage-promo.jpg", label: "促销海报" },
-      { src: "/showcase/zimage-poster.jpg", label: "春日限定" },
+      { src: "/showcase/product1.jpg", label: "原图" },
+      { src: "/showcase/fashion4.jpg", label: "街拍风格" },
     ],
   },
   {
-    user: "生成几张高级感的服装模特图，用在小红书上",
+    user: "生成一组产品平铺摆拍图，秋冬氛围感，适合电商详情页",
     agent: "冠华 · 生图专家",
-    reply: "已用 Seedream + Gemini 双引擎生成，以下是 3 个方案：",
+    reply: "已生成 3 组不同构图的氛围摆拍，暖色调秋冬风格：",
     agentColor: "bg-blue-50 text-blue-700 border-blue-100",
     images: [
-      { src: "/showcase/seedream-coat.jpg", label: "Seedream" },
-      { src: "/showcase/gemini-street.jpg", label: "Gemini" },
-      { src: "/showcase/qwen-cherry.jpg", label: "Qwen" },
+      { src: "/showcase/product2.jpg", label: "构图 A" },
+      { src: "/showcase/flatlay1.jpg", label: "构图 B" },
+      { src: "/showcase/flatlay2.jpg", label: "构图 C" },
     ],
   },
 ];
@@ -52,21 +53,19 @@ export function ProductDemo() {
 
   useEffect(() => {
     if (phase === "typing" && charCount < current.user.length) {
-      const t = setTimeout(() => setCharCount((prev) => prev + 1), 30);
+      const t = setTimeout(() => setCharCount((p) => p + 1), 28);
       return () => clearTimeout(t);
     }
     if (phase === "typing" && charCount >= current.user.length) {
-      const t = setTimeout(() => setPhase("reply"), 600);
+      const t = setTimeout(() => setPhase("reply"), 500);
       return () => clearTimeout(t);
     }
     if (phase === "reply") {
-      const t = setTimeout(() => setPhase("images"), 800);
+      const t = setTimeout(() => setPhase("images"), 600);
       return () => clearTimeout(t);
     }
     if (phase === "images") {
-      const t = setTimeout(() => {
-        setIdx((prev) => (prev + 1) % conversations.length);
-      }, 6000);
+      const t = setTimeout(() => setIdx((p) => (p + 1) % conversations.length), 6000);
       return () => clearTimeout(t);
     }
   }, [phase, charCount, idx, current.user.length]);
@@ -109,22 +108,20 @@ export function ProductDemo() {
           </AnimatePresence>
         </div>
 
-        {/* Chat Area */}
-        <div className="min-h-[420px] bg-white/40 p-6 md:p-8 space-y-5 flex flex-col justify-end">
+        {/* Chat */}
+        <div className="min-h-[460px] bg-white/40 p-6 md:p-8 space-y-5 flex flex-col justify-end">
           {/* User */}
           <div className="flex justify-end w-full">
-            <div className="relative max-w-[85%] md:max-w-[70%]">
+            <div className="max-w-[85%] md:max-w-[70%]">
               <div className="rounded-2xl rounded-tr-sm bg-black text-white px-5 py-3.5 text-[15px] leading-relaxed shadow-sm">
                 {current.user.slice(0, charCount)}
-                {phase === "typing" && (
-                  <span className="ml-1 inline-block h-4 w-0.5 animate-pulse bg-white/50 align-middle" />
-                )}
+                {phase === "typing" && <span className="ml-1 inline-block h-4 w-0.5 animate-pulse bg-white/50 align-middle" />}
               </div>
               <div className="mt-1 text-right text-[10px] text-muted-foreground/60 font-medium tracking-wide">YOU</div>
             </div>
           </div>
 
-          {/* AI Reply */}
+          {/* AI Reply + Images */}
           <AnimatePresence mode="wait">
             {phase !== "typing" && (
               <motion.div
@@ -135,44 +132,35 @@ export function ProductDemo() {
                 transition={{ duration: 0.4 }}
                 className="flex justify-start w-full"
               >
-                <div className="max-w-[90%] md:max-w-[80%]">
+                <div className="max-w-[92%] md:max-w-[85%]">
                   <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-bold shadow-sm mt-1">
-                      AI
-                    </div>
+                    <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-bold shadow-sm mt-1">AI</div>
                     <div className="space-y-3 flex-1 min-w-0">
                       <div className="rounded-2xl rounded-tl-sm bg-white border border-border/50 px-5 py-3.5 text-[15px] text-foreground leading-relaxed shadow-sm">
                         {current.reply}
                       </div>
 
-                      {/* Image Results */}
                       <AnimatePresence>
                         {phase === "images" && (
                           <motion.div
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            className={`grid gap-2 ${current.images.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}
+                            className={`grid gap-2.5 ${current.images.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}
                           >
                             {current.images.map((img, i) => (
                               <motion.div
                                 key={img.src}
-                                initial={{ opacity: 0, scale: 0.9 }}
+                                initial={{ opacity: 0, scale: 0.92 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: i * 0.15, duration: 0.4 }}
-                                className="group relative overflow-hidden rounded-xl border border-border/40 bg-gray-50"
+                                transition={{ delay: i * 0.12, duration: 0.4 }}
+                                className="group relative overflow-hidden rounded-xl border border-border/30 bg-white shadow-sm hover:shadow-md transition-shadow"
                               >
-                                <div className="relative aspect-[3/4]">
-                                  <Image
-                                    src={img.src}
-                                    alt={img.label}
-                                    fill
-                                    className="object-cover"
-                                    sizes="200px"
-                                  />
+                                <div className="relative aspect-[3/4] overflow-hidden">
+                                  <Image src={img.src} alt={img.label} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="200px" />
                                 </div>
-                                <div className="px-2 py-1.5 text-center">
-                                  <span className="text-[10px] font-medium text-muted-foreground">{img.label}</span>
+                                <div className="px-2.5 py-2 bg-white">
+                                  <span className="text-[11px] font-medium text-muted-foreground">{img.label}</span>
                                 </div>
                               </motion.div>
                             ))}
@@ -187,9 +175,9 @@ export function ProductDemo() {
           </AnimatePresence>
         </div>
 
-        {/* Input Bar */}
+        {/* Input */}
         <div className="border-t border-border/50 bg-white/60 p-4 backdrop-blur-md">
-          <div className="relative flex items-center gap-3 rounded-xl border border-border/60 bg-white px-4 py-3 shadow-sm">
+          <div className="flex items-center gap-3 rounded-xl border border-border/60 bg-white px-4 py-3 shadow-sm">
             <div className="h-5 w-5 rounded-full border border-border flex items-center justify-center text-muted-foreground">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M12 5v14M5 12h14"/></svg>
             </div>
