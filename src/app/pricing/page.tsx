@@ -4,45 +4,33 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const plans = [
-  {
-    name: "免费体验",
-    price: "¥0",
-    period: "",
-    desc: "快速体验 AI Agent 的能力",
-    features: ["对话积分 ¥3 额度", "工具积分 ¥1 额度", "4 个 AI Agent 全部可用", "桌面端 + Web 端"],
-    cta: "免费开始",
-    href: "/download",
-    highlight: false,
-  },
-  {
-    name: "专业版",
-    price: "¥99",
-    period: "/月",
-    desc: "适合日常运营的服装商家",
-    features: ["对话积分 ¥50 额度", "工具积分 ¥30 额度", "图片生成 300 张/月", "优先客服支持", "历史记录云端同步"],
-    cta: "立即订阅",
-    href: "/download",
-    highlight: true,
-  },
-  {
-    name: "企业版",
-    price: "联系我们",
-    period: "",
-    desc: "适合团队协作和定制需求",
-    features: ["不限量对话积分", "不限量工具积分", "图片生成不限量", "专属客户经理", "API 接口开放", "私有化部署可选"],
-    cta: "联系销售",
-    href: "mailto:sales@shopagent.ai",
-    highlight: false,
-  },
+const chatPackages = [
+  { name: "体验包", credits: "25,000", price: "¥49", originalPrice: "¥99", usage: "~210 次日常对话" },
+  { name: "标准包", credits: "75,000", price: "¥149", originalPrice: "¥299", usage: "~640 次日常对话", highlight: true },
+  { name: "专业包", credits: "175,000", price: "¥349", originalPrice: "¥699", usage: "~1,500 次日常对话" },
+  { name: "旗舰包", credits: "400,000", price: "¥799", originalPrice: "¥1,599", usage: "~3,400 次日常对话" },
+];
+
+const imagePackages = [
+  { name: "入门图包", credits: "10,000", price: "¥5.5", usage: "~11 张 Seedream" },
+  { name: "标准图包", credits: "50,000", price: "¥28", usage: "~55 张 Seedream", highlight: true },
+  { name: "进阶图包", credits: "200,000", price: "¥110", usage: "~222 张 Seedream" },
+  { name: "海量图包", credits: "500,000", price: "¥278", usage: "~555 张 Seedream" },
+];
+
+const engines = [
+  { name: "Seedream", cost: "¥0.50/张", desc: "高性价比量产引擎", features: "文生图 · 图生图 · 最多14张参考图 · 4K分辨率 · 组图生成" },
+  { name: "Z-Image", cost: "¥0.40/张", desc: "中文文字渲染专家", features: "文生图 · 中文文字清晰 · 速度快 · 多分辨率" },
+  { name: "Gemini", cost: "¥0.60/张", desc: "全能创意编辑", features: "文生图 · 图生图 · 多轮对话编辑 · 人脸保持 · 创意模板" },
+  { name: "Qwen", cost: "¥0.80/张", desc: "多图融合大师", features: "图生图 · 换装 · 风格迁移 · 多图输出 · 反向提示词" },
 ];
 
 const faqs = [
-  { q: "积分是怎么计算的？", a: "积分按实际 AI 调用消耗计算。对话类功能消耗对话积分，图片生成等消耗工具积分。用完可随时充值，不会过期。" },
-  { q: "免费版有什么限制？", a: "免费版可以使用全部 4 个 AI Agent，功能完全一致，只是积分额度有限。" },
-  { q: "可以随时取消订阅吗？", a: "可以。按月计费，随时取消，当月剩余时间仍可使用。" },
-  { q: "企业版支持私有化部署吗？", a: "支持。企业版可以部署在你自己的服务器上，数据完全私有。" },
-  { q: "和请运营团队相比，成本怎么样？", a: "一个初级运营月薪 6000-10000 元，ShopAgent 专业版每月 99 元，覆盖图片、文案、视频、策略四个岗位。" },
+  { q: "积分会过期吗？", a: "充值积分永久有效。新用户赠送积分有效期以产品内提示为准。" },
+  { q: "两种积分可以互换吗？", a: "不可以，对话积分和创作积分独立使用，各自充值。" },
+  { q: "免费赠送的积分能做什么？", a: "注册即送 54,000 对话积分 + 18,000 创作积分，可以体验全部 6 个 AI Agent 和 4 大生图引擎，功能完全一致。" },
+  { q: "内测价格会一直保持吗？", a: "内测期间享受优惠价，正式上线后恢复正式价。已充值的积分不受影响。" },
+  { q: "和请运营团队相比，成本怎么样？", a: "一个初级运营月薪 6000-10000 元，ShopAgent 标准包 ¥149 的对话积分可以完成约 640 次日常对话，覆盖图片、文案、视频脚本、策略分析等多个岗位的工作。" },
 ];
 
 function FAQItem({ q, a }: { q: string; a: string }) {
@@ -71,62 +59,145 @@ export default function PricingPage() {
             用多少付多少
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
-            灵活的积分制计费。一个运营月薪 6000+，ShopAgent 专业版每月仅 ¥99。
+            积分制按量计费，充值永不过期。注册即送体验积分，无需付费即可开始。
           </p>
         </div>
       </section>
 
-      <section className="pb-24">
+      {/* 新用户赠送 */}
+      <section className="pb-16">
+        <div className="mx-auto max-w-3xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-3xl border border-primary/20 bg-white p-8 text-center shadow-lg shadow-blue-500/5"
+          >
+            <h3 className="text-xl font-bold text-foreground">注册即送</h3>
+            <p className="mt-2 text-muted-foreground">无需充值，立即体验全部功能</p>
+            <div className="mt-6 flex justify-center gap-8">
+              <div>
+                <p className="text-3xl font-bold text-foreground">54,000</p>
+                <p className="text-sm text-muted-foreground">💬 对话积分</p>
+              </div>
+              <div className="w-px bg-border" />
+              <div>
+                <p className="text-3xl font-bold text-foreground">18,000</p>
+                <p className="text-sm text-muted-foreground">🎨 创作积分</p>
+              </div>
+            </div>
+            <Link
+              href="/download"
+              className="mt-6 inline-block rounded-full bg-foreground px-8 py-3 font-semibold text-white shadow-xl hover:bg-black/80 hover:scale-[1.02] transition-all"
+            >
+              免费开始
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 对话积分套餐 */}
+      <section className="pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-3">
-            {plans.map((plan, i) => (
+          <h2 className="text-2xl font-bold text-foreground mb-2">💬 对话积分</h2>
+          <p className="text-muted-foreground mb-8">AI 智能体对话、文案生成、竞品分析、内容策划等</p>
+          <div className="grid gap-6 md:grid-cols-4">
+            {chatPackages.map((pkg, i) => (
               <motion.div
-                key={plan.name}
+                key={pkg.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`relative flex flex-col rounded-3xl border p-8 transition-shadow hover:shadow-xl ${
-                  plan.highlight ? "border-primary bg-white shadow-lg shadow-blue-500/10" : "border-gray-200 bg-white"
+                className={`relative flex flex-col rounded-3xl border p-6 transition-shadow hover:shadow-xl ${
+                  pkg.highlight ? "border-primary bg-white shadow-lg shadow-blue-500/10" : "border-gray-200 bg-white"
                 }`}
               >
-                {plan.highlight && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-semibold text-white">
-                    最受欢迎
+                {pkg.highlight && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-white">
+                    推荐
                   </span>
                 )}
-                <h3 className="text-lg font-semibold text-foreground">{plan.name}</h3>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold text-foreground">{plan.price}</span>
-                  <span className="text-muted-foreground">{plan.period}</span>
+                <h3 className="text-lg font-semibold text-foreground">{pkg.name}</h3>
+                <div className="mt-3">
+                  <span className="text-3xl font-bold text-foreground">{pkg.price}</span>
+                  <span className="ml-2 text-sm text-muted-foreground line-through">{pkg.originalPrice}</span>
                 </div>
-                <p className="mt-2 text-sm text-muted-foreground">{plan.desc}</p>
-                <ul className="mt-8 flex-1 space-y-3">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <svg className="h-5 w-5 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={plan.href}
-                  className={`mt-8 block rounded-full py-3 text-center text-sm font-semibold transition-all hover:scale-[1.02] ${
-                    plan.highlight
-                      ? "bg-primary text-white shadow-lg shadow-blue-500/30 hover:bg-primary/90"
-                      : "border border-gray-200 text-foreground hover:bg-gray-50"
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
+                <p className="mt-1 text-xs text-primary font-medium">内测优惠价</p>
+                <div className="mt-4 pt-4 border-t border-gray-100 space-y-2 flex-1">
+                  <p className="text-sm text-muted-foreground">{pkg.credits} 积分</p>
+                  <p className="text-sm text-muted-foreground">{pkg.usage}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* 创作积分套餐 */}
+      <section className="pb-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-foreground mb-2">🎨 创作积分</h2>
+          <p className="text-muted-foreground mb-8">AI 图片生成、图片编辑、风格迁移等</p>
+          <div className="grid gap-6 md:grid-cols-4">
+            {imagePackages.map((pkg, i) => (
+              <motion.div
+                key={pkg.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`relative flex flex-col rounded-3xl border p-6 transition-shadow hover:shadow-xl ${
+                  pkg.highlight ? "border-primary bg-white shadow-lg shadow-blue-500/10" : "border-gray-200 bg-white"
+                }`}
+              >
+                {pkg.highlight && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-white">
+                    推荐
+                  </span>
+                )}
+                <h3 className="text-lg font-semibold text-foreground">{pkg.name}</h3>
+                <div className="mt-3">
+                  <span className="text-3xl font-bold text-foreground">{pkg.price}</span>
+                </div>
+                <div className="mt-4 pt-4 border-t border-gray-100 space-y-2 flex-1">
+                  <p className="text-sm text-muted-foreground">{pkg.credits} 积分</p>
+                  <p className="text-sm text-muted-foreground">{pkg.usage}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 生图引擎 */}
+      <section className="py-16 bg-gray-50">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-foreground mb-2">4 大生图引擎</h2>
+          <p className="text-muted-foreground mb-8">按需选择最适合的引擎，创作积分统一扣减</p>
+          <div className="grid gap-6 md:grid-cols-2">
+            {engines.map((engine, i) => (
+              <motion.div
+                key={engine.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="rounded-2xl border border-gray-200 bg-white p-6 hover:shadow-md transition-shadow"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-bold text-foreground">{engine.name}</h3>
+                  <span className="text-sm font-semibold text-primary">{engine.cost}</span>
+                </div>
+                <p className="text-sm font-medium text-muted-foreground">{engine.desc}</p>
+                <p className="mt-2 text-xs text-muted-foreground">{engine.features}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
       <section className="py-24 bg-white">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-foreground mb-8">常见问题</h2>

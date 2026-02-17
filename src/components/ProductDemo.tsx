@@ -5,22 +5,22 @@ import { useEffect, useState } from "react";
 
 const conversations = [
   {
-    user: "帮我把这件连衣裙的背景换成春日樱花场景",
-    agent: "冠华 · 图片助手",
-    reply: "已识别商品主体，正在生成樱花场景背景... 完成。已生成 3 个方案供你选择。",
+    user: "用 Gemini 引擎帮我把这件大衣的模特换成欧美风格，保持人脸不变",
+    agent: "冠华 · 生图专家",
+    reply: "已启用 Gemini 人脸保持模式，正在生成欧美风格模特图... 完成，生成了 3 个方案供你选择。",
     agentColor: "bg-blue-50 text-blue-700 border-blue-100",
   },
   {
-    user: "分析一下最近小红书上大衣品类的爆款趋势",
-    agent: "时尚CEO · 品牌顾问",
-    reply: "近 7 天大衣品类 TOP 50 笔记分析完成：羊绒材质占比 62%，焦糖色系互动率最高...",
-    agentColor: "bg-purple-50 text-purple-700 border-purple-100",
+    user: "帮我写一篇小红书种草笔记，推这款羊绒大衣的质感，要去 AI 味",
+    agent: "小红书种草达人",
+    reply: "已生成 3 版笔记，标题方案：「入冬第一件大衣，摸到就不想撒手」预估互动率最高。已做去 AI 味处理。",
+    agentColor: "bg-green-50 text-green-700 border-green-100",
   },
   {
-    user: "写一篇种草笔记，主推这款羊绒大衣的质感",
-    agent: "种草达人 · 内容创作",
-    reply: "已生成 3 版笔记，标题 A/B 方案：「入冬第一件大衣，摸到就不想撒手」互动预估最高。",
-    agentColor: "bg-green-50 text-green-700 border-green-100",
+    user: "搜一下小红书上最近大衣品类的爆款笔记，下载到知识库",
+    agent: "小红书数据采集师",
+    reply: "已搜索「大衣」品类近 7 天 TOP 50 笔记，筛选出 12 篇高互动内容，正在下载到本地知识库...",
+    agentColor: "bg-sky-50 text-sky-700 border-sky-100",
   },
 ];
 

@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 const agentDetails = [
   {
-    name: "冠华 · 图片助手",
-    role: "Visual Designer",
-    tagline: "一张图，搞定全渠道素材",
+    name: "冠华 · 生图专家",
+    role: "Image Creator",
+    tagline: "4 大引擎，一站式 AI 生图",
     border: "border-blue-100",
     gradient: "from-blue-500/10 to-cyan-500/10",
     icon: (
@@ -16,14 +16,14 @@ const agentDetails = [
       </div>
     ),
     features: [
-      { title: "AI 换背景", desc: "智能抠图 + 场景生成，从 500+ 电商专属场景库中选择" },
-      { title: "AI 换模特", desc: "不用请模特拍摄，AI 生成不同风格的模特展示图" },
-      { title: "多平台适配", desc: "一键生成淘宝、抖音、小红书等不同平台尺寸的素材" },
-      { title: "批量处理", desc: "上传多张图片，批量完成背景替换和尺寸调整" },
+      { title: "Seedream 量产引擎", desc: "文生图 + 图生图，支持最多 14 张参考图，4K 超高分辨率" },
+      { title: "Z-Image 文字渲染", desc: "中英文文字清晰不变形，适合带文字的海报和 Banner" },
+      { title: "Gemini 创意编辑", desc: "多轮对话式编辑，人脸保持换装，多种创意模板" },
+      { title: "Qwen 多图融合", desc: "1-3 张参考图输入，换装 / 风格迁移 / 物体增删" },
     ],
   },
   {
-    name: "时尚CEO · 品牌顾问",
+    name: "服装CEO · 战略顾问",
     role: "Strategy Lead",
     tagline: "你的 AI 战略搭档",
     border: "border-purple-100",
@@ -35,15 +35,15 @@ const agentDetails = [
     ),
     features: [
       { title: "品牌定位分析", desc: "基于市场数据，帮你找准品牌差异化定位" },
-      { title: "竞品分析", desc: "追踪竞品动态，分析价格策略和营销打法" },
+      { title: "竞品追踪", desc: "追踪竞品动态，分析价格策略和营销打法" },
       { title: "经营决策建议", desc: "库存管理、上新节奏、促销策略的智能建议" },
       { title: "趋势洞察", desc: "实时追踪时尚趋势，提前布局爆款方向" },
     ],
   },
   {
-    name: "剪辑大师 · 视频制作",
-    role: "Video Editor",
-    tagline: "高效产出爆款短视频",
+    name: "短视频脚本师",
+    role: "Video Script",
+    tagline: "写出完播率高、能带货的脚本",
     border: "border-orange-100",
     gradient: "from-orange-500/10 to-red-500/10",
     icon: (
@@ -52,15 +52,15 @@ const agentDetails = [
       </div>
     ),
     features: [
-      { title: "脚本生成", desc: "根据产品卖点自动生成短视频脚本和分镜" },
-      { title: "剪辑建议", desc: "智能分析素材，给出剪辑节奏和转场建议" },
-      { title: "内容规划", desc: "制定短视频内容日历，保持稳定更新频率" },
-      { title: "热点追踪", desc: "追踪平台热门话题和 BGM，蹭热点不掉队" },
+      { title: "带货脚本", desc: "根据产品卖点自动生成短视频脚本，懂平台算法和用户心理" },
+      { title: "多平台适配", desc: "抖音、快手、视频号、小红书，不同平台不同风格" },
+      { title: "A/B 测试版本", desc: "同一产品生成多版本脚本，方便测试哪个效果更好" },
+      { title: "拍摄建议", desc: "配套画面描述、配乐建议和拍摄提示，拿到就能拍" },
     ],
   },
   {
-    name: "种草达人 · 内容创作",
-    role: "Content Creator",
+    name: "小红书种草达人",
+    role: "XHS Creator",
     tagline: "篇篇有流量的种草笔记",
     border: "border-green-100",
     gradient: "from-green-500/10 to-teal-500/10",
@@ -71,9 +71,45 @@ const agentDetails = [
     ),
     features: [
       { title: "爆款文案", desc: "基于平台算法逻辑，生成高互动率的种草文案" },
+      { title: "智能去 AI 味", desc: "让 AI 生成的内容读起来更真实自然，不像机器写的" },
+      { title: "关键词布局", desc: "智能分析搜索热词，优化笔记 SEO 排名" },
       { title: "标题优化", desc: "A/B 测试风格的标题建议，提升点击率" },
-      { title: "关键词布局", desc: "智能分析搜索热词，优化笔记 SEO" },
-      { title: "评论互动", desc: "生成真实感的互动回复，提升笔记权重" },
+    ],
+  },
+  {
+    name: "小红书评论截流师",
+    role: "XHS Interceptor",
+    tagline: "把别人的流量变成你的客户",
+    border: "border-rose-100",
+    gradient: "from-rose-500/10 to-pink-500/10",
+    icon: (
+      <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600">
+        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+      </div>
+    ),
+    features: [
+      { title: "精准截流", desc: "在热门笔记评论区精准引流，评论互动价值是点赞的 4 倍" },
+      { title: "话术生成", desc: "根据笔记内容自动生成自然的评论话术，不像广告" },
+      { title: "目标筛选", desc: "智能筛选高流量、高相关性的笔记进行截流" },
+      { title: "效果追踪", desc: "追踪评论互动数据，持续优化截流策略" },
+    ],
+  },
+  {
+    name: "小红书数据采集师",
+    role: "XHS Collector",
+    tagline: "爆款内容一键入库",
+    border: "border-sky-100",
+    gradient: "from-sky-500/10 to-blue-500/10",
+    icon: (
+      <div className="h-10 w-10 rounded-lg bg-sky-100 flex items-center justify-center text-sky-600">
+        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>
+      </div>
+    ),
+    features: [
+      { title: "爆款搜索", desc: "按关键词、品类、互动量搜索小红书爆款内容" },
+      { title: "内容下载", desc: "一键下载图文内容到本地知识库，方便参考" },
+      { title: "趋势分析", desc: "分析品类热度趋势，发现内容创作方向" },
+      { title: "素材管理", desc: "采集的素材自动分类整理，随时调用" },
     ],
   },
 ];
@@ -86,10 +122,10 @@ export default function FeaturesPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <h2 className="text-base font-semibold text-primary">功能介绍</h2>
           <h1 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            四个 Agent，覆盖全链路
+            六个 Agent，覆盖全链路
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-            每个 Agent 都在其擅长的领域做到极致，协同配合完成从选品到发布的全流程。
+            每个 Agent 都在其擅长的领域做到极致，协同配合完成从图片生成到内容发布的全流程。
           </p>
         </div>
       </section>

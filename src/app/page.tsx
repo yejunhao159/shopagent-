@@ -20,9 +20,9 @@ const ArrowRightIcon = () => (
 
 const agents = [
   {
-    name: "冠华 · 图片助手",
-    role: "Visual Designer",
-    desc: "智能抠图、场景合成、模特替换。一键生成高转化率商品图。",
+    name: "冠华 · 生图专家",
+    role: "Image Creator",
+    desc: "4 大 AI 生图引擎，支持文生图、图生图、多轮对话编辑、中文文字渲染。",
     gradient: "from-blue-500/10 to-cyan-500/10",
     border: "border-blue-100",
     icon: (
@@ -32,9 +32,9 @@ const agents = [
     )
   },
   {
-    name: "时尚CEO · 品牌顾问",
+    name: "服装CEO · 战略顾问",
     role: "Strategy Lead",
-    desc: "全网竞品分析、定价策略建议、流行趋势预测。",
+    desc: "品牌定位分析、竞品追踪、经营决策建议、时尚趋势洞察。",
     gradient: "from-purple-500/10 to-pink-500/10",
     border: "border-purple-100",
     icon: (
@@ -44,9 +44,9 @@ const agents = [
     )
   },
   {
-    name: "剪辑大师 · 视频制作",
-    role: "Video Editor",
-    desc: "自动提取高光时刻、智能配乐、多尺寸裁切适配。",
+    name: "短视频脚本师",
+    role: "Video Script",
+    desc: "懂平台算法和用户心理，写出完播率高、能带货的短视频脚本。",
     gradient: "from-orange-500/10 to-red-500/10",
     border: "border-orange-100",
     icon: (
@@ -56,9 +56,9 @@ const agents = [
     )
   },
   {
-    name: "种草达人 · 内容创作",
-    role: "Content Creator",
-    desc: "多风格文案生成、SEO 关键词优化、话题标签推荐。",
+    name: "小红书种草达人",
+    role: "XHS Creator",
+    desc: "基于平台算法逻辑，生成高互动率种草文案，智能去 AI 味。",
     gradient: "from-green-500/10 to-teal-500/10",
     border: "border-green-100",
     icon: (
@@ -67,13 +67,37 @@ const agents = [
        </div>
     )
   },
+  {
+    name: "小红书评论截流师",
+    role: "XHS Interceptor",
+    desc: "在热门笔记评论区精准截流，把别人的流量变成你的客户。",
+    gradient: "from-rose-500/10 to-pink-500/10",
+    border: "border-rose-100",
+    icon: (
+       <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600">
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+       </div>
+    )
+  },
+  {
+    name: "小红书数据采集师",
+    role: "XHS Collector",
+    desc: "搜索筛选爆款内容，下载保存到本地知识库，为创作提供灵感。",
+    gradient: "from-sky-500/10 to-blue-500/10",
+    border: "border-sky-100",
+    icon: (
+       <div className="h-10 w-10 rounded-lg bg-sky-100 flex items-center justify-center text-sky-600">
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>
+       </div>
+    )
+  },
 ];
 
 const steps = [
-  { num: "01", title: "上传商品", desc: "拖拽上传商品图，AI 自动提取特征" },
-  { num: "02", title: "选择场景", desc: "从 500+ 电商专属场景库中选择或自定义" },
-  { num: "03", title: "一键生成", desc: "多 Agent 协同，并发生成图文视素材" },
-  { num: "04", title: "多端发布", desc: "自动适配淘宝、抖音、小红书发布规格" },
+  { num: "01", title: "对话式交互", desc: "用自然语言告诉 Agent 你的需求，无需学习复杂操作" },
+  { num: "02", title: "Agent 智能执行", desc: "对应领域的 Agent 自动理解意图并完成任务" },
+  { num: "03", title: "多引擎协同", desc: "4 大生图引擎 + 小红书工具链，按需调度最优方案" },
+  { num: "04", title: "一键发布", desc: "内容直接发布到小红书，支持草稿箱预览" },
 ];
 
 const testimonials = [
@@ -117,7 +141,7 @@ export default function Home() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            ShopAgent 2.0 现已发布
+            ShopAgent 内测进行中
           </motion.div>
 
           <motion.h1
@@ -137,8 +161,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed text-balance"
           >
-            不仅是工具，而是您的超级员工团队。4 个专业 AI Agent 7x24 小时协同工作，
-            从选品分析到内容分发，自动闭环。
+            不仅是工具，而是您的超级员工团队。6 个专业 AI Agent 7x24 小时协同工作，
+            从图片生成到内容创作，覆盖服装电商全链路。
           </motion.p>
 
           <motion.div
@@ -168,14 +192,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== COMPANIES / TRUST ===== */}
+      {/* ===== CAPABILITIES ===== */}
       <section className="py-12 border-y border-border/40 bg-white/50">
         <div className="mx-auto max-w-7xl px-6 text-center">
-          <p className="text-sm font-medium text-muted-foreground">深受 500+ 创新电商团队信赖</p>
-          <div className="mt-8 grid grid-cols-2 gap-8 md:grid-cols-5 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-             {/* Placeholders for logos - simplified as text for now but styled to look like logos */}
-             {['NextShop', 'FashionAI', 'TrendLine', 'GlobalMall', 'SmartRetail'].map(brand => (
-                 <div key={brand} className="flex items-center justify-center text-lg font-bold text-foreground/40 hover:text-foreground/80 cursor-default">{brand}</div>
+          <p className="text-sm font-medium text-muted-foreground">专为服装电商打造的 AI 运营平台</p>
+          <div className="mt-8 grid grid-cols-2 gap-8 md:grid-cols-4">
+             {[
+               { label: '4 大生图引擎', desc: 'Seedream · Z-Image · Gemini · Qwen' },
+               { label: '小红书深度集成', desc: '发布 · 采集 · 截流 · 数据分析' },
+               { label: '智能去 AI 味', desc: '让 AI 生成的内容更真实自然' },
+               { label: '积分制按量付费', desc: '用多少付多少，永不过期' },
+             ].map(item => (
+                 <div key={item.label} className="text-center">
+                   <p className="text-sm font-semibold text-foreground">{item.label}</p>
+                   <p className="mt-1 text-xs text-muted-foreground">{item.desc}</p>
+                 </div>
              ))}
           </div>
         </div>
@@ -190,11 +221,11 @@ export default function Home() {
               一支配合默契的 AI 专家团队
             </p>
             <p className="mt-4 text-lg text-muted-foreground">
-              告别单点工具，ShopAgent 提供的是一整套自动化的工作流。每个 Agent 都在其擅长的领域做到极致。
+              6 个 Agent 各司其职，覆盖图片生成、内容创作、数据采集、评论截流、视频脚本、战略分析全链路。
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {agents.map((agent, i) => (
               <motion.div
                 key={agent.name}
@@ -242,7 +273,7 @@ export default function Home() {
               </p>
             </div>
             <div className="hidden md:block">
-                 <Link href="/docs" className="text-sm font-medium text-primary hover:underline underline-offset-4">查看完整文档 &rarr;</Link>
+                 <Link href="/features" className="text-sm font-medium text-primary hover:underline underline-offset-4">查看全部功能 &rarr;</Link>
             </div>
           </div>
 
@@ -321,10 +352,10 @@ export default function Home() {
          <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-2 gap-y-12 gap-x-8 md:grid-cols-4 text-center">
               {[
-                { value: "500+", label: "合作商家" },
-                { value: "4", label: "AI 智能体" },
-                { value: "12x", label: "ROI 提升" },
-                { value: "100W+", label: "生成素材" },
+                { value: "6", label: "AI 智能体" },
+                { value: "4", label: "生图引擎" },
+                { value: "¥0.40", label: "最低每张图" },
+                { value: "永不过期", label: "充值积分" },
               ].map((m) => (
                 <div key={m.label} className="flex flex-col items-center">
                   <div className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-2">{m.value}</div>
@@ -342,7 +373,7 @@ export default function Home() {
               准备好升级您的电商生意了吗？
             </h2>
             <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
-              立即加入 ShopAgent，体验 AI 驱动的高效运营。前 100 名注册用户享首月免费。
+              注册即送 54,000 对话积分 + 18,000 创作积分，无需充值即可体验全部功能。
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
@@ -359,7 +390,7 @@ export default function Home() {
               </Link>
             </div>
             <p className="mt-6 text-xs text-muted-foreground">
-              无需信用卡 · 14 天免费试用 · 随时取消
+              注册即送积分 · 按量付费 · 积分永不过期
             </p>
         </div>
       </section>

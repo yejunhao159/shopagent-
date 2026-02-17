@@ -11,7 +11,7 @@ export function Footer() {
               <span className="text-lg font-bold text-foreground">ShopAgent</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-              AI 驱动的电商智能助手，让服装电商运营更高效。
+              AI 驱动的服装电商智能运营平台，6 个 Agent 覆盖全链路。
             </p>
           </div>
 
