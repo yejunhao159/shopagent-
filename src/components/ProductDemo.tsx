@@ -75,7 +75,7 @@ export function ProductDemo() {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4, duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className="relative mx-auto mt-20 max-w-4xl px-4"
+      className="relative mx-auto mt-12 sm:mt-20 max-w-4xl px-2 sm:px-4"
     >
       <div className="absolute -inset-4 -z-10 bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-3xl rounded-[3rem]" />
 
@@ -109,11 +109,11 @@ export function ProductDemo() {
         </div>
 
         {/* Chat */}
-        <div className="min-h-[460px] bg-white/40 p-6 md:p-8 space-y-5 flex flex-col justify-end">
+        <div className="min-h-[380px] sm:min-h-[460px] bg-white/40 p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-5 flex flex-col justify-end">
           {/* User */}
           <div className="flex justify-end w-full">
-            <div className="max-w-[85%] md:max-w-[70%]">
-              <div className="rounded-2xl rounded-tr-sm bg-black text-white px-5 py-3.5 text-[15px] leading-relaxed shadow-sm">
+            <div className="max-w-[90%] sm:max-w-[85%] md:max-w-[70%]">
+              <div className="rounded-2xl rounded-tr-sm bg-black text-white px-4 py-3 sm:px-5 sm:py-3.5 text-sm sm:text-[15px] leading-relaxed shadow-sm">
                 {current.user.slice(0, charCount)}
                 {phase === "typing" && <span className="ml-1 inline-block h-4 w-0.5 animate-pulse bg-white/50 align-middle" />}
               </div>
@@ -132,11 +132,11 @@ export function ProductDemo() {
                 transition={{ duration: 0.4 }}
                 className="flex justify-start w-full"
               >
-                <div className="max-w-[92%] md:max-w-[85%]">
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-bold shadow-sm mt-1">AI</div>
-                    <div className="space-y-3 flex-1 min-w-0">
-                      <div className="rounded-2xl rounded-tl-sm bg-white border border-border/50 px-5 py-3.5 text-[15px] text-foreground leading-relaxed shadow-sm">
+                <div className="max-w-[95%] sm:max-w-[92%] md:max-w-[85%]">
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="flex-shrink-0 h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-[10px] sm:text-xs font-bold shadow-sm mt-1">AI</div>
+                    <div className="space-y-2 sm:space-y-3 flex-1 min-w-0">
+                      <div className="rounded-2xl rounded-tl-sm bg-white border border-border/50 px-4 py-3 sm:px-5 sm:py-3.5 text-sm sm:text-[15px] text-foreground leading-relaxed shadow-sm">
                         {current.reply}
                       </div>
 
@@ -146,7 +146,7 @@ export function ProductDemo() {
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            className={`grid gap-2.5 ${current.images.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}
+                            className={`grid gap-2 sm:gap-2.5 grid-cols-2 ${current.images.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}
                           >
                             {current.images.map((img, i) => (
                               <motion.div
@@ -176,8 +176,8 @@ export function ProductDemo() {
         </div>
 
         {/* Input */}
-        <div className="border-t border-border/50 bg-white/60 p-4 backdrop-blur-md">
-          <div className="flex items-center gap-3 rounded-xl border border-border/60 bg-white px-4 py-3 shadow-sm">
+        <div className="border-t border-border/50 bg-white/60 p-3 sm:p-4 backdrop-blur-md">
+          <div className="flex items-center gap-2 sm:gap-3 rounded-xl border border-border/60 bg-white px-3 py-2.5 sm:px-4 sm:py-3 shadow-sm">
             <div className="h-5 w-5 rounded-full border border-border flex items-center justify-center text-muted-foreground">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M12 5v14M5 12h14"/></svg>
             </div>

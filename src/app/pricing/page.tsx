@@ -71,7 +71,7 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl border border-primary/20 bg-white p-8 text-center shadow-lg shadow-blue-500/5"
+            className="rounded-2xl sm:rounded-3xl border border-primary/20 bg-white p-6 sm:p-8 text-center shadow-lg shadow-blue-500/5"
           >
             <h3 className="text-xl font-bold text-foreground">注册即送</h3>
             <p className="mt-2 text-muted-foreground">无需充值，立即体验全部功能</p>
@@ -101,7 +101,7 @@ export default function PricingPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-foreground mb-2">💬 对话积分</h2>
           <p className="text-muted-foreground mb-8">AI 智能体对话、文案生成、竞品分析、内容策划等</p>
-          <div className="grid gap-6 md:grid-cols-4">
+          <div className="grid gap-4 sm:gap-6 grid-cols-2 md:grid-cols-4">
             {chatPackages.map((pkg, i) => (
               <motion.div
                 key={pkg.name}
@@ -109,7 +109,7 @@ export default function PricingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`relative flex flex-col rounded-3xl border p-6 transition-shadow hover:shadow-xl ${
+                className={`relative flex flex-col rounded-2xl sm:rounded-3xl border p-4 sm:p-6 transition-shadow hover:shadow-xl ${
                   pkg.highlight ? "border-primary bg-white shadow-lg shadow-blue-500/10" : "border-gray-200 bg-white"
                 }`}
               >
@@ -139,7 +139,7 @@ export default function PricingPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-foreground mb-2">🎨 创作积分</h2>
           <p className="text-muted-foreground mb-8">AI 图片生成、图片编辑、风格迁移等</p>
-          <div className="grid gap-6 md:grid-cols-4">
+          <div className="grid gap-4 sm:gap-6 grid-cols-2 md:grid-cols-4">
             {imagePackages.map((pkg, i) => (
               <motion.div
                 key={pkg.name}
@@ -147,7 +147,7 @@ export default function PricingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`relative flex flex-col rounded-3xl border p-6 transition-shadow hover:shadow-xl ${
+                className={`relative flex flex-col rounded-2xl sm:rounded-3xl border p-4 sm:p-6 transition-shadow hover:shadow-xl ${
                   pkg.highlight ? "border-primary bg-white shadow-lg shadow-blue-500/10" : "border-gray-200 bg-white"
                 }`}
               >
@@ -175,7 +175,7 @@ export default function PricingPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-foreground mb-2">4 大生图引擎</h2>
           <p className="text-muted-foreground mb-8">按需选择最适合的引擎，创作积分统一扣减</p>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
             {engines.map((engine, i) => (
               <motion.div
                 key={engine.name}

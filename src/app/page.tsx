@@ -126,7 +126,7 @@ export default function Home() {
   return (
     <div className="bg-background overflow-hidden">
       {/* ===== HERO ===== */}
-      <section className="relative pt-24 pb-32 md:pt-32 lg:pt-40 overflow-hidden">
+      <section className="relative pt-20 pb-16 sm:pt-24 sm:pb-32 md:pt-32 lg:pt-40 overflow-hidden">
         {/* Background Gradients */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10" />
         <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl -z-10" />
@@ -149,7 +149,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold tracking-tight text-foreground text-balance"
+            className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-foreground text-balance"
           >
             让 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">AI 智能体</span> 接管
             <br className="hidden md:block" />
@@ -160,7 +160,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed text-balance"
+            className="mx-auto mt-5 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed text-balance"
           >
             不仅是工具，而是您的超级员工团队。6 个专业 AI Agent 7x24 小时协同工作，
             从图片生成到内容创作，覆盖服装电商全链路。
@@ -197,7 +197,7 @@ export default function Home() {
       <section className="py-12 border-y border-border/40 bg-white/50">
         <div className="mx-auto max-w-7xl px-6 text-center">
           <p className="text-sm font-medium text-muted-foreground">专为服装电商打造的 AI 运营平台</p>
-          <div className="mt-8 grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="mt-6 sm:mt-8 grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-4">
              {[
                { label: '4 大生图引擎', desc: 'Seedream · Z-Image · Gemini · Qwen' },
                { label: '小红书深度集成', desc: '发布 · 采集 · 截流 · 数据分析' },
@@ -214,9 +214,9 @@ export default function Home() {
       </section>
 
       {/* ===== AGENTS (Bento Grid) ===== */}
-      <section className="py-24 bg-white relative">
+      <section className="py-16 sm:py-24 bg-white relative">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
             <h2 className="text-base font-semibold leading-7 text-primary">专业分工</h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               一支配合默契的 AI 专家团队
@@ -234,7 +234,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`group relative overflow-hidden rounded-3xl border bg-white p-8 transition-all hover:shadow-2xl hover:shadow-gray-200/50 ${agent.border}`}
+                className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl border bg-white p-6 sm:p-8 transition-all hover:shadow-2xl hover:shadow-gray-200/50 ${agent.border}`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${agent.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                 
@@ -263,7 +263,7 @@ export default function Home() {
       <Showcase />
 
       {/* ===== HOW IT WORKS ===== */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
+      <section className="py-16 sm:py-24 bg-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.4]" />
         
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
@@ -281,7 +281,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-4 relative">
+          <div className="grid gap-4 sm:gap-8 grid-cols-2 md:grid-cols-4 relative">
              {/* Connecting Line (Desktop) */}
             <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gray-200 -z-10" />
 
@@ -308,13 +308,13 @@ export default function Home() {
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="py-24 bg-white">
+      <section className="py-16 sm:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-           <h2 className="text-3xl font-bold tracking-tight text-foreground text-center mb-16">
+           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground text-center mb-10 sm:mb-16">
               深受商家喜爱
            </h2>
-          
-          <div className="grid gap-8 md:grid-cols-3">
+
+          <div className="grid gap-4 sm:gap-8 md:grid-cols-3">
             {testimonials.map((t, i) => (
               <motion.div
                 key={t.name}
@@ -322,7 +322,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex flex-col justify-between rounded-2xl bg-gray-50 p-8 shadow-sm hover:shadow-md transition-shadow"
+                className="flex flex-col justify-between rounded-2xl bg-gray-50 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow"
               >
                 <div>
                    <div className="flex gap-1 mb-4">
@@ -351,7 +351,7 @@ export default function Home() {
       </section>
 
       {/* ===== METRICS ===== */}
-      <section className="bg-foreground py-20 text-white overflow-hidden relative">
+      <section className="bg-foreground py-14 sm:py-20 text-white overflow-hidden relative">
          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
          <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-2 gap-y-12 gap-x-8 md:grid-cols-4 text-center">
@@ -362,7 +362,7 @@ export default function Home() {
                 { value: "永不过期", label: "充值积分" },
               ].map((m) => (
                 <div key={m.label} className="flex flex-col items-center">
-                  <div className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-2">{m.value}</div>
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-2">{m.value}</div>
                   <div className="text-sm md:text-base text-gray-400 font-medium">{m.label}</div>
                 </div>
               ))}
@@ -371,12 +371,12 @@ export default function Home() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="py-32 bg-white relative overflow-hidden">
+      <section className="py-20 sm:py-32 bg-white relative overflow-hidden">
         <div className="mx-auto max-w-4xl px-6 text-center relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-4 sm:mb-6">
               准备好升级您的电商生意了吗？
             </h2>
-            <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto">
               注册即送 54,000 对话积分 + 18,000 创作积分，无需充值即可体验全部功能。
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

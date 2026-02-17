@@ -130,8 +130,8 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      <section className="pb-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 space-y-16">
+      <section className="pb-16 sm:pb-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-16">
           {agentDetails.map((agent, idx) => (
             <motion.div
               key={agent.name}
@@ -139,9 +139,9 @@ export default function FeaturesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className={`rounded-3xl border bg-white p-8 md:p-10 ${agent.border}`}
+              className={`rounded-2xl sm:rounded-3xl border bg-white p-5 sm:p-8 md:p-10 ${agent.border}`}
             >
-              <div className="flex flex-col gap-8 md:flex-row md:items-start">
+              <div className="flex flex-col gap-6 sm:gap-8 md:flex-row md:items-start">
                 <div className="md:w-1/3">
                   <div className="flex items-center gap-3 mb-4">
                     {agent.icon}

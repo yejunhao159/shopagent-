@@ -15,8 +15,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="pb-32">
-        <div className="mx-auto max-w-3xl px-6 lg:px-8 space-y-16">
+      <section className="pb-16 sm:pb-32">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-16">
           {[
             {
               title: "愿景",
@@ -58,7 +58,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl bg-gray-50 p-10 text-center"
+            className="rounded-2xl sm:rounded-3xl bg-gray-50 p-6 sm:p-10 text-center"
           >
             <h3 className="text-xl font-bold text-foreground">联系我们</h3>
             <p className="mt-2 text-muted-foreground">有任何问题或合作意向，欢迎随时联系</p>

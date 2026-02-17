@@ -3,8 +3,8 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer className="border-t border-border/40 bg-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
-        <div className="flex flex-col justify-between gap-12 md:flex-row">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-12 sm:py-16">
+        <div className="flex flex-col justify-between gap-10 sm:gap-12 md:flex-row">
           <div>
             <div className="flex items-center gap-2">
               <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700" />
@@ -15,7 +15,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex gap-16 text-sm">
+          <div className="flex flex-wrap gap-x-12 gap-y-8 sm:gap-16 text-sm">
             <div>
               <p className="font-semibold text-foreground">产品</p>
               <ul className="mt-4 space-y-3 text-muted-foreground">
@@ -41,7 +41,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border/40 pt-8 text-sm text-muted-foreground">
+        <div className="mt-10 sm:mt-12 border-t border-border/40 pt-6 sm:pt-8 text-sm text-muted-foreground">
           © {new Date().getFullYear()} ShopAgent. All rights reserved.
         </div>
       </div>

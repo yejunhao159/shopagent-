@@ -39,12 +39,12 @@ export default function DownloadPage() {
         </div>
       </section>
 
-      <section className="pb-32">
+      <section className="pb-16 sm:pb-32">
         <div className="mx-auto max-w-2xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-3xl border border-primary/20 bg-white p-10 text-center shadow-lg shadow-blue-500/5"
+            className="rounded-2xl sm:rounded-3xl border border-primary/20 bg-white p-6 sm:p-10 text-center shadow-lg shadow-blue-500/5"
           >
             <div className="mx-auto h-16 w-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg">
               <svg className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

@@ -23,9 +23,9 @@ const engineColors: Record<string, string> = {
 
 export function Showcase() {
   return (
-    <section className="py-24 bg-gray-50 relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12">
+    <section className="py-16 sm:py-24 bg-gray-50 relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
           <h2 className="text-base font-semibold leading-7 text-primary">
             AI 生图作品
           </h2>
@@ -37,7 +37,7 @@ export function Showcase() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3">
           {showcaseItems.map((item, i) => (
             <motion.div
               key={item.src}
@@ -45,7 +45,7 @@ export function Showcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: i * 0.06 }}
-              className="group relative overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
+              className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
             >
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
