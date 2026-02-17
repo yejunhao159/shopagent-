@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Using a Zinc-like neutral palette for a premium, technical feel */
+  --background: #fafafa; /* Slightly warmer white/grey */
+  --foreground: #18181b; /* Zinc 900 */
+  
+  /* Primary brand color - Deep Blue */
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  
+  /* Muted tones for subtitles/borders */
+  --muted: #71717a; /* Zinc 500 */
+  --muted-foreground: #52525b; /* Zinc 600 */
+  
+  /* Borders and Separators */
+  --border: #e4e4e7; /* Zinc 200 */
+  
+  /* Surface colors (cards, panels) */
+  --surface: #ffffff;
+  --surface-hover: #f4f4f5; /* Zinc 100 */
+  
+  /* Accents */
+  --accent: #f4f4f5;
+  --accent-foreground: #18181b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Make headings feel more "official" with tighter tracking */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em; 
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Glassmorphism utility */
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  /* Gradient text utility */
+  .text-gradient {
+    background: linear-gradient(to right, #18181b, #52525b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Subtle mesh gradient background */
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: radial-gradient(circle, #e4e4e7 1px, transparent 1px);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
