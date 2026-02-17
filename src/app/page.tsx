@@ -352,7 +352,7 @@ export default function Home() {
 
       {/* ===== METRICS ===== */}
       <section className="bg-foreground py-14 sm:py-20 text-white overflow-hidden relative">
-         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
+         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
          <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-2 gap-y-12 gap-x-8 md:grid-cols-4 text-center">
               {[
