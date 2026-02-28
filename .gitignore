@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw scraped data (large, not needed for build)
+/docs/
+
+# design files
+*.pen

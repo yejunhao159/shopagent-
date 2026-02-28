@@ -28,7 +28,7 @@ export function Footer() {
               <p className="font-semibold text-foreground">公司</p>
               <ul className="mt-4 space-y-3 text-muted-foreground">
                 <li><Link href="/about" className="hover:text-foreground transition-colors">关于</Link></li>
-                <li><a href="mailto:contact@shopagent.ai" className="hover:text-foreground transition-colors">联系</a></li>
+                <li><a href="mailto:contact@deepractice.ai" className="hover:text-foreground transition-colors">联系</a></li>
               </ul>
             </div>
             <div>

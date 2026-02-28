@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import Image from "next/image";
+
 const navItems = [
   { href: "/", label: "首页" },
   { href: "/features", label: "功能" },
@@ -33,10 +35,10 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 shadow-md group-hover:shadow-lg transition-shadow"></div>
-          <span className="text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">
-            ShopAgent
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <Image src="/images/logo.png" alt="ShopLoop AI Logo" width={32} height={32} className="rounded-lg shadow-sm group-hover:shadow-md transition-all object-cover" />
+          <span className="text-xl font-bold tracking-tight text-foreground group-hover:text-purple-600 transition-colors duration-300">
+            ShopLoop AI
           </span>
         </Link>
 
@@ -55,7 +57,7 @@ export function Header() {
               {pathname === item.href && (
                 <motion.div
                   layoutId="activeNav"
-                  className="absolute -bottom-5 left-0 right-0 h-0.5 bg-primary rounded-full"
+                  className="absolute -bottom-5 left-0 right-0 h-0.5 bg-purple-600 rounded-full"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
@@ -64,9 +66,6 @@ export function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <Link href="/login" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            登录
-          </Link>
           <Link
             href="/download"
             className="rounded-full bg-foreground px-5 py-2 text-sm font-medium text-white shadow-lg shadow-black/5 hover:bg-black/90 hover:scale-[1.02] active:scale-[0.98] transition-all"

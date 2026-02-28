@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const showcaseItems = [
-  { src: "/showcase/fashion1.jpg", engine: "Seedream", label: "时尚大片" },
-  { src: "/showcase/editorial2.jpg", engine: "Gemini", label: "编辑风格" },
-  { src: "/showcase/fashion3.jpg", engine: "Seedream", label: "模特棚拍" },
-  { src: "/showcase/editorial4.jpg", engine: "Gemini", label: "杂志封面" },
-  { src: "/showcase/fashion4.jpg", engine: "Qwen", label: "街拍风格" },
-  { src: "/showcase/product2.jpg", engine: "Seedream", label: "氛围摆拍" },
-  { src: "/showcase/editorial1.jpg", engine: "Z-Image", label: "人像写真" },
-  { src: "/showcase/fashion2.jpg", engine: "Qwen", label: "场景替换" },
+  { src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop", engine: "Seedream", label: "时尚大片" },
+  { src: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop", engine: "Gemini", label: "编辑风格" },
+  { src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop", engine: "Seedream", label: "模特棚拍" },
+  { src: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800&auto=format&fit=crop", engine: "Gemini", label: "杂志封面" },
+  { src: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800&auto=format&fit=crop", engine: "Qwen", label: "街拍风格" },
+  { src: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?q=80&w=800&auto=format&fit=crop", engine: "Seedream", label: "氛围摆拍" },
+  { src: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=800&auto=format&fit=crop", engine: "Z-Image", label: "人像写真" },
+  { src: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800&auto=format&fit=crop", engine: "Qwen", label: "场景替换" },
 ];
 
 const engineColors: Record<string, string> = {
@@ -30,10 +30,10 @@ export function Showcase() {
             AI 生图作品
           </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            全部由 ShopAgent 生成
+            全部由 ShopLoop AI 生成
           </p>
           <p className="mt-4 text-lg text-muted-foreground">
-            4 大引擎各有所长，覆盖服装电商全场景
+            4 大引擎各有所长，覆盖电商与自媒体全场景
           </p>
         </div>
 

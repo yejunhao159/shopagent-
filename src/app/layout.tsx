@@ -4,9 +4,9 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "ShopAgent - AI 电商智能助手",
+  title: "ShopLoop AI - 智能运营助手",
   description:
-    "面向服装电商商家的 AI 多智能体平台，提供图片处理、内容创作、视频剪辑、品牌策略等一站式智能服务",
+    "面向电商商家与自媒体创作者的 AI 多智能体平台，提供图片处理、内容创作、视频剪辑、账号运营等一站式智能服务",
 };
 
 export default function RootLayout({

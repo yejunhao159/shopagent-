@@ -63,10 +63,10 @@ export default function AboutPage() {
             <h3 className="text-xl font-bold text-foreground">联系我们</h3>
             <p className="mt-2 text-muted-foreground">有任何问题或合作意向，欢迎随时联系</p>
             <a
-              href="mailto:contact@shopagent.ai"
+              href="mailto:contact@deepractice.ai"
               className="mt-6 inline-block rounded-full bg-foreground px-8 py-3 font-semibold text-white hover:bg-black/80 transition-all"
             >
-              contact@shopagent.ai
+              contact@deepractice.ai
             </a>
           </motion.div>
         </div>
