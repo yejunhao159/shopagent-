@@ -197,6 +197,36 @@ def load_gemnana():
     return results
 
 
+def load_opennana():
+    with open(DOCS_DIR / "opennana" / "full_data.json") as f:
+        data = json.load(f)
+    results, with_img = [], 0
+
+    img2img_kws = ['原图', '参考图', '附图', '图一', 'original image', 'attached',
+                   'uploaded', '上传', '使用原图', 'reference image']
+
+    for d in data:
+        item_id = f"on_{d['id']}"
+        has_image = (GALLERY_DIR / f"{item_id}.webp").exists()
+        if has_image: with_img += 1
+        prompt = d.get("prompt_zh", "") or d.get("prompt_en", "")
+        is_img2img = any(kw in prompt for kw in img2img_kws)
+        cat = guess_category(d.get("tags", []), d["title"])
+        entry = {
+            "id": item_id, "title": d["title"],
+            "author": d.get("source_name", "OpenNana"),
+            "image": f"/images/gallery/{item_id}.webp" if has_image else "",
+            "category": cat, "tags": d.get("tags", []),
+            "prompt": prompt,
+            "prompt_en": d.get("prompt_en", ""), "source": "OpenNana",
+        }
+        if is_img2img:
+            entry["img2img"] = True
+        results.append(entry)
+    print(f"  OpenNana: {len(results)}, {with_img} with images")
+    return results
+
+
 def load_aibars():
     with open(DOCS_DIR / "aibars" / "full_data.json") as f:
         data = json.load(f)
@@ -228,6 +258,20 @@ def main():
     all_prompts.extend(load_youmind())
     all_prompts.extend(load_gemnana())
     all_prompts.extend(load_aibars())
+    all_prompts.extend(load_opennana())
+
+    # Apply img2img detection and category merging
+    img2img_kws = ['原图', '参考图', '附图', '图一', '图二', '原始图像', 'reference image',
+                   '使用原图', 'original image', 'attached', 'uploaded', '上传',
+                   '原始照片', 'reference photo', '使用图片', '照片中的', '图中的人',
+                   '图片中', 'this image', 'your image', 'your photo', '这张图', '这张照片']
+    category_merge = {"图像编辑": "AI生图", "创意艺术": "AI生图", "漫画动画": "水彩插画"}
+
+    for p in all_prompts:
+        if p["category"] in category_merge:
+            p["category"] = category_merge[p["category"]]
+        if not p.get("img2img") and any(kw in p.get("prompt", "") for kw in img2img_kws):
+            p["img2img"] = True
 
     valid = [p for p in all_prompts if p["prompt"] and p["image"]]
     no_img = [p for p in all_prompts if p["prompt"] and not p["image"]]
