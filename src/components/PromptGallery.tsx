@@ -14,7 +14,7 @@ const categories = [
   { key: "水彩插画", label: "插画" },
   { key: "数据可视化", label: "数据可视化" },
   { key: "海报设计", label: "海报" },
-  { key: "AI生图", label: "更多" },
+  { key: "AI生图", label: "AI生图" },
 ];
 
 function getPromptText(prompt: string): string {
@@ -45,6 +45,7 @@ export function PromptGallery() {
     let items = allPrompts as Array<{
       id: string; title: string; author: string; image: string;
       category: string; tags: string[]; prompt: string; prompt_en: string; source: string;
+      img2img?: boolean;
     }>;
     if (activeCategory !== "全部") {
       items = items.filter(p => p.category === activeCategory);
@@ -180,8 +181,13 @@ export function PromptGallery() {
                   </div>
                 </div>
 
-                {/* Source badge */}
-                <div className="absolute top-2 right-2">
+                {/* Badges */}
+                <div className="absolute top-2 right-2 flex gap-1">
+                  {item.img2img && (
+                    <span className="px-1.5 py-0.5 bg-amber-500/80 backdrop-blur-sm text-[9px] font-medium text-white rounded" title="需上传参考图">
+                      img2img
+                    </span>
+                  )}
                   <span className="px-1.5 py-0.5 bg-black/40 backdrop-blur-sm text-[9px] font-medium text-white/80 rounded">
                     {item.source}
                   </span>
