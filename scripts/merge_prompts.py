@@ -192,6 +192,7 @@ def load_gemnana():
             "category": guess_category(d.get("tags", []), d["title"]),
             "tags": d.get("tags", []), "prompt": prompt,
             "prompt_en": d.get("prompt_en", ""), "source": "GemNana",
+            "model": "Nano Banana Pro",
         })
     print(f"  GemNana: {len(results)}, {with_img} with images")
     return results
@@ -219,6 +220,7 @@ def load_opennana():
             "category": cat, "tags": d.get("tags", []),
             "prompt": prompt,
             "prompt_en": d.get("prompt_en", ""), "source": "OpenNana",
+            "model": d.get("model", "Nano Banana Pro"),
         }
         if is_img2img:
             entry["img2img"] = True
@@ -243,6 +245,7 @@ def load_aibars():
             "category": guess_category(d.get("tags", []), d["title"]),
             "tags": d.get("tags", []), "prompt": prompt,
             "prompt_en": d.get("prompt_en", ""), "source": "AIBARS",
+            "model": d.get("model", "Nano Banana Pro"),
         })
     print(f"  AIBARS: {len(results)}, {with_img} with images")
     return results
@@ -272,6 +275,18 @@ def main():
             p["category"] = category_merge[p["category"]]
         if not p.get("img2img") and any(kw in p.get("prompt", "") for kw in img2img_kws):
             p["img2img"] = True
+
+    # Normalize model names
+    model_normalize = {
+        "Nano banana pro": "Nano Banana Pro",
+        "Nano banana": "Nano Banana Pro",
+        "nano banana pro": "Nano Banana Pro",
+        "FLUX": "FLUX",
+        "z-image": "Z-Image",
+    }
+    for p in all_prompts:
+        raw = p.get("model", "")
+        p["model"] = model_normalize.get(raw, raw) if raw else ""
 
     valid = [p for p in all_prompts if p["prompt"] and p["image"]]
     no_img = [p for p in all_prompts if p["prompt"] and not p["image"]]
