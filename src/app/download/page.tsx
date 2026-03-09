@@ -331,9 +331,7 @@ export default function DownloadPage() {
                 <p className="text-xs text-muted-foreground">无需下载，浏览器直接使用</p>
               </div>
             </div>
-            <a href="#" className="text-sm font-semibold text-primary hover:underline underline-offset-4">
-              打开
-            </a>
+            <span className="text-xs font-medium text-gray-400 bg-gray-100 px-3 py-1 rounded-full">即将上线</span>
           </motion.div>
 
           {/* Version History Toggle */}

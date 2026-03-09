@@ -46,5 +46,8 @@ next-env.d.ts
 # raw scraped data (large, not needed for build)
 /docs/
 
+# internal admin tools (not for production)
+/src/admin-tools/
+
 # design files
 *.pen
