@@ -44,6 +44,15 @@ const GIT_DOWNLOAD_URL = `${DOWNLOAD_BASE}/git/Git-2.49.0-64-bit.exe`;
 
 const versions: VersionInfo[] = [
   {
+    version: "0.5.5",
+    date: "2026-03-08",
+    changelog: "性能优化，稳定性提升，修复已知问题",
+    platforms: [
+      { platform: "Windows x64", file: "ShopAgent-0.5.5-windows-x64-setup.exe", size: "310 MB", available: true },
+      { platform: "macOS (Apple Silicon)", file: "", size: "", available: false },
+    ],
+  },
+  {
     version: "0.5.4",
     date: "2026-03-04",
     changelog: "新增 macOS 支持，性能优化，修复已知问题",
