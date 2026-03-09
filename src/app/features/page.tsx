@@ -132,7 +132,7 @@ export default function FeaturesPage() {
 
       <section className="pb-16 sm:pb-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-16">
-          {agentDetails.map((agent, idx) => (
+          {agentDetails.map((agent) => (
             <motion.div
               key={agent.name}
               initial={{ opacity: 0, y: 20 }}

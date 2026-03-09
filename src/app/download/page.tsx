@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -49,9 +48,9 @@ const versions: VersionInfo[] = [
     date: "2026-03-04",
     changelog: "新增 macOS 支持，性能优化，修复已知问题",
     platforms: [
-      { platform: "Windows x64", file: "ShopAgent-0.5.4-windows-x64-setup.exe", size: "~310 MB", available: true },
-      { platform: "macOS (Apple Silicon) DMG", file: "ShopAgent-0.5.4-mac-arm64-2026-03-04.dmg", size: "~280 MB", available: true },
-      { platform: "macOS (Apple Silicon) ZIP", file: "ShopAgent-0.5.4-mac-arm64-2026-03-04.zip", size: "~280 MB", available: true },
+      { platform: "Windows x64", file: "ShopAgent-0.5.4-windows-x64-setup.exe", size: "310 MB", available: true },
+      { platform: "macOS (Apple Silicon) DMG", file: "ShopAgent_0.5.4_aarch64.dmg-2026-3-5", size: "491 MB", available: true },
+      { platform: "macOS (Apple Silicon) ZIP", file: "ShopAgent-0.5.4-mac-arm64-2026-03-04.zip", size: "223 MB", available: true },
     ],
   },
   {
@@ -103,12 +102,11 @@ function getDownloadUrl(version: string, file: string) {
 }
 
 export default function DownloadPage() {
-  const { os, arch } = useOS();
+  const { os } = useOS();
   const [showHistory, setShowHistory] = useState(false);
 
   const latestWin = latest.platforms.find(p => p.platform === "Windows x64");
   const latestMacDmg = latest.platforms.find(p => p.platform.includes("DMG"));
-  const latestMacZip = latest.platforms.find(p => p.platform.includes("ZIP"));
 
   let primary = latestWin!;
   let primaryLabel = "Windows";

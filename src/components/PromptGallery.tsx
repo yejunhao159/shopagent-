@@ -1,8 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState, useMemo } from "react";
-import allPrompts from "@/data/prompts.json";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useMemo, useEffect } from "react";
+import Image from "next/image";
+
+type PromptItem = {
+  id: string; title: string; author: string; image: string;
+  category: string; tags: string[]; prompt: string; prompt_en: string; source: string;
+  img2img?: boolean; has_image?: boolean;
+};
 
 const categories = [
   { key: "全部", label: "全部" },
@@ -18,7 +24,6 @@ const categories = [
 ];
 
 function getPromptText(prompt: string): string {
-  // If prompt is JSON, extract key fields for display
   if (prompt.startsWith("{")) {
     try {
       const obj = JSON.parse(prompt);
@@ -36,17 +41,32 @@ function getPromptText(prompt: string): string {
 }
 
 export function PromptGallery() {
+  const [allPrompts, setAllPrompts] = useState<PromptItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("全部");
   const [visibleCount, setVisibleCount] = useState(12);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
 
+  const COPY_LIMIT = 10;
+  const [copyCount, setCopyCount] = useState(0);
+  const [showLimitModal, setShowLimitModal] = useState(false);
+  useEffect(() => {
+    const stored = localStorage.getItem("shopagent_copy_count");
+    if (stored) {
+      setCopyCount(parseInt(stored, 10));
+    }
+    fetch("/data/prompts.json")
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((data: PromptItem[]) => { setAllPrompts(data); setLoading(false); })
+      .catch((err) => { console.error("Failed to load prompts:", err); setLoading(false); });
+  }, []);
+
   const filteredPrompts = useMemo(() => {
-    let items = allPrompts as Array<{
-      id: string; title: string; author: string; image: string;
-      category: string; tags: string[]; prompt: string; prompt_en: string; source: string;
-      img2img?: boolean;
-    }>;
+    let items = allPrompts;
     if (activeCategory !== "全部") {
       items = items.filter(p => p.category === activeCategory);
     }
@@ -58,25 +78,41 @@ export function PromptGallery() {
         p.tags?.some(t => t.toLowerCase().includes(q))
       );
     }
+    items = [...items].sort((a, b) => {
+      if (a.has_image !== false && b.has_image === false) return -1;
+      if (a.has_image === false && b.has_image !== false) return 1;
+      return 0;
+    });
     return items;
-  }, [activeCategory, search]);
+  }, [allPrompts, activeCategory, search]);
 
   const displayPrompts = filteredPrompts.slice(0, visibleCount);
 
   const handleCopy = (e: React.MouseEvent, id: string, prompt: string) => {
     e.stopPropagation();
+
+    if (copyCount >= COPY_LIMIT) {
+      setShowLimitModal(true);
+      return;
+    }
+
     navigator.clipboard.writeText(prompt);
     setCopiedId(id);
+
+    const newCount = copyCount + 1;
+    setCopyCount(newCount);
+    localStorage.setItem("shopagent_copy_count", newCount.toString());
+
     setTimeout(() => setCopiedId(null), 2000);
   };
 
   const catCounts = useMemo(() => {
     const counts: Record<string, number> = { "全部": allPrompts.length };
-    for (const p of allPrompts as Array<{ category: string }>) {
+    for (const p of allPrompts) {
       counts[p.category] = (counts[p.category] || 0) + 1;
     }
     return counts;
-  }, []);
+  }, [allPrompts]);
 
   return (
     <section className="py-20 sm:py-24 bg-gray-50/50 border-y border-border/40">
@@ -89,7 +125,7 @@ export function PromptGallery() {
               探索海量<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-orange-500">高转化提示词</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              {allPrompts.length.toLocaleString()}+ 精选生图提示词，覆盖电商、品牌、摄影等场景。一键复制，即刻创作。
+              {allPrompts.length.toLocaleString()}+ 精选生图提示词，覆盖电商、品牌、摄影等场景。一键复制，即刻创作。更多效果图持续更新中。
             </p>
           </div>
           {/* Search */}
@@ -140,19 +176,29 @@ export function PromptGallery() {
             >
               {/* Image */}
               <div className="relative aspect-[4/5] overflow-hidden bg-gray-100">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+                {item.has_image !== false ? (
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col items-center justify-center gap-3">
+                    <div className="w-14 h-14 rounded-2xl bg-purple-100/80 flex items-center justify-center">
+                      <svg className="w-7 h-7 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                    </div>
+                    <span className="text-xs font-medium text-purple-400">敬请期待</span>
+                  </div>
+                )}
 
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-3 sm:p-4">
                   <p className="text-white/90 text-[11px] sm:text-xs text-center line-clamp-4 mb-3 font-medium leading-relaxed">
                     {getPromptText(item.prompt)}
                   </p>
-                  <div className="flex gap-2 w-full max-w-[160px]">
+                  <div className="flex gap-2 w-full max-w-[160px] justify-center">
                     <button
                       onClick={(e) => handleCopy(e, item.id, item.prompt)}
                       className={`flex-1 py-2 backdrop-blur-md border font-medium text-xs rounded-full flex items-center justify-center gap-1 ${
@@ -168,16 +214,6 @@ export function PromptGallery() {
                         </>
                       ) : "复制提示词"}
                     </button>
-                    <a
-                      href={item.image}
-                      download={`prompt-${item.id}.webp`}
-                      target="_blank"
-                      onClick={(e) => e.stopPropagation()}
-                      className="flex items-center justify-center w-9 h-9 bg-white/20 backdrop-blur-md text-white border border-white/40 hover:bg-white/30 rounded-full shrink-0"
-                      title="下载图片"
-                    >
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                    </a>
                   </div>
                 </div>
 
@@ -231,6 +267,55 @@ export function PromptGallery() {
           </div>
         )}
       </div>
+
+      {/* Copy Limit Modal */}
+      <AnimatePresence>
+        {showLimitModal && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowLimitModal(false)}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-3xl shadow-2xl z-50 overflow-hidden border border-border/50"
+            >
+              <div className="p-8 text-center">
+                <div className="w-16 h-16 bg-purple-100 rounded-2xl mx-auto flex items-center justify-center mb-6">
+                  <svg className="w-8 h-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">解锁全部提示词</h3>
+                <p className="text-muted-foreground mb-8 leading-relaxed">
+                  您已体验了 {COPY_LIMIT} 次高级提示词复制。<br/>
+                  想要无限制获取海量专业提示词，并在本地一键生成同款大片？
+                </p>
+                <div className="flex flex-col gap-3">
+                  <Link
+                    href="/download"
+                    onClick={() => setShowLimitModal(false)}
+                    className="w-full py-3.5 bg-foreground text-white rounded-full font-semibold shadow-lg hover:bg-black/80 hover:scale-[1.02] transition-all"
+                  >
+                    免费下载客户端
+                  </Link>
+                  <button
+                    onClick={() => setShowLimitModal(false)}
+                    className="w-full py-3.5 bg-white text-muted-foreground hover:text-foreground rounded-full font-medium transition-colors"
+                  >
+                    我再看看
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

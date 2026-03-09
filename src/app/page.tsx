@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { AgentsGrid } from "@/components/AgentsGrid";
 import { PromptGallery } from "@/components/PromptGallery";
@@ -23,7 +22,7 @@ export default function Home() {
                  {/* Image Background */}
                  <div className="absolute inset-0">
                     <Image 
-                      src="/images/software-bg.png" 
+                      src="/images/software-bg-sm.png"
                       alt="ShopLoop AI Interface" 
                       fill
                       className="object-cover opacity-10"
