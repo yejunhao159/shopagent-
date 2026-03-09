@@ -116,12 +116,15 @@ export default function DownloadPage() {
 
   const latestWin = latest.platforms.find(p => p.platform === "Windows x64");
   const latestMacDmg = latest.platforms.find(p => p.platform.includes("DMG"));
+  const latestMacAny = latest.platforms.find(p => p.platform.toLowerCase().includes("mac"));
 
   let primary = latestWin!;
   let primaryLabel = "Windows";
   if (os === "mac") {
-    primary = latestMacDmg!;
-    primaryLabel = "macOS (Apple Silicon)";
+    primary = latestMacDmg ?? latestMacAny ?? latestWin!;
+    primaryLabel = primary?.platform?.includes("mac") || primary?.platform?.includes("Mac")
+      ? "macOS (Apple Silicon)"
+      : "Windows";
   }
 
   const otherPlatforms = latest.platforms.filter(p => p !== primary);
