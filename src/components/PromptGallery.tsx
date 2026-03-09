@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 type PromptItem = {
   id: string; title: string; author: string; image: string;
@@ -42,7 +43,7 @@ function getPromptText(prompt: string): string {
 
 export function PromptGallery() {
   const [allPrompts, setAllPrompts] = useState<PromptItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("全部");
   const [visibleCount, setVisibleCount] = useState(12);
   const [copiedId, setCopiedId] = useState<string | null>(null);
