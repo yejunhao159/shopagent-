@@ -3,82 +3,60 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
-const conversations = [
-  {
-    id: 0,
-    history: [
-      { role: "user", content: "hi" },
-      { role: "agent", content: "您好！我是您的视觉引擎顾问，今天想做什么风格的图？" }
-    ],
-    user: "帮我生成一组高级感的服装模特图，用在小红书首图",
-    agent: "视觉引擎 · 极简美学",
-    reply: "已调度 Seedream 引擎，为您生成 3 个不同风格的高级感方案：",
-    agentColor: "bg-purple-50 text-purple-700 border-purple-100",
-    images: [
-      { src: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop", label: "方案 A · 极简棚拍" },
-      { src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop", label: "方案 B · 杂志封面" },
-      { src: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800&auto=format&fit=crop", label: "方案 C · 先锋情绪" },
-    ],
-    postTitle: "极简风穿搭｜高级感拉满的早秋OOTD",
-    postDesc: "今天这套真的是我的心头好！极简的剪裁加上高级的质感，随便一拍就是大片既视感。#极简穿搭 #高级感 #OOTD",
-  },
-  {
-    id: 1,
-    history: [
-      { role: "user", content: "这件大衣太难拍了，感觉怎么拍都不出效果" },
-      { role: "agent", content: "没问题，交给我。您可以上传一张基础的白底图或者随手拍，我来帮您重构场景。" }
-    ],
-    user: "把这件大衣的模特换成街拍风格，背景要有城市感",
-    agent: "视觉引擎 · 场景重构",
-    reply: "已使用深度图控制技术，完美保持服装质感，重构城市街拍背景：",
-    agentColor: "bg-purple-50 text-purple-700 border-purple-100",
-    images: [
-      { src: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800&auto=format&fit=crop", label: "巴黎街头 · 午后" },
-      { src: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800&auto=format&fit=crop", label: "纽约都会 · 冷调" },
-    ],
-    postTitle: "城市漫游指南｜这件大衣太出片了",
-    postDesc: "穿上这件大衣，走在城市的街头，感觉自己就是电影女主角。版型绝了，超级显瘦！#城市街拍 #大衣穿搭 #秋冬好物",
-  },
-  {
-    id: 2,
-    history: [
-      { role: "user", content: "我们要上一批秋季新品的香薰蜡烛和配饰" },
-      { role: "agent", content: "收到。香薰和配饰非常适合用带有光影的静物平铺来展现氛围感。需要我提供什么风格的参考？" }
-    ],
-    user: "生成一组产品平铺摆拍图，秋冬氛围感，适合电商详情页",
-    agent: "视觉引擎 · 静物叙事",
-    reply: "已生成 3 组具有光影呼吸感的平铺构图，温暖克制：",
-    agentColor: "bg-purple-50 text-purple-700 border-purple-100",
-    images: [
-      { src: "https://images.unsplash.com/photo-1550614000-4b95f4e4bf7e?q=80&w=800&auto=format&fit=crop", label: "构图 A · 留白" },
-      { src: "https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=800&auto=format&fit=crop", label: "构图 B · 错落" },
-      { src: "https://images.unsplash.com/photo-1434389678369-182328dd7125?q=80&w=800&auto=format&fit=crop", label: "构图 C · 叠层" },
-    ],
-    postTitle: "提升幸福感的秋冬好物清单",
-    postDesc: "给生活加点温度，这些秋冬好物你绝对不能错过。质感满满，看着就让人心情变好。#秋冬好物 #好物分享 #生活美学",
-  },
-];
+import { conversations } from "@/data/conversations";
 
 export function ProductDemo() {
   const [idx, setIdx] = useState(0);
-  const [phase, setPhase] = useState<"typing" | "reply" | "images">("typing");
+  const [phase, setPhase] = useState<"history" | "typing" | "thinking" | "reply" | "images">("history");
   const [charCount, setCharCount] = useState(0);
+  const [historyIndex, setHistoryIndex] = useState(1);
 
   const current = conversations[idx];
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Helper to generate mock timestamps
+  const getMockTime = (index: number, total: number) => {
+    if (!mounted) return ""; // 避免水合不一致
+    const now = new Date();
+    // Start from e.g. 10 minutes ago, each message adds 1-2 minutes
+    const time = new Date(now.getTime() - (total - index) * 60000);
+    // 强制使用统一的格式，避免服务器和客户端区域设置不一致导致报错
+    return time.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+  };
+
   useEffect(() => {
     setCharCount(0);
-    setPhase("typing");
+    setHistoryIndex(1);
+    setPhase("history");
   }, [idx]);
 
   useEffect(() => {
+    if (phase === "history") {
+      if (historyIndex < current.history.length) {
+        // Mock realistic reading/typing delay (user messages slightly faster than agent)
+        const delay = current.history[historyIndex].role === 'user' ? 800 : 1500;
+        const t = setTimeout(() => setHistoryIndex((p) => p + 1), delay);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => setPhase("typing"), 500);
+        return () => clearTimeout(t);
+      }
+    }
     if (phase === "typing" && charCount < current.user.length) {
       const t = setTimeout(() => setCharCount((p) => p + 1), 28);
       return () => clearTimeout(t);
     }
     if (phase === "typing" && charCount >= current.user.length) {
-      const t = setTimeout(() => setPhase("reply"), 500);
+      const t = setTimeout(() => setPhase("thinking"), 500);
+      return () => clearTimeout(t);
+    }
+    if (phase === "thinking") {
+      const t = setTimeout(() => setPhase("reply"), 1200);
       return () => clearTimeout(t);
     }
     if (phase === "reply") {
@@ -89,7 +67,14 @@ export function ProductDemo() {
       const t = setTimeout(() => setIdx((p) => (p + 1) % conversations.length), 6000);
       return () => clearTimeout(t);
     }
-  }, [phase, charCount, idx, current.user.length]);
+  }, [phase, charCount, historyIndex, idx, current.user.length, current.history]);
+
+  useEffect(() => {
+    const chatContainer = document.getElementById("chat-container");
+    if (chatContainer) {
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+  }, [charCount, phase, idx, historyIndex]);
 
   return (
     <div className="w-full h-full flex bg-white/60 backdrop-blur-md">
@@ -122,26 +107,52 @@ export function ProductDemo() {
         </div>
 
         {/* Chat Messages */}
-        <div className="flex-1 p-4 sm:p-6 overflow-y-auto flex flex-col justify-end space-y-6">
-          
+        <div className="flex-1 p-4 sm:p-6 overflow-y-auto scrollbar-custom flex flex-col space-y-6 scroll-smooth" id="chat-container">
+          <div className="mt-auto flex flex-col space-y-6">
           {/* History Messages */}
-          {current.history.map((msg, i) => (
+          {current.history.slice(0, historyIndex).map((msg, i) => (
              <motion.div 
                 key={`hist-${current.id}-${i}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className={`flex w-full ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
              >
-               <div className="max-w-[85%]">
+               <div className="max-w-[85%] group">
                  {msg.role === 'user' ? (
-                   <div className="rounded-2xl rounded-tr-sm bg-gray-100 text-gray-800 px-4 py-3 text-[14px] leading-relaxed shadow-sm w-fit ml-auto break-words text-left">
-                     {msg.content}
+                   <div className="flex flex-col items-end gap-1">
+                     <div className="rounded-2xl rounded-tr-sm bg-gray-100 text-gray-800 px-4 py-3 text-[14px] leading-relaxed shadow-sm w-fit ml-auto break-words text-left">
+                       {msg.content}
+                       {msg.images && (
+                         <div className="flex gap-2 mt-2 flex-wrap">
+                           {msg.images.map((img, idx) => (
+                             <div key={idx} className="relative w-16 h-16 rounded-md overflow-hidden border border-gray-200">
+                               <Image src={img} alt="reference" fill className="object-cover" />
+                             </div>
+                           ))}
+                         </div>
+                       )}
+                     </div>
+                     <span className="text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity px-1">{getMockTime(i, current.history.length)}</span>
                    </div>
                  ) : (
-                   <div className="flex items-start gap-3 w-full opacity-70">
-                      <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-xs font-bold mt-1">AI</div>
-                      <div className="rounded-2xl rounded-tl-sm bg-white border border-border/50 px-4 py-3 text-[14px] text-foreground leading-relaxed shadow-sm w-fit max-w-full break-words">
-                        {msg.content}
+                   <div className="flex items-start gap-3 w-full opacity-90">
+                      <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-300 flex items-center justify-center text-gray-500 text-xs font-bold mt-1">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+                      </div>
+                      <div className="flex flex-col items-start gap-1">
+                        <div className="rounded-2xl rounded-tl-sm bg-white border border-border/50 px-4 py-3 text-[14px] text-foreground leading-relaxed shadow-sm w-fit max-w-full break-words">
+                          {msg.content}
+                          {msg.images && (
+                            <div className="flex gap-2 mt-3 flex-wrap">
+                              {msg.images.map((img, idx) => (
+                                <div key={idx} className="relative w-20 h-20 rounded-lg overflow-hidden border border-border shadow-sm">
+                                  <Image src={img} alt="reference" fill className="object-cover" />
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                        <span className="text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity px-1">{getMockTime(i, current.history.length)}</span>
                       </div>
                    </div>
                  )}
@@ -151,17 +162,46 @@ export function ProductDemo() {
 
           {/* Current User Message typing */}
           <div className="flex justify-end w-full">
-            <div className="max-w-[85%]">
-              <div className="rounded-2xl rounded-tr-sm bg-purple-600 text-white px-4 py-3 text-[14px] leading-relaxed shadow-sm w-fit ml-auto break-words text-left">
-                {current.user.slice(0, charCount)}
-                {phase === "typing" && <span className="ml-1 inline-block h-4 w-0.5 animate-pulse bg-white/50 align-middle" />}
+            <div className="max-w-[85%] group">
+              <div className="flex flex-col items-end gap-1">
+                <div className="rounded-2xl rounded-tr-sm bg-purple-600 text-white px-4 py-3 text-[14px] leading-relaxed shadow-sm w-fit ml-auto break-words text-left">
+                  {current.user.slice(0, charCount)}
+                  {phase === "typing" && <span className="ml-1 inline-block h-4 w-0.5 animate-pulse bg-white/50 align-middle" />}
+                </div>
+                <span className="text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity px-1">现在</span>
               </div>
             </div>
           </div>
 
+          {/* AI Thinking */}
+          <AnimatePresence>
+            {phase === "thinking" && (
+              <motion.div
+                key="thinking"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="flex justify-start w-full"
+              >
+                <div className="max-w-[90%] md:max-w-[85%] w-full">
+                  <div className="flex items-start gap-3 w-full">
+                    <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-purple-500 to-orange-400 flex items-center justify-center text-white text-xs font-bold shadow-sm mt-1">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+                    </div>
+                    <div className="rounded-2xl rounded-tl-sm bg-white border border-border/50 px-4 py-4 shadow-sm w-fit flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                      <span className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                      <span className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* AI Reply */}
           <AnimatePresence mode="wait">
-            {phase !== "typing" && (
+            {(phase === "reply" || phase === "images") && (
               <motion.div
                 key={`${idx}-reply`}
                 initial={{ opacity: 0, y: 10 }}
@@ -170,19 +210,23 @@ export function ProductDemo() {
                 transition={{ duration: 0.4 }}
                 className="flex justify-start w-full"
               >
-                <div className="max-w-[90%] md:max-w-[85%] w-full">
+                <div className="max-w-[90%] md:max-w-[85%] w-full group">
                   <div className="flex items-start gap-3 w-full">
-                    <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-purple-500 to-orange-400 flex items-center justify-center text-white text-xs font-bold shadow-sm mt-1">AI</div>
-                    <div className="space-y-3 flex-1">
+                    <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-purple-500 to-orange-400 flex items-center justify-center text-white text-xs font-bold shadow-sm mt-1">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+                    </div>
+                    <div className="flex flex-col items-start gap-1 flex-1">
                       <div className="rounded-2xl rounded-tl-sm bg-white border border-border/50 px-4 py-3 text-[14px] text-foreground leading-relaxed shadow-sm w-fit max-w-full break-words">
                         {current.reply}
                       </div>
+                      <span className="text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity px-1">现在</span>
                     </div>
                   </div>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
+          </div>
         </div>
 
         {/* Input Box */}
@@ -196,8 +240,8 @@ export function ProductDemo() {
         </div>
       </div>
 
-      {/* Right Panel (Results / Drafts) */}
-      <div className="w-[320px] shrink-0 bg-gray-50/90 flex flex-col border-l border-border/50">
+      {/* Right Panel (Results / Drafts) — hidden on mobile, shown on lg+ */}
+      <div className="hidden lg:flex w-[320px] shrink-0 bg-gray-50/90 flex-col border-l border-border/50">
         <div className="flex items-center gap-6 border-b border-border/40 bg-white/50 px-5 h-14 text-sm font-medium text-muted-foreground">
           <div className="text-purple-600 border-b-2 border-purple-600 h-full flex items-center">✨ 生成结果</div>
           <div className="hover:text-foreground cursor-pointer h-full flex items-center">草稿箱</div>
@@ -219,7 +263,7 @@ export function ProductDemo() {
                      <div className="flex items-center justify-between p-3 border-b border-gray-100">
                         <div className="flex items-center gap-2">
                            <div className="w-6 h-6 rounded-full bg-gray-200 overflow-hidden relative">
-                              <Image src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop" alt="avatar" fill className="object-cover" />
+                              <Image src="/images/gallery/la_0508YOAAYQ.webp" alt="avatar" fill className="object-cover" />
                            </div>
                            <span className="text-xs font-medium text-gray-800">ShopLoop 主理人</span>
                         </div>
@@ -293,11 +337,51 @@ export function ProductDemo() {
            </AnimatePresence>
            
            {phase !== "images" && (
-             <div className="h-full flex flex-col items-center justify-center text-center opacity-50">
-                <div className="w-16 h-16 mb-4 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-500">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+             <div className="h-full w-full p-4">
+                <div className="bg-white rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.06)] border border-border/40 overflow-hidden flex flex-col h-full opacity-60">
+                   {/* Top Bar Skeleton */}
+                   <div className="flex items-center justify-between p-3 border-b border-gray-100">
+                      <div className="flex items-center gap-2">
+                         <div className="w-6 h-6 rounded-full bg-gray-200 animate-shimmer" />
+                         <div className="h-3 w-24 bg-gray-200 rounded animate-shimmer" />
+                      </div>
+                      <div className="h-4 w-10 bg-gray-200 rounded-full animate-shimmer" />
+                   </div>
+
+                   {/* Image Area Skeleton */}
+                   <div className="aspect-[3/4] bg-gray-100 animate-shimmer relative flex items-center justify-center">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-gray-300" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                      {phase === "thinking" && (
+                         <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px] flex items-center justify-center">
+                            <div className="flex gap-1.5 bg-black/40 px-3 py-2 rounded-full shadow-lg">
+                               <span className="w-1.5 h-1.5 bg-white rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                               <span className="w-1.5 h-1.5 bg-white rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                               <span className="w-1.5 h-1.5 bg-white rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                            </div>
+                         </div>
+                      )}
+                   </div>
+
+                   {/* Content Area Skeleton */}
+                   <div className="p-4 space-y-4">
+                      <div className="h-4 bg-gray-200 rounded w-3/4 animate-shimmer" />
+                      <div className="space-y-2">
+                        <div className="h-3 bg-gray-200 rounded w-full animate-shimmer" />
+                        <div className="h-3 bg-gray-200 rounded w-5/6 animate-shimmer" />
+                        <div className="h-3 bg-gray-200 rounded w-4/6 animate-shimmer" />
+                      </div>
+                      
+                      <div className="flex gap-2 pt-2">
+                        <div className="h-5 w-16 bg-gray-200 rounded-full animate-shimmer" />
+                        <div className="h-5 w-16 bg-gray-200 rounded-full animate-shimmer" />
+                      </div>
+
+                      <div className="flex gap-2 pt-4 border-t border-gray-100">
+                         <div className="flex-1 h-8 bg-gray-200 rounded-lg animate-shimmer" />
+                         <div className="flex-[2] h-8 bg-gray-200 rounded-lg animate-shimmer" />
+                      </div>
+                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground">等待 AI 生成内容...</p>
              </div>
            )}
         </div>

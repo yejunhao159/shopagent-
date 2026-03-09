@@ -2,6 +2,15 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import {
+  ImageIcon,
+  BarChart3,
+  Video,
+  PenSquare,
+  MessageCircle,
+  Database,
+  ArrowRight,
+} from "lucide-react";
 
 const agentDetails = [
   {
@@ -10,11 +19,7 @@ const agentDetails = [
     tagline: "4 大引擎，一站式 AI 生图",
     border: "border-blue-100",
     gradient: "from-blue-500/10 to-cyan-500/10",
-    icon: (
-      <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-      </div>
-    ),
+    icon: <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600"><ImageIcon className="h-6 w-6" /></div>,
     features: [
       { title: "Seedream 量产引擎", desc: "文生图 + 图生图，支持最多 14 张参考图，4K 超高分辨率" },
       { title: "Z-Image 文字渲染", desc: "中英文文字清晰不变形，适合带文字的海报和 Banner" },
@@ -28,11 +33,7 @@ const agentDetails = [
     tagline: "你的 AI 战略搭档",
     border: "border-purple-100",
     gradient: "from-purple-500/10 to-pink-500/10",
-    icon: (
-      <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" /></svg>
-      </div>
-    ),
+    icon: <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600"><BarChart3 className="h-6 w-6" /></div>,
     features: [
       { title: "品牌定位分析", desc: "基于市场数据，帮你找准品牌差异化定位" },
       { title: "竞品追踪", desc: "追踪竞品动态，分析价格策略和营销打法" },
@@ -46,11 +47,7 @@ const agentDetails = [
     tagline: "写出完播率高、能带货的脚本",
     border: "border-orange-100",
     gradient: "from-orange-500/10 to-red-500/10",
-    icon: (
-      <div className="h-10 w-10 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600">
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-      </div>
-    ),
+    icon: <div className="h-10 w-10 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600"><Video className="h-6 w-6" /></div>,
     features: [
       { title: "带货脚本", desc: "根据产品卖点自动生成短视频脚本，懂平台算法和用户心理" },
       { title: "多平台适配", desc: "抖音、快手、视频号、小红书，不同平台不同风格" },
@@ -64,11 +61,7 @@ const agentDetails = [
     tagline: "篇篇有流量的种草笔记",
     border: "border-green-100",
     gradient: "from-green-500/10 to-teal-500/10",
-    icon: (
-      <div className="h-10 w-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
-      </div>
-    ),
+    icon: <div className="h-10 w-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600"><PenSquare className="h-6 w-6" /></div>,
     features: [
       { title: "爆款文案", desc: "基于平台算法逻辑，生成高互动率的种草文案" },
       { title: "智能去 AI 味", desc: "让 AI 生成的内容读起来更真实自然，不像机器写的" },
@@ -82,11 +75,7 @@ const agentDetails = [
     tagline: "把别人的流量变成你的客户",
     border: "border-rose-100",
     gradient: "from-rose-500/10 to-pink-500/10",
-    icon: (
-      <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600">
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
-      </div>
-    ),
+    icon: <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600"><MessageCircle className="h-6 w-6" /></div>,
     features: [
       { title: "精准截流", desc: "在热门笔记评论区精准引流，评论互动价值是点赞的 4 倍" },
       { title: "话术生成", desc: "根据笔记内容自动生成自然的评论话术，不像广告" },
@@ -100,11 +89,7 @@ const agentDetails = [
     tagline: "爆款内容一键入库",
     border: "border-sky-100",
     gradient: "from-sky-500/10 to-blue-500/10",
-    icon: (
-      <div className="h-10 w-10 rounded-lg bg-sky-100 flex items-center justify-center text-sky-600">
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>
-      </div>
-    ),
+    icon: <div className="h-10 w-10 rounded-lg bg-sky-100 flex items-center justify-center text-sky-600"><Database className="h-6 w-6" /></div>,
     features: [
       { title: "爆款搜索", desc: "按关键词、品类、互动量搜索小红书爆款内容" },
       { title: "内容下载", desc: "一键下载图文内容到本地知识库，方便参考" },
@@ -156,9 +141,7 @@ export default function FeaturesPage() {
                     className="mt-6 inline-flex items-center text-sm font-medium text-primary hover:underline underline-offset-4"
                   >
                     开始使用
-                    <svg className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
+                    <ArrowRight className="h-4 w-4 ml-1" />
                   </Link>
                 </div>
                 <div className="grid flex-1 gap-4 sm:grid-cols-2">

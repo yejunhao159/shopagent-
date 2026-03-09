@@ -6,22 +6,14 @@ import { useEffect, useState } from "react";
 
 function useOS() {
   const [os, setOS] = useState<"mac" | "win" | "unknown">("unknown");
-  const [arch, setArch] = useState<"arm" | "x64" | "unknown">("unknown");
-  
+
   useEffect(() => {
     const ua = navigator.userAgent.toLowerCase();
-    if (ua.includes("mac")) {
-      setOS("mac");
-      if (ua.includes("arm") || navigator.platform.includes("Mac") && navigator.maxTouchPoints > 2) {
-         setArch("arm");
-      } else {
-         setArch("x64");
-      }
-    }
+    if (ua.includes("mac")) setOS("mac");
     else if (ua.includes("win")) setOS("win");
   }, []);
-  
-  return { os, arch };
+
+  return os;
 }
 
 const DOWNLOAD_BASE = "https://download.yongs.top/shopagent-desktop";
@@ -111,7 +103,7 @@ function getDownloadUrl(version: string, file: string) {
 }
 
 export default function DownloadPage() {
-  const { os } = useOS();
+  const os = useOS();
   const [showHistory, setShowHistory] = useState(false);
 
   const latestWin = latest.platforms.find(p => p.platform === "Windows x64");

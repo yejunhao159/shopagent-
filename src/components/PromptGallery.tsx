@@ -43,7 +43,7 @@ function getPromptText(prompt: string): string {
 
 export function PromptGallery() {
   const [allPrompts, setAllPrompts] = useState<PromptItem[]>([]);
-  const [, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("全部");
   const [visibleCount, setVisibleCount] = useState(12);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -165,6 +165,20 @@ export function PromptGallery() {
         </div>
 
         {/* Grid */}
+        {loading && (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="flex flex-col bg-white rounded-2xl border border-border/50 overflow-hidden">
+                <div className="aspect-[4/5] bg-gray-100 animate-shimmer" />
+                <div className="p-4 space-y-3">
+                  <div className="h-4 bg-gray-100 rounded w-3/4 animate-shimmer" />
+                  <div className="h-3 bg-gray-100 rounded w-full animate-shimmer" />
+                  <div className="h-3 bg-gray-100 rounded w-2/3 animate-shimmer" />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {displayPrompts.map((item, i) => (
             <motion.div
