@@ -12,6 +12,7 @@ const navItems = [
   { href: "/features", label: "功能" },
   { href: "/pricing", label: "定价" },
   { href: "/download", label: "下载" },
+  { href: "/guide", label: "使用指南" },
   { href: "/about", label: "关于" },
 ];
 
@@ -36,7 +37,7 @@ export function Header() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5 group">
-          <Image src="/images/logo.png" alt="ShopLoop AI Logo" width={32} height={32} className="rounded-lg shadow-sm group-hover:shadow-md transition-all object-cover" />
+          <Image src="/images/logo-200.png" alt="ShopLoop AI Logo" width={32} height={32} className="rounded-lg shadow-sm group-hover:shadow-md transition-shadow object-cover" />
           <span className="text-xl font-bold tracking-tight text-foreground group-hover:text-purple-600 transition-colors duration-300">
             ShopLoop AI
           </span>
@@ -68,7 +69,7 @@ export function Header() {
         <div className="hidden md:flex items-center gap-4">
           <Link
             href="/download"
-            className="rounded-full bg-foreground px-5 py-2 text-sm font-medium text-white shadow-lg shadow-black/5 hover:bg-black/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+            className="rounded-full bg-foreground px-5 py-2 text-sm font-medium text-white shadow-lg shadow-black/5 hover:bg-black/90 hover:scale-[1.02] active:scale-[0.98] transition-[background-color,transform]"
           >
             免费试用
           </Link>

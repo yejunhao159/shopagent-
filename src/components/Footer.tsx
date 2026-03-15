@@ -23,6 +23,7 @@ export function Footer() {
                 <li><Link href="/features" className="hover:text-foreground transition-colors">功能</Link></li>
                 <li><Link href="/pricing" className="hover:text-foreground transition-colors">定价</Link></li>
                 <li><Link href="/download" className="hover:text-foreground transition-colors">下载</Link></li>
+                <li><Link href="/guide" className="hover:text-foreground transition-colors">使用指南</Link></li>
               </ul>
             </div>
             <div>
