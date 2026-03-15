@@ -39,7 +39,7 @@ export function Hero() {
         </p>
 
         <div
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 pb-24 animate-fade-in-up [animation-delay:300ms]"
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 pb-6 animate-fade-in-up [animation-delay:300ms]"
         >
           <Link
             href="/download"
@@ -54,6 +54,9 @@ export function Hero() {
             查看演示 <ArrowRightIcon />
           </Link>
         </div>
+        <p className="mt-4 pb-24 text-sm text-muted-foreground animate-fade-in-up [animation-delay:400ms]">
+          无需信用卡 · 注册即送 54,000 积分 · 支持 Windows 与 macOS
+        </p>
       </div>
     </section>
   );

@@ -118,6 +118,50 @@ export default function GuidePage() {
             </div>
           </motion.div>
 
+          {/* 按场景查看演示（与 Issue/ TUTORIAL_SCENARIOS 对齐） */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            className="rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-sm"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h2 className="text-xl font-bold text-foreground">按场景查看演示</h2>
+            </div>
+            <p className="text-sm text-muted-foreground mb-6">
+              我们将按以下场景提供视频与图文演示，方便你按需跳转。
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                { group: "入门", items: ["安装与首次启动", "注册与登录"] },
+                { group: "生图与创作", items: ["文生图", "图生图与多轮编辑", "提示词库与批量生图"] },
+                { group: "内容与运营", items: ["小红书种草文案", "短视频脚本", "评论截流", "数据采集"] },
+                { group: "进阶", items: ["战略/运营建议", "常见问题"] },
+              ].map(({ group, items }) => (
+                <div key={group} className="rounded-xl border border-border/60 bg-muted/30 p-4">
+                  <p className="text-xs font-semibold text-primary mb-2">{group}</p>
+                  <ul className="space-y-1.5 text-sm text-muted-foreground">
+                    {items.map((item) => (
+                      <li key={item} className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/50" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-xs text-muted-foreground">
+              场景清单与排期见仓库 <strong className="text-foreground">TUTORIAL_SCENARIOS.md</strong> 及 Issue「教学 · 不同场景演示」。
+            </p>
+          </motion.div>
+
           <div className="text-center">
             <Link
               href="/download"
