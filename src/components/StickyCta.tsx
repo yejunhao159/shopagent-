@@ -37,7 +37,7 @@ export function StickyCta() {
         >
           <Link
             href="/download"
-            className="block w-full rounded-full bg-foreground py-3.5 text-center text-base font-semibold text-white shadow-lg hover:bg-black/90 active:scale-[0.98] transition-all"
+            className="block w-full rounded-full bg-gradient-to-r from-purple-600 to-purple-500 py-3.5 text-center text-base font-semibold text-white shadow-lg shadow-purple-500/25 active:scale-[0.98] transition-all"
           >
             免费下载 ShopLoop AI
           </Link>

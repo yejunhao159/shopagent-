@@ -26,16 +26,16 @@ export function Hero() {
         <h1
           className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-foreground text-balance animate-fade-in-up [animation-delay:100ms]"
         >
-          让 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-orange-500">AI 智能体</span> 接管
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-orange-500">女娲</span>打造
           <br className="hidden md:block" />
-          您的运营全流程
+          专属你的 AI 运营团队
         </h1>
 
         <p
           className="mx-auto mt-5 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed text-balance animate-fade-in-up [animation-delay:200ms]"
         >
-          不仅是工具，而是您的超级员工团队。6 个专业 AI Agent 7x24 小时协同工作，
-          从图片生成到爆款内容创作，覆盖电商与自媒体运营全链路。
+          不只是工具，而是一支懂你的超级团队。Claude Sonnet 4.6 + Gemini 3.1 Pro 顶尖大模型组合拳驱动，
+          专属记忆越用越懂你，小红书深度优化助力爆款。
         </p>
 
         <div
@@ -43,7 +43,7 @@ export function Hero() {
         >
           <Link
             href="/download"
-            className="w-full sm:w-auto rounded-full bg-foreground px-8 py-3.5 text-base font-semibold text-white shadow-xl hover:bg-black/80 hover:scale-[1.02] transition-[background-color,transform]"
+            className="w-full sm:w-auto rounded-full bg-gradient-to-r from-purple-600 to-purple-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/30 hover:scale-[1.02] transition-all"
           >
             立即免费开始
           </Link>
@@ -55,7 +55,7 @@ export function Hero() {
           </Link>
         </div>
         <p className="mt-4 pb-24 text-sm text-muted-foreground animate-fade-in-up [animation-delay:400ms]">
-          无需信用卡 · 注册即送 54,000 积分 · 支持 Windows 与 macOS
+          无需信用卡 · 注册即送体验积分 · 支持 Windows 与 macOS
         </p>
       </div>
     </section>

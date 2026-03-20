@@ -41,6 +41,13 @@ function getPromptText(prompt: string): string {
   return prompt.slice(0, 200);
 }
 
+type PromptIndex = {
+  total: number;
+  pageSize: number;
+  totalPages: number;
+  categories: Record<string, number>;
+};
+
 export function PromptGallery() {
   const [allPrompts, setAllPrompts] = useState<PromptItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -48,23 +55,64 @@ export function PromptGallery() {
   const [visibleCount, setVisibleCount] = useState(12);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
+  const [promptIndex, setPromptIndex] = useState<PromptIndex | null>(null);
+  const [loadedPages, setLoadedPages] = useState(0);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   const COPY_LIMIT = 10;
   const [copyCount, setCopyCount] = useState(0);
   const [showLimitModal, setShowLimitModal] = useState(false);
+
+  const loadPage = async (pageNum: number) => {
+    const r = await fetch(`/data/prompts/page-${pageNum}.json`);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json() as Promise<PromptItem[]>;
+  };
+
   useEffect(() => {
     const stored = localStorage.getItem("shopagent_copy_count");
     if (stored) {
       setCopyCount(parseInt(stored, 10));
     }
-    fetch("/data/prompts.json")
-      .then(r => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
+
+    Promise.all([
+      fetch("/data/prompts/index.json").then(r => r.json()) as Promise<PromptIndex>,
+      loadPage(1),
+    ])
+      .then(([index, firstPage]) => {
+        setPromptIndex(index);
+        setAllPrompts(firstPage);
+        setLoadedPages(1);
+        setLoading(false);
       })
-      .then((data: PromptItem[]) => { setAllPrompts(data); setLoading(false); })
-      .catch((err) => { console.error("Failed to load prompts:", err); setLoading(false); });
+      .catch((err) => {
+        console.error("Failed to load prompts:", err);
+        fetch("/data/prompts.json")
+          .then(r => r.ok ? r.json() : Promise.reject(r.status))
+          .then((data: PromptItem[]) => { setAllPrompts(data); setLoading(false); })
+          .catch(() => setLoading(false));
+      });
   }, []);
+
+  const loadMorePages = async () => {
+    if (!promptIndex || loadingMore) return;
+    const nextPage = loadedPages + 1;
+    if (nextPage > promptIndex.totalPages) return;
+    setLoadingMore(true);
+    try {
+      const batchSize = 3;
+      const pages: PromptItem[][] = [];
+      for (let i = nextPage; i <= Math.min(nextPage + batchSize - 1, promptIndex.totalPages); i++) {
+        pages.push(await loadPage(i));
+      }
+      const newItems = pages.flat();
+      setAllPrompts(prev => [...prev, ...newItems]);
+      setLoadedPages(Math.min(nextPage + batchSize - 1, promptIndex.totalPages));
+    } catch (err) {
+      console.error("Failed to load more prompts:", err);
+    }
+    setLoadingMore(false);
+  };
 
   const filteredPrompts = useMemo(() => {
     let items = allPrompts;
@@ -108,16 +156,20 @@ export function PromptGallery() {
   };
 
   const catCounts = useMemo(() => {
+    if (promptIndex) {
+      return { "全部": promptIndex.total, ...promptIndex.categories };
+    }
     const counts: Record<string, number> = { "全部": allPrompts.length };
     for (const p of allPrompts) {
       counts[p.category] = (counts[p.category] || 0) + 1;
     }
     return counts;
-  }, [allPrompts]);
+  }, [allPrompts, promptIndex]);
 
   return (
-    <section className="py-20 sm:py-24 bg-gray-50/50 border-y border-border/40">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="py-20 sm:py-28 bg-gradient-to-b from-gray-100/80 via-gray-50 to-white relative">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
@@ -126,7 +178,7 @@ export function PromptGallery() {
               探索海量<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-orange-500">高转化提示词</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              {allPrompts.length.toLocaleString()}+ 精选生图提示词，覆盖电商、品牌、摄影等场景。一键复制，即刻创作。更多效果图持续更新中。
+              {(promptIndex?.total ?? allPrompts.length).toLocaleString()}+ 精选生图提示词，覆盖电商、品牌、摄影等场景。一键复制，即刻创作。
             </p>
           </div>
           {/* Search */}
@@ -271,13 +323,21 @@ export function PromptGallery() {
         </div>
 
         {/* Load more */}
-        {visibleCount < filteredPrompts.length && (
+        {(visibleCount < filteredPrompts.length || (promptIndex && loadedPages < promptIndex.totalPages)) && (
           <div className="mt-10 flex justify-center">
             <button
-              onClick={() => setVisibleCount(v => v + 12)}
-              className="px-6 py-3 bg-white border border-border/80 text-sm font-medium text-foreground rounded-full shadow-sm hover:bg-gray-50 transition-colors"
+              onClick={() => {
+                if (visibleCount < filteredPrompts.length) {
+                  setVisibleCount(v => v + 12);
+                } else if (promptIndex && loadedPages < promptIndex.totalPages) {
+                  loadMorePages();
+                  setVisibleCount(v => v + 12);
+                }
+              }}
+              disabled={loadingMore}
+              className="px-6 py-3 bg-white border border-border/80 text-sm font-medium text-foreground rounded-full shadow-sm hover:bg-gray-50 transition-colors disabled:opacity-50"
             >
-              加载更多 ({visibleCount} / {filteredPrompts.length})
+              {loadingMore ? "加载中..." : `加载更多 (${Math.min(visibleCount, filteredPrompts.length)} / ${promptIndex?.total ?? filteredPrompts.length})`}
             </button>
           </div>
         )}
@@ -315,7 +375,7 @@ export function PromptGallery() {
                   <Link
                     href="/download"
                     onClick={() => setShowLimitModal(false)}
-                    className="w-full py-3.5 bg-foreground text-white rounded-full font-semibold shadow-lg hover:bg-black/80 hover:scale-[1.02] transition-all"
+                    className="w-full py-3.5 bg-gradient-to-r from-purple-600 to-purple-500 text-white rounded-full font-semibold shadow-lg shadow-purple-500/25 hover:shadow-xl hover:scale-[1.02] transition-all"
                   >
                     免费下载客户端
                   </Link>

@@ -2,95 +2,93 @@
 
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@/components/Icons";
-import { ImageIcon, BarChart3, Video, PenSquare, MessageCircle, Database } from "lucide-react";
+import { Sparkles, MessageSquare, BookOpen, Brain } from "lucide-react";
 
-const agents = [
+const capabilities = [
   {
-    name: "冠华 · 生图专家",
-    role: "Image Creator",
-    desc: "4 大 AI 生图引擎，支持文生图、图生图、多轮对话编辑、中文文字渲染。",
-    gradient: "from-blue-500/10 to-cyan-500/10",
-    border: "border-blue-100",
-    icon: <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600"><ImageIcon className="h-6 w-6" /></div>,
-  },
-  {
-    name: "资深运营 · 战略顾问",
-    role: "Strategy Lead",
-    desc: "品牌定位分析、竞品追踪、经营决策建议、时尚趋势洞察。",
+    name: "女娲 · AI 团队编排",
+    role: "Nuwa Orchestrator",
+    desc: "不是固定的几个 Agent，而是女娲根据你的需求，动态创建最适合你的 AI 运营团队。图片生成、文案创作、数据分析，按需组合，随用随调。",
     gradient: "from-purple-500/10 to-pink-500/10",
     border: "border-purple-100",
-    icon: <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600"><BarChart3 className="h-6 w-6" /></div>,
+    icon: <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600"><Sparkles className="h-6 w-6" /></div>,
+    highlights: ["动态创建专属 Agent", "按需组合能力", "智能任务分配"],
   },
   {
-    name: "短视频脚本师",
-    role: "Video Script",
-    desc: "懂平台算法和用户心理，写出完播率高、能带货的短视频脚本。",
-    gradient: "from-orange-500/10 to-red-500/10",
-    border: "border-orange-100",
-    icon: <div className="h-10 w-10 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600"><Video className="h-6 w-6" /></div>,
+    name: "顶尖大模型组合拳",
+    role: "Claude Sonnet 4.6 + Gemini 3.1 Pro",
+    desc: "不拼单一模型，而是组合全球最强。Claude Sonnet 4.6 负责深度推理与文案创作，Gemini 3.1 Pro 驱动多模态生图与视觉理解，双引擎协同让每个任务都用最优解。",
+    gradient: "from-blue-500/10 to-cyan-500/10",
+    border: "border-blue-100",
+    icon: <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600"><MessageSquare className="h-6 w-6" /></div>,
+    highlights: ["Claude Sonnet 4.6 推理", "Gemini 3.1 Pro 多模态", "双模型智能调度"],
   },
   {
-    name: "小红书种草达人",
-    role: "XHS Creator",
-    desc: "基于平台算法逻辑，生成高互动率种草文案，智能去 AI 味。",
-    gradient: "from-green-500/10 to-teal-500/10",
-    border: "border-green-100",
-    icon: <div className="h-10 w-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600"><PenSquare className="h-6 w-6" /></div>,
-  },
-  {
-    name: "小红书评论截流师",
-    role: "XHS Interceptor",
-    desc: "在热门笔记评论区精准截流，把别人的流量变成你的客户。",
-    gradient: "from-rose-500/10 to-pink-500/10",
+    name: "小红书深度优化",
+    role: "XHS Optimizer",
+    desc: "从种草文案、评论截流到数据采集，针对小红书平台算法深度优化。智能去 AI 味、关键词布局、爆款内容分析，全链路覆盖。",
+    gradient: "from-rose-500/10 to-orange-500/10",
     border: "border-rose-100",
-    icon: <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600"><MessageCircle className="h-6 w-6" /></div>,
+    icon: <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600"><BookOpen className="h-6 w-6" /></div>,
+    highlights: ["种草文案生成", "评论精准截流", "爆款数据采集"],
   },
   {
-    name: "小红书数据采集师",
-    role: "XHS Collector",
-    desc: "搜索筛选爆款内容，下载保存到本地知识库，为创作提供灵感。",
-    gradient: "from-sky-500/10 to-blue-500/10",
-    border: "border-sky-100",
-    icon: <div className="h-10 w-10 rounded-lg bg-sky-100 flex items-center justify-center text-sky-600"><Database className="h-6 w-6" /></div>,
+    name: "专属记忆系统",
+    role: "Memory Engine",
+    desc: "AI 团队不再每次从零开始。它记住你的品牌调性、产品风格、目标人群、历史偏好，越用越懂你，真正成为你的专属运营团队。",
+    gradient: "from-emerald-500/10 to-teal-500/10",
+    border: "border-emerald-100",
+    icon: <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600"><Brain className="h-6 w-6" /></div>,
+    highlights: ["品牌调性记忆", "风格偏好学习", "越用越精准"],
   },
 ];
 
 export function AgentsGrid() {
   return (
-    <section className="py-16 sm:py-24 bg-white relative">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/[0.03] rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-500/[0.03] rounded-full blur-3xl" />
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
-          <h2 className="text-base font-semibold leading-7 text-primary">专业分工</h2>
+          <h2 className="text-base font-semibold leading-7 text-primary">核心能力</h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            一支配合默契的 AI 专家团队
+            不只是工具，是你的专属运营团队
           </p>
           <p className="mt-4 text-lg text-muted-foreground">
-            6 个 Agent 各司其职，覆盖图片生成、内容创作、数据采集、评论截流、视频脚本、市场分析全链路。
+            女娲动态编排 AI 能力，Claude Sonnet 4.6 + Gemini 3.1 Pro 双模型驱动，小红书深度优化，专属记忆越用越懂你。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {agents.map((agent, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {capabilities.map((cap, i) => (
             <motion.div
-              key={agent.name}
+              key={cap.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl border bg-white p-6 sm:p-8 transition-all hover:shadow-2xl hover:shadow-gray-200/50 ${agent.border}`}
+              className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl border bg-white p-6 sm:p-8 transition-all hover:shadow-2xl hover:shadow-gray-200/50 ${cap.border}`}
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${agent.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              <div className={`absolute inset-0 bg-gradient-to-br ${cap.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-center justify-between mb-6">
-                  {agent.icon}
-                  <span className="text-xs font-mono text-muted-foreground bg-gray-100 px-2 py-1 rounded">{agent.role}</span>
+                  {cap.icon}
+                  <span className="text-xs font-mono text-muted-foreground bg-gray-100 px-2 py-1 rounded">{cap.role}</span>
                 </div>
                 
-                <h3 className="text-xl font-bold text-foreground">{agent.name}</h3>
+                <h3 className="text-xl font-bold text-foreground">{cap.name}</h3>
                 <p className="mt-3 text-muted-foreground leading-relaxed flex-grow">
-                  {agent.desc}
+                  {cap.desc}
                 </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {cap.highlights.map((h) => (
+                    <span key={h} className="text-xs font-medium px-2.5 py-1 rounded-full bg-gray-50 text-muted-foreground border border-gray-100 group-hover:bg-white/80 transition-colors">
+                      {h}
+                    </span>
+                  ))}
+                </div>
                 
                 <div className="mt-6 pt-6 border-t border-gray-100 flex items-center text-sm font-medium text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
                   了解更多 <ArrowRightIcon />

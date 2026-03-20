@@ -5,16 +5,16 @@ import { CountUp } from "@/components/Motion";
 
 export function Metrics() {
   return (
-    <section className="bg-foreground py-14 sm:py-20 text-white overflow-hidden relative">
-       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl" />
+    <section className="bg-gradient-to-br from-gray-900 via-foreground to-gray-900 py-16 sm:py-24 text-white overflow-hidden relative">
+       <div className="absolute inset-0 bg-grid-pattern opacity-[0.06]"></div>
+       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-3xl" />
        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-3xl" />
        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-2 gap-y-12 gap-x-8 md:grid-cols-4 text-center">
             {[
-              { value: 6, label: "AI 智能体", suffix: "", prefix: "" },
+              { value: 0, label: "AI 运营团队", suffix: "", prefix: "", text: "专属你的" },
               { value: 4, label: "生图引擎", suffix: "", prefix: "" },
-              { value: 40, label: "最低每张图", suffix: "", prefix: "¥0." },
+              { value: 3, label: "协同入口", suffix: "", prefix: "", text: "多端" },
               { value: 0, label: "充值积分", suffix: "", prefix: "", text: "永不过期" },
             ].map((m) => (
               <motion.div

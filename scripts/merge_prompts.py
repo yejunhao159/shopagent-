@@ -251,6 +251,106 @@ def load_aibars():
     return results
 
 
+def load_seedream():
+    data_file = DOCS_DIR / "seedream" / "official_guide_examples.json"
+    if not data_file.exists():
+        print("  Seedream: skipped (no data)")
+        return []
+    with open(data_file) as f:
+        data = json.load(f)
+    results = []
+    for d in data:
+        item_id = d["id"]
+        prompt_type = d.get("type", "文生图")
+        is_img2img = prompt_type in ("图像编辑", "参考图生图")
+        entry = {
+            "id": item_id, "title": d["title"],
+            "author": d.get("source", "火山引擎"),
+            "image": "",  # Seedream official guide has no downloadable images
+            "category": guess_category(d.get("tags", []), d["title"]),
+            "tags": d.get("tags", []),
+            "prompt": d.get("prompt_zh", ""),
+            "prompt_en": "",
+            "source": "Seedream官方",
+            "model": "Seedream 4.5",
+        }
+        if is_img2img:
+            entry["img2img"] = True
+        results.append(entry)
+    print(f"  Seedream: {len(results)}")
+    return results
+
+
+def load_zerolu():
+    data_file = DOCS_DIR / "zerolu" / "full_data.json"
+    if not data_file.exists():
+        print("  ZeroLu: skipped (no data)")
+        return []
+    with open(data_file) as f:
+        data = json.load(f)
+    img_dir = DOCS_DIR / "zerolu" / "images"
+    results, copied = [], 0
+    for d in data:
+        item_id = "zl_" + make_id(d["title"])
+        dst = GALLERY_DIR / f"{item_id}.webp"
+        if not dst.exists():
+            local_img = d.get("local_image", "")
+            src = img_dir / local_img if local_img else None
+            if src and src.exists() and to_webp(src, dst):
+                copied += 1
+        entry = {
+            "id": item_id, "title": d["title"],
+            "author": d.get("author", "ZeroLu"),
+            "image": f"/images/gallery/{item_id}.webp" if dst.exists() else "",
+            "category": guess_category([], d["title"]),
+            "tags": ["Nano Banana Pro"],
+            "prompt": d.get("prompt", ""),
+            "prompt_en": d.get("prompt", ""),  # ZeroLu prompts are in English
+            "source": "ZeroLu",
+            "model": d.get("model", "Nano Banana Pro"),
+        }
+        results.append(entry)
+    print(f"  ZeroLu: {len(results)}, {copied} images copied")
+    return results
+
+
+def load_nanaimg():
+    data_file = DOCS_DIR / "nanaimg" / "full_data.json"
+    if not data_file.exists():
+        print("  NanaImg: skipped (no data)")
+        return []
+    with open(data_file) as f:
+        data = json.load(f)
+    img_dir = DOCS_DIR / "nanaimg" / "images"
+    results, with_img = [], 0
+    for d in data:
+        item_id = d["id"]
+        dst = GALLERY_DIR / f"{item_id}.webp"
+        if not dst.exists():
+            local_img = d.get("local_image", "")
+            src = img_dir / local_img if local_img else None
+            if src and src.exists() and to_webp(src, dst):
+                with_img += 1
+        elif dst.exists():
+            with_img += 1
+        entry = {
+            "id": item_id, "title": d["title"],
+            "author": d.get("author", "NanaImg"),
+            "image": f"/images/gallery/{item_id}.webp" if dst.exists() else "",
+            "category": guess_category([], d["title"]),
+            "tags": ["Nano Banana Pro"],
+            "prompt": d.get("prompt", ""),
+            "prompt_en": d.get("prompt", ""),  # NanaImg prompts are in English
+            "source": "NanaImg",
+            "model": "Nano Banana Pro",
+        }
+        if d.get("img2img"):
+            entry["img2img"] = True
+        results.append(entry)
+    print(f"  NanaImg: {len(results)}, {with_img} with images")
+    return results
+
+
 def main():
     GALLERY_DIR.mkdir(parents=True, exist_ok=True)
     print("🔄 Loading all sources...")
@@ -262,6 +362,9 @@ def main():
     all_prompts.extend(load_gemnana())
     all_prompts.extend(load_aibars())
     all_prompts.extend(load_opennana())
+    all_prompts.extend(load_seedream())
+    all_prompts.extend(load_zerolu())
+    all_prompts.extend(load_nanaimg())
 
     # Apply img2img detection and category merging
     img2img_kws = ['原图', '参考图', '附图', '图一', '图二', '原始图像', 'reference image',
@@ -283,6 +386,8 @@ def main():
         "nano banana pro": "Nano Banana Pro",
         "FLUX": "FLUX",
         "z-image": "Z-Image",
+        "Seedream 4.5": "Seedream 4.5",
+        "seedream": "Seedream 4.5",
     }
     for p in all_prompts:
         raw = p.get("model", "")

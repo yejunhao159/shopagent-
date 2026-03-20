@@ -5,16 +5,16 @@ import { motion } from "framer-motion";
 import { MessageCircle, FlaskConical, SlidersHorizontal, Send } from "lucide-react";
 
 const steps = [
-  { num: "01", title: "对话式交互", desc: "用自然语言告诉 Agent 你的需求，无需学习复杂操作", icon: <MessageCircle className="h-5 w-5" /> },
-  { num: "02", title: "Agent 智能执行", desc: "对应领域的 Agent 自动理解意图并完成任务", icon: <FlaskConical className="h-5 w-5" /> },
-  { num: "03", title: "多引擎协同", desc: "4 大生图引擎 + 小红书工具链，按需调度最优方案", icon: <SlidersHorizontal className="h-5 w-5" /> },
-  { num: "04", title: "一键发布与同步", desc: "内容直接发布到多平台，支持草稿箱预览与定时发布", icon: <Send className="h-5 w-5" /> },
+  { num: "01", title: "告诉女娲你的需求", desc: "用自然语言描述目标，女娲自动为你编排最合适的 AI 团队", icon: <MessageCircle className="h-5 w-5" /> },
+  { num: "02", title: "AI 团队智能协作", desc: "专属团队自动理解意图并执行，记忆系统让每次都更精准", icon: <FlaskConical className="h-5 w-5" /> },
+  { num: "03", title: "顶尖模型驱动", desc: "Claude Sonnet 4.6 + Gemini 3.1 Pro 双引擎，文案与视觉各取所长", icon: <SlidersHorizontal className="h-5 w-5" /> },
+  { num: "04", title: "一键发布与同步", desc: "内容直接发布到小红书等多平台，深度优化提升流量", icon: <Send className="h-5 w-5" /> },
 ];
 
 export function Workflow() {
   return (
-    <section className="py-16 sm:py-24 bg-gray-50 relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.4]" />
+    <section className="py-20 sm:py-28 bg-gradient-to-b from-gray-100/70 via-gray-50 to-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.3]" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         <div className="md:flex md:items-end md:justify-between mb-16">

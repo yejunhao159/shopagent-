@@ -184,7 +184,7 @@ export default function DownloadPage() {
             {primary.available ? (
               <a
                 href={getDownloadUrl(latest.version, primary.file)}
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-foreground px-10 py-3.5 font-semibold text-white shadow-xl hover:bg-black/80 hover:scale-[1.02] transition-all"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 px-10 py-3.5 font-semibold text-white shadow-lg shadow-purple-500/25 hover:shadow-xl hover:scale-[1.02] transition-all"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />

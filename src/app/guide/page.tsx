@@ -2,12 +2,106 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { Sparkles, MessageSquare, BookOpen, Brain, ImageIcon, PenSquare, Video, Database, MessageCircle, BarChart3 } from "lucide-react";
 
-// 教学视频链接：上线前替换为实际 B 站/YouTube 等地址
-const TUTORIAL_VIDEO_URL = ""; // 例如: "https://www.bilibili.com/video/BV1xx411c7mu"
-const TUTORIAL_VIDEO_EMBED_URL = ""; // 若有 iframe 嵌入地址可填
+const TUTORIAL_VIDEO_URL = "";
+const TUTORIAL_VIDEO_EMBED_URL = "";
+
+const coreGuides = [
+  {
+    icon: <Sparkles className="w-5 h-5" />,
+    color: "purple",
+    title: "女娲 · AI 团队编排",
+    desc: "用自然语言告诉女娲你的需求，她会自动为你创建最合适的 AI 团队。",
+    steps: [
+      "打开 ShopLoop AI 客户端，进入对话界面",
+      "直接描述你的运营需求，例如「帮我生成一组小红书种草图文」",
+      "女娲会根据需求自动调度合适的 AI 能力（生图、文案、数据分析等）",
+      "查看生成结果，可以继续对话微调，团队会记住你的偏好",
+    ],
+  },
+  {
+    icon: <MessageSquare className="w-5 h-5" />,
+    color: "blue",
+    title: "顶尖大模型组合拳",
+    desc: "Claude Sonnet 4.6 + Gemini 3.1 Pro 双引擎驱动，每个任务都用最优模型。",
+    steps: [
+      "Claude Sonnet 4.6 负责文案创作、策略推理、深度分析等语言任务",
+      "Gemini 3.1 Pro 负责图片理解、视觉生成、多模态融合等视觉任务",
+      "系统根据任务类型自动调度最优模型，无需手动选择",
+      "飞书机器人 + 桌面端多入口协同，随时随地管理你的 AI 团队",
+    ],
+  },
+  {
+    icon: <BookOpen className="w-5 h-5" />,
+    color: "rose",
+    title: "小红书深度优化",
+    desc: "从种草文案到评论截流，全链路覆盖小红书运营。",
+    steps: [
+      "种草文案：描述产品特点，AI 生成去 AI 味的种草笔记 + 配图",
+      "评论截流：指定目标笔记，AI 自动生成自然评论话术进行引流",
+      "数据采集：按关键词搜索爆款内容，一键下载到本地知识库",
+      "SEO 优化：AI 分析热词并优化笔记标题和正文的关键词布局",
+    ],
+  },
+  {
+    icon: <Brain className="w-5 h-5" />,
+    color: "emerald",
+    title: "专属记忆系统",
+    desc: "AI 团队会记住你的品牌调性和偏好，越用越精准。",
+    steps: [
+      "首次使用时，告诉 AI 你的品牌名称、风格定位、目标人群",
+      "每次交互中 AI 会自动学习你的偏好（色调、文案风格、审美取向）",
+      "后续任务中 AI 会自动应用记忆，无需重复说明品牌背景",
+      "你也可以主动修正记忆，例如「以后生图风格偏日系清新」",
+    ],
+  },
+];
+
+const colorMap: Record<string, { bg: string; text: string; border: string; light: string }> = {
+  purple: { bg: "bg-purple-100", text: "text-purple-600", border: "border-purple-200", light: "bg-purple-50" },
+  blue: { bg: "bg-blue-100", text: "text-blue-600", border: "border-blue-200", light: "bg-blue-50" },
+  rose: { bg: "bg-rose-100", text: "text-rose-600", border: "border-rose-200", light: "bg-rose-50" },
+  emerald: { bg: "bg-emerald-100", text: "text-emerald-600", border: "border-emerald-200", light: "bg-emerald-50" },
+};
+
+const scenarioGroups = [
+  {
+    group: "入门",
+    icon: <Sparkles className="w-4 h-4" />,
+    items: ["安装与首次启动", "注册与获取邀请码", "认识女娲和你的 AI 团队"],
+  },
+  {
+    group: "生图与创作",
+    icon: <ImageIcon className="w-4 h-4" />,
+    items: ["文生图（4 大引擎对比）", "图生图与多轮对话编辑", "提示词库与批量生图", "中文文字渲染海报"],
+  },
+  {
+    group: "小红书运营",
+    icon: <BookOpen className="w-4 h-4" />,
+    items: ["种草笔记生成（文案+配图）", "评论截流实战", "爆款数据采集与分析", "SEO 关键词优化"],
+  },
+  {
+    group: "内容创作",
+    icon: <PenSquare className="w-4 h-4" />,
+    items: ["短视频脚本生成", "品牌文案撰写", "电商详情页文案"],
+  },
+  {
+    group: "多端协同",
+    icon: <MessageSquare className="w-4 h-4" />,
+    items: ["飞书机器人设置与使用", "大模型调度原理", "手机端远程管理团队"],
+  },
+  {
+    group: "进阶功能",
+    icon: <Brain className="w-4 h-4" />,
+    items: ["专属记忆管理与修正", "竞品分析与战略建议", "常见问题排查"],
+  },
+];
 
 export default function GuidePage() {
+  const [expandedGuide, setExpandedGuide] = useState<number | null>(0);
+
   return (
     <div className="bg-background overflow-hidden">
       <section className="relative pt-32 pb-16 overflow-hidden">
@@ -15,16 +109,16 @@ export default function GuidePage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="text-base font-semibold text-primary">使用指南</h2>
           <h1 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            从安装到上手
+            快速上手你的 AI 运营团队
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            通过教学视频与图文教程，快速掌握 ShopLoop AI 桌面端的使用方法。
+            从安装到精通，掌握女娲团队编排、飞书协同、小红书优化和专属记忆的全部能力。
           </p>
         </div>
       </section>
 
       <section className="pb-16 sm:pb-32">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 space-y-16">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 space-y-12">
           {/* 教学视频 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -69,12 +163,11 @@ export default function GuidePage() {
                   <path d="M8 5v14l11-7z" />
                 </svg>
                 <p className="text-sm font-medium">教学视频即将上线</p>
-                <p className="text-xs">可在 docs/TUTORIAL.md 中填写视频链接后，于本页配置展示</p>
               </div>
             )}
           </motion.div>
 
-          {/* 教学图文 */}
+          {/* 快速开始 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,45 +178,143 @@ export default function GuidePage() {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                 <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h2 className="text-xl font-bold text-foreground">教学图文</h2>
+              <h2 className="text-xl font-bold text-foreground">快速开始</h2>
             </div>
-            <div className="prose prose-gray max-w-none space-y-8">
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">一、安装前准备</h3>
-                <ul className="list-decimal list-inside space-y-2 text-muted-foreground">
-                  <li>安装 <strong className="text-foreground">Git</strong>（Windows 用户可前往<a href="https://git-scm.com/download/win" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">官网</a>下载 64 位安装包）。</li>
-                  <li>macOS 用户可在终端执行 <code className="px-1.5 py-0.5 bg-muted rounded text-sm">xcode-select --install</code> 安装命令行工具。</li>
-                </ul>
+            <div className="space-y-4">
+              {[
+                { step: "1", title: "安装 Git（必需）", desc: "Windows 用户下载 Git 安装包，macOS 用户终端运行 xcode-select --install" },
+                { step: "2", title: "下载 ShopLoop AI", desc: "前往下载页选择对应平台安装包，双击安装" },
+                { step: "3", title: "获取邀请码", desc: "扫码添加客服企业微信，备注「ShopLoop」即刻获取" },
+                { step: "4", title: "注册并开始", desc: "使用邀请码注册，系统赠送体验积分，即刻开始使用" },
+              ].map((item) => (
+                <div key={item.step} className="flex gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold">
+                    {item.step}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground text-sm">{item.title}</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+              <div className="pt-4">
+                <Link
+                  href="/download"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-purple-500/20 hover:scale-[1.02] transition-all"
+                >
+                  前往下载
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
               </div>
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">二、下载并安装 ShopLoop AI</h3>
-                <ul className="list-decimal list-inside space-y-2 text-muted-foreground">
-                  <li>打开<Link href="/download" className="text-primary hover:underline">下载页</Link>，根据系统选择 Windows 或 macOS 安装包。</li>
-                  <li>双击安装包，按提示完成安装。</li>
-                </ul>
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">三、注册与使用</h3>
-                <ul className="list-decimal list-inside space-y-2 text-muted-foreground">
-                  <li>首次使用需<strong className="text-foreground">邀请码</strong>注册，可扫码添加客服企业微信获取。</li>
-                  <li>登录后即可使用对话、生图、提示词库、批量任务等功能。</li>
-                </ul>
-              </div>
-              <p className="text-sm text-muted-foreground border-t border-border pt-6">
-                更详细的图文步骤与截图将随教程视频一并更新，敬请期待。
-              </p>
             </div>
           </motion.div>
 
-          {/* 按场景查看演示（与 Issue/ TUTORIAL_SCENARIOS 对齐） */}
+          {/* 四大核心能力指南 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <h2 className="text-xl font-bold text-foreground">核心能力详解</h2>
+            </div>
+
+            <div className="space-y-3">
+              {coreGuides.map((guide, i) => {
+                const colors = colorMap[guide.color];
+                const isExpanded = expandedGuide === i;
+                return (
+                  <div
+                    key={guide.title}
+                    className={`rounded-2xl border bg-white overflow-hidden transition-all ${isExpanded ? colors.border : 'border-border'}`}
+                  >
+                    <button
+                      onClick={() => setExpandedGuide(isExpanded ? null : i)}
+                      className="w-full flex items-center gap-4 p-5 sm:p-6 text-left group"
+                    >
+                      <div className={`w-10 h-10 rounded-xl ${colors.bg} ${colors.text} flex items-center justify-center flex-shrink-0`}>
+                        {guide.icon}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{guide.title}</h3>
+                        <p className="text-sm text-muted-foreground mt-0.5">{guide.desc}</p>
+                      </div>
+                      <svg className={`w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {isExpanded && (
+                      <div className={`px-5 sm:px-6 pb-5 sm:pb-6`}>
+                        <div className={`rounded-xl ${colors.light} p-4 space-y-3`}>
+                          {guide.steps.map((step, j) => (
+                            <div key={j} className="flex gap-3">
+                              <div className={`flex-shrink-0 w-6 h-6 rounded-full ${colors.bg} ${colors.text} flex items-center justify-center text-xs font-bold`}>
+                                {j + 1}
+                              </div>
+                              <p className="text-sm text-foreground/80 leading-relaxed">{step}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* AI 生图引擎对比 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-sm"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <ImageIcon className="w-5 h-5 text-primary" />
+              </div>
+              <h2 className="text-xl font-bold text-foreground">4 大生图引擎</h2>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                { name: "Seedream", tag: "量产首选", desc: "文生图 + 图生图，最多 14 张参考图，4K 超高分辨率，组图生成", price: "¥0.50/张" },
+                { name: "Z-Image", tag: "文字渲染", desc: "中文文字清晰不变形，适合带文字的海报和 Banner", price: "¥0.40/张" },
+                { name: "Gemini", tag: "创意编辑", desc: "多轮对话编辑，人脸保持换装，多种创意模板", price: "¥0.60/张" },
+                { name: "Qwen", tag: "多图融合", desc: "1-3 张参考图输入，换装 / 风格迁移 / 物体增删", price: "¥0.80/张" },
+              ].map((engine) => (
+                <div key={engine.name} className="rounded-xl border border-border/60 bg-gray-50/50 p-4 hover:bg-white hover:shadow-sm transition-all">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-foreground">{engine.name}</span>
+                      <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">{engine.tag}</span>
+                    </div>
+                    <span className="text-xs font-medium text-muted-foreground">{engine.price}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{engine.desc}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* 按场景查看演示 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.25 }}
             className="rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-sm"
           >
             <div className="flex items-center gap-3 mb-6">
@@ -135,21 +326,19 @@ export default function GuidePage() {
               <h2 className="text-xl font-bold text-foreground">按场景查看演示</h2>
             </div>
             <p className="text-sm text-muted-foreground mb-6">
-              我们将按以下场景提供视频与图文演示，方便你按需跳转。
+              我们将按以下场景持续更新视频与图文演示，方便你按需学习。
             </p>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                { group: "入门", items: ["安装与首次启动", "注册与登录"] },
-                { group: "生图与创作", items: ["文生图", "图生图与多轮编辑", "提示词库与批量生图"] },
-                { group: "内容与运营", items: ["小红书种草文案", "短视频脚本", "评论截流", "数据采集"] },
-                { group: "进阶", items: ["战略/运营建议", "常见问题"] },
-              ].map(({ group, items }) => (
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {scenarioGroups.map(({ group, icon, items }) => (
                 <div key={group} className="rounded-xl border border-border/60 bg-muted/30 p-4">
-                  <p className="text-xs font-semibold text-primary mb-2">{group}</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-primary">{icon}</span>
+                    <p className="text-xs font-semibold text-primary">{group}</p>
+                  </div>
                   <ul className="space-y-1.5 text-sm text-muted-foreground">
                     {items.map((item) => (
                       <li key={item} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/50" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40 flex-shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -157,21 +346,22 @@ export default function GuidePage() {
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-xs text-muted-foreground">
-              场景清单与排期见仓库 <strong className="text-foreground">TUTORIAL_SCENARIOS.md</strong> 及 Issue「教学 · 不同场景演示」。
-            </p>
           </motion.div>
 
-          <div className="text-center">
+          {/* 底部 CTA */}
+          <div className="text-center space-y-4">
             <Link
               href="/download"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 font-semibold text-white hover:bg-black/80 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 px-6 py-3 font-semibold text-white shadow-lg shadow-purple-500/20 hover:scale-[1.02] transition-all"
             >
-              前往下载
+              免费下载 ShopLoop AI
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
+            <p className="text-sm text-muted-foreground">
+              有问题？<a href="mailto:contact@deepractice.ai" className="text-primary hover:underline">联系我们</a>
+            </p>
           </div>
         </div>
       </section>

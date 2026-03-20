@@ -3,98 +3,74 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
+  Sparkles,
+  MessageSquare,
+  BookOpen,
+  Brain,
+  ArrowRight,
   ImageIcon,
-  BarChart3,
-  Video,
   PenSquare,
   MessageCircle,
   Database,
-  ArrowRight,
+  BarChart3,
+  Video,
 } from "lucide-react";
 
-const agentDetails = [
+const featureSections = [
   {
-    name: "冠华 · 生图专家",
-    role: "Image Creator",
-    tagline: "4 大引擎，一站式 AI 生图",
-    border: "border-blue-100",
-    gradient: "from-blue-500/10 to-cyan-500/10",
-    icon: <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600"><ImageIcon className="h-6 w-6" /></div>,
-    features: [
-      { title: "Seedream 量产引擎", desc: "文生图 + 图生图，支持最多 14 张参考图，4K 超高分辨率" },
-      { title: "Z-Image 文字渲染", desc: "中英文文字清晰不变形，适合带文字的海报和 Banner" },
-      { title: "Gemini 创意编辑", desc: "多轮对话式编辑，人脸保持换装，多种创意模板" },
-      { title: "Qwen 多图融合", desc: "1-3 张参考图输入，换装 / 风格迁移 / 物体增删" },
-    ],
-  },
-  {
-    name: "服装CEO · 战略顾问",
-    role: "Strategy Lead",
-    tagline: "你的 AI 战略搭档",
+    name: "女娲 · AI 团队编排",
+    role: "Nuwa Orchestrator",
+    tagline: "动态创建最适合你的 AI 运营团队",
     border: "border-purple-100",
     gradient: "from-purple-500/10 to-pink-500/10",
-    icon: <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600"><BarChart3 className="h-6 w-6" /></div>,
+    icon: <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600"><Sparkles className="h-6 w-6" /></div>,
     features: [
-      { title: "品牌定位分析", desc: "基于市场数据，帮你找准品牌差异化定位" },
-      { title: "竞品追踪", desc: "追踪竞品动态，分析价格策略和营销打法" },
-      { title: "经营决策建议", desc: "库存管理、上新节奏、促销策略的智能建议" },
-      { title: "趋势洞察", desc: "实时追踪时尚趋势，提前布局爆款方向" },
+      { title: "动态 Agent 创建", desc: "根据你的业务场景，女娲自动编排最合适的 AI Agent 组合" },
+      { title: "多引擎生图", desc: "Seedream、Z-Image、Gemini、Qwen 四大引擎按需调度，文生图、图生图、中文文字渲染" },
+      { title: "智能文案创作", desc: "种草文案、短视频脚本、品牌文案，针对不同平台风格自动适配" },
+      { title: "战略分析", desc: "品牌定位、竞品追踪、趋势洞察，AI 帮你做出数据驱动的决策" },
     ],
   },
   {
-    name: "短视频脚本师",
-    role: "Video Script",
-    tagline: "写出完播率高、能带货的脚本",
-    border: "border-orange-100",
-    gradient: "from-orange-500/10 to-red-500/10",
-    icon: <div className="h-10 w-10 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600"><Video className="h-6 w-6" /></div>,
+    name: "顶尖大模型组合拳",
+    role: "Claude Sonnet 4.6 + Gemini 3.1 Pro",
+    tagline: "全球最强大模型，双引擎智能调度",
+    border: "border-blue-100",
+    gradient: "from-blue-500/10 to-cyan-500/10",
+    icon: <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600"><MessageSquare className="h-6 w-6" /></div>,
     features: [
-      { title: "带货脚本", desc: "根据产品卖点自动生成短视频脚本，懂平台算法和用户心理" },
-      { title: "多平台适配", desc: "抖音、快手、视频号、小红书，不同平台不同风格" },
-      { title: "A/B 测试版本", desc: "同一产品生成多版本脚本，方便测试哪个效果更好" },
-      { title: "拍摄建议", desc: "配套画面描述、配乐建议和拍摄提示，拿到就能拍" },
+      { title: "Claude Sonnet 4.6 深度推理", desc: "Anthropic 全球顶尖语言模型，负责文案创作、策略分析、复杂推理等深度任务" },
+      { title: "Gemini 3.1 Pro 多模态", desc: "Google 最强多模态模型，驱动图片理解、视觉生成、图文融合" },
+      { title: "双模型智能调度", desc: "系统根据任务类型自动选择最优模型，文案用 Claude、视觉用 Gemini" },
+      { title: "飞书 + 多端协同", desc: "飞书机器人、桌面端、Web 多入口，随时随地指挥你的 AI 团队" },
     ],
   },
   {
-    name: "小红书种草达人",
-    role: "XHS Creator",
-    tagline: "篇篇有流量的种草笔记",
-    border: "border-green-100",
-    gradient: "from-green-500/10 to-teal-500/10",
-    icon: <div className="h-10 w-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600"><PenSquare className="h-6 w-6" /></div>,
-    features: [
-      { title: "爆款文案", desc: "基于平台算法逻辑，生成高互动率的种草文案" },
-      { title: "智能去 AI 味", desc: "让 AI 生成的内容读起来更真实自然，不像机器写的" },
-      { title: "关键词布局", desc: "智能分析搜索热词，优化笔记 SEO 排名" },
-      { title: "标题优化", desc: "A/B 测试风格的标题建议，提升点击率" },
-    ],
-  },
-  {
-    name: "小红书评论截流师",
-    role: "XHS Interceptor",
-    tagline: "把别人的流量变成你的客户",
+    name: "小红书深度优化",
+    role: "XHS Optimizer",
+    tagline: "从内容创作到流量获取的全链路优化",
     border: "border-rose-100",
-    gradient: "from-rose-500/10 to-pink-500/10",
-    icon: <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600"><MessageCircle className="h-6 w-6" /></div>,
+    gradient: "from-rose-500/10 to-orange-500/10",
+    icon: <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600"><BookOpen className="h-6 w-6" /></div>,
     features: [
-      { title: "精准截流", desc: "在热门笔记评论区精准引流，评论互动价值是点赞的 4 倍" },
-      { title: "话术生成", desc: "根据笔记内容自动生成自然的评论话术，不像广告" },
-      { title: "目标筛选", desc: "智能筛选高流量、高相关性的笔记进行截流" },
-      { title: "效果追踪", desc: "追踪评论互动数据，持续优化截流策略" },
+      { title: "爆款种草文案", desc: "基于平台算法逻辑生成高互动率文案，智能去 AI 味，读起来更真实" },
+      { title: "评论精准截流", desc: "在热门笔记评论区精准引流，智能生成自然评论话术" },
+      { title: "爆款数据采集", desc: "按关键词、品类搜索爆款内容，一键下载到本地知识库" },
+      { title: "SEO 关键词布局", desc: "分析搜索热词，优化笔记标题和正文的关键词覆盖率" },
     ],
   },
   {
-    name: "小红书数据采集师",
-    role: "XHS Collector",
-    tagline: "爆款内容一键入库",
-    border: "border-sky-100",
-    gradient: "from-sky-500/10 to-blue-500/10",
-    icon: <div className="h-10 w-10 rounded-lg bg-sky-100 flex items-center justify-center text-sky-600"><Database className="h-6 w-6" /></div>,
+    name: "专属记忆系统",
+    role: "Memory Engine",
+    tagline: "越用越懂你的 AI 运营团队",
+    border: "border-emerald-100",
+    gradient: "from-emerald-500/10 to-teal-500/10",
+    icon: <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600"><Brain className="h-6 w-6" /></div>,
     features: [
-      { title: "爆款搜索", desc: "按关键词、品类、互动量搜索小红书爆款内容" },
-      { title: "内容下载", desc: "一键下载图文内容到本地知识库，方便参考" },
-      { title: "趋势分析", desc: "分析品类热度趋势，发现内容创作方向" },
-      { title: "素材管理", desc: "采集的素材自动分类整理，随时调用" },
+      { title: "品牌调性记忆", desc: "记住你的品牌风格、色彩偏好、文案调性，每次输出都保持一致" },
+      { title: "目标人群画像", desc: "学习你的客户群体特征，让内容创作更精准触达" },
+      { title: "风格偏好学习", desc: "持续学习你对生成内容的反馈，输出越来越符合你的品味" },
+      { title: "历史上下文关联", desc: "自动关联过往对话和任务，不用每次重复说明背景" },
     ],
   },
 ];
@@ -107,35 +83,35 @@ export default function FeaturesPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <h2 className="text-base font-semibold text-primary">功能介绍</h2>
           <h1 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            六个 Agent，覆盖全链路
+            四大核心能力，打造专属运营团队
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-            每个 Agent 都在其擅长的领域做到极致，协同配合完成从图片生成到内容发布的全流程。
+            女娲智能编排、顶尖大模型组合拳、小红书深度优化、专属记忆系统——覆盖运营全链路。
           </p>
         </div>
       </section>
 
       <section className="pb-16 sm:pb-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-16">
-          {agentDetails.map((agent) => (
+          {featureSections.map((section) => (
             <motion.div
-              key={agent.name}
+              key={section.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className={`rounded-2xl sm:rounded-3xl border bg-white p-5 sm:p-8 md:p-10 ${agent.border}`}
+              className={`rounded-2xl sm:rounded-3xl border bg-white p-5 sm:p-8 md:p-10 ${section.border}`}
             >
               <div className="flex flex-col gap-6 sm:gap-8 md:flex-row md:items-start">
                 <div className="md:w-1/3">
                   <div className="flex items-center gap-3 mb-4">
-                    {agent.icon}
+                    {section.icon}
                     <span className="text-xs font-mono text-muted-foreground bg-gray-100 px-2 py-1 rounded">
-                      {agent.role}
+                      {section.role}
                     </span>
                   </div>
-                  <h2 className="text-2xl font-bold text-foreground">{agent.name}</h2>
-                  <p className="mt-2 text-muted-foreground">{agent.tagline}</p>
+                  <h2 className="text-2xl font-bold text-foreground">{section.name}</h2>
+                  <p className="mt-2 text-muted-foreground">{section.tagline}</p>
                   <Link
                     href="/download"
                     className="mt-6 inline-flex items-center text-sm font-medium text-primary hover:underline underline-offset-4"
@@ -145,7 +121,7 @@ export default function FeaturesPage() {
                   </Link>
                 </div>
                 <div className="grid flex-1 gap-4 sm:grid-cols-2">
-                  {agent.features.map((f) => (
+                  {section.features.map((f) => (
                     <div key={f.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-5 hover:bg-white hover:shadow-sm transition-all">
                       <h3 className="text-sm font-semibold text-foreground">{f.title}</h3>
                       <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{f.desc}</p>

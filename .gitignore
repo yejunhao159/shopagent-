@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+.pnpm-store
 /.pnp
 .pnp.*
 .yarn/*
@@ -45,6 +46,8 @@ next-env.d.ts
 
 # raw scraped data (large, not needed for build)
 /docs/
+docs.zip
+*.zip
 
 # internal admin tools (not for production)
 /src/admin-tools/

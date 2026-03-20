@@ -50,7 +50,7 @@ export default function Home() {
       {/* ===== TESTIMONIALS ===== */}
       <Testimonials />
 
-      {/* ===== METRICS ===== */}
+      {/* Metrics & CTA 之间的视觉分割 */}
       <Metrics />
 
       {/* ===== CTA ===== */}

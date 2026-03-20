@@ -25,7 +25,8 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-16 sm:py-24 bg-white">
+    <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-purple-500/[0.02] rounded-full blur-3xl" />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
          <div className="text-center mb-10 sm:mb-16">
            <h2 className="text-base font-semibold leading-7 text-primary">内测反馈</h2>
