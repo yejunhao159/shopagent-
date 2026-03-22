@@ -13,7 +13,7 @@ export function Metrics() {
           <div className="grid grid-cols-2 gap-y-12 gap-x-8 md:grid-cols-4 text-center">
             {[
               { value: 0, label: "AI 运营团队", suffix: "", prefix: "", text: "专属你的" },
-              { value: 4, label: "生图引擎", suffix: "", prefix: "" },
+              { value: 3, label: "生图引擎", suffix: "", prefix: "" },
               { value: 3, label: "协同入口", suffix: "", prefix: "", text: "多端" },
               { value: 0, label: "充值积分", suffix: "", prefix: "", text: "永不过期" },
             ].map((m) => (
