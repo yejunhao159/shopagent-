@@ -41,8 +41,9 @@ const versions: VersionInfo[] = [
     date: "2026-03-19",
     changelog: "ShopAgent 0.6.5 版本更新",
     platforms: [
-      { platform: "Windows x64", file: "ShopAgent-0.6.5-windows-x64-setup.exe", size: "311 MB", available: true },
-      { platform: "macOS (Apple Silicon)", file: "ShopAgent-0.5.5-mac-arm64-2026-03-09.zip", size: "226 MB", available: true, url: "https://download.yongs.top/shopagent-desktop/0.5.5/ShopAgent-0.5.5-mac-arm64-2026-03-09.zip" },
+      { platform: "Windows x64", file: "ShopAgent-0.6.5-windows-x64-setup.exe", size: "312 MB", available: true },
+      { platform: "macOS (Apple Silicon) DMG", file: "ShopAgent_0.6.5_aarch64.dmg", size: "203 MB", available: true },
+      { platform: "macOS (Apple Silicon) ZIP", file: "ShopAgent.zip", size: "202 MB", available: true },
     ],
   },
   {
