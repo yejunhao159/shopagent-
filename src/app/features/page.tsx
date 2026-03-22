@@ -26,7 +26,7 @@ const featureSections = [
     icon: <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600"><Sparkles className="h-6 w-6" /></div>,
     features: [
       { title: "动态 Agent 创建", desc: "根据你的业务场景，女娲自动编排最合适的 AI Agent 组合" },
-      { title: "多引擎生图", desc: "Seedream、Z-Image、Gemini、Qwen 四大引擎按需调度，文生图、图生图、中文文字渲染" },
+      { title: "多引擎生图", desc: "Gemini 标准版、增强版、顶级版三大引擎按需调度，文生图、图生图、多轮对话编辑" },
       { title: "智能文案创作", desc: "种草文案、短视频脚本、品牌文案，针对不同平台风格自动适配" },
       { title: "战略分析", desc: "品牌定位、竞品追踪、趋势洞察，AI 帮你做出数据驱动的决策" },
     ],

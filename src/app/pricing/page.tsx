@@ -4,8 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const packages = [
-  { name: "入门包", credits: "18,000", price: "¥19.9", usage: "轻度体验，快速上手" },
+const chatPackages = [
   { name: "标准包", credits: "72,000", price: "¥79", usage: "高频使用，性价比之选", highlight: true },
   { name: "进阶包", credits: "144,000", price: "¥149", usage: "深度运营，效率翻倍" },
   { name: "专业包", credits: "360,000", price: "¥349", usage: "团队协作，全量覆盖" },
@@ -13,19 +12,26 @@ const packages = [
   { name: "企业包", credits: "1,200,000", price: "¥999", usage: "多人协同，极致性价比" },
 ];
 
+const imagePackages = [
+  { name: "10 张", price: "¥7", usage: "¥0.70/张" },
+  { name: "50 张", price: "¥35", usage: "¥0.70/张" },
+  { name: "100 张", price: "¥70", usage: "¥0.70/张", highlight: true },
+  { name: "500 张", price: "¥350", usage: "¥0.70/张" },
+  { name: "1000 张", price: "¥700", usage: "¥0.70/张" },
+];
+
 const engines = [
-  { name: "Seedream", cost: "¥0.70/张", desc: "高性价比量产引擎", features: "文生图 · 图生图 · 最多14张参考图 · 4K分辨率 · 组图生成" },
-  { name: "Z-Image", cost: "¥0.70/张", desc: "中文文字渲染专家", features: "文生图 · 中文文字清晰 · 速度快 · 多分辨率" },
-  { name: "Gemini", cost: "¥0.70/张", desc: "全能创意编辑", features: "文生图 · 图生图 · 多轮对话编辑 · 人脸保持 · 创意模板" },
-  { name: "Qwen", cost: "¥0.70/张", desc: "多图融合大师", features: "图生图 · 换装 · 风格迁移 · 多图输出 · 反向提示词" },
+  { name: "Gemini 标准版", model: "Gemini 2.5 Flash", cost: "¥0.70/张", desc: "快速出图，日常量产首选", features: "文生图 · 图生图 · 速度快 · 多分辨率 · 性价比最高" },
+  { name: "Gemini 增强版", model: "Gemini 3.1 Flash", cost: "¥0.70/张", desc: "画质提升，细节更精细", features: "文生图 · 图生图 · 高画质 · 细节增强 · 创意模板" },
+  { name: "Gemini 顶级版", model: "Gemini 3 Pro", cost: "¥0.70/张", desc: "旗舰品质，专业级输出", features: "文生图 · 图生图 · 顶级画质 · 多轮对话编辑 · 人脸保持" },
 ];
 
 const faqs = [
   { q: "积分会过期吗？", a: "充值积分永久有效。新用户赠送积分有效期以产品内提示为准。" },
-  { q: "积分可以用在哪些功能？", a: "积分统一使用，覆盖 AI 对话、文案生成、竞品分析、内容策划以及 4 大生图引擎等全部功能。" },
-  { q: "免费赠送的积分能做什么？", a: "注册即送体验积分，可以体验全部 AI 能力和 4 大生图引擎，功能完全一致。" },
+  { q: "对话积分和创作积分可以互换吗？", a: "不可以。对话积分用于 AI 对话、文案生成、竞品分析等；创作积分专用于 3 大生图引擎。两者独立充值、独立使用。" },
+  { q: "免费赠送的积分能做什么？", a: "注册即送对话积分和创作积分，可以体验全部 AI 对话能力和 3 大生图引擎，功能完全一致。" },
   { q: "内测价格会一直保持吗？", a: "内测期间享受优惠价，正式上线后恢复正式价。已充值的积分不受影响。" },
-  { q: "和请运营团队相比，成本怎么样？", a: "一个初级运营月薪 6000-10000 元，ShopLoop AI 标准包 ¥79 即可获得 72,000 积分，覆盖图片、文案、视频脚本、策略分析等多个岗位的工作。" },
+  { q: "和请运营团队相比，成本怎么样？", a: "一个初级运营月薪 6000-10000 元，ShopLoop AI 标准包 ¥79 即可获得 72,000 对话积分，覆盖文案、视频脚本、策略分析等多个岗位的工作。" },
 ];
 
 function FAQItem({ q, a }: { q: string; a: string }) {
@@ -72,13 +78,13 @@ export default function PricingPage() {
             <p className="mt-2 text-muted-foreground">无需充值，免费体验 AI 对话与生图功能</p>
             <div className="mt-6 flex justify-center gap-8">
               <div>
-                <p className="text-2xl font-bold text-foreground">AI 对话</p>
-                <p className="text-sm text-muted-foreground">约 $1 等值体验额度</p>
+                <p className="text-3xl font-bold text-foreground">18,000</p>
+                <p className="text-sm text-muted-foreground">💬 对话积分</p>
               </div>
               <div className="w-px bg-border" />
               <div>
-                <p className="text-2xl font-bold text-foreground">AI 生图</p>
-                <p className="text-sm text-muted-foreground">约 $0.5 等值体验额度</p>
+                <p className="text-3xl font-bold text-foreground">5,000</p>
+                <p className="text-sm text-muted-foreground">🎨 创作积分</p>
               </div>
             </div>
             <Link
@@ -91,13 +97,13 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* 积分套餐 */}
+      {/* 对话积分套餐 */}
       <section className="pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">积分套餐</h2>
-          <p className="text-muted-foreground mb-8">积分统一使用，覆盖 AI 对话、文案生成、竞品分析、图片生成等全部功能</p>
-          <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
-            {packages.map((pkg, i) => (
+          <h2 className="text-2xl font-bold text-foreground mb-2">💬 对话积分</h2>
+          <p className="text-muted-foreground mb-8">AI 智能体对话、文案生成、竞品分析、内容策划等</p>
+          <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+            {chatPackages.map((pkg, i) => (
               <motion.div
                 key={pkg.name}
                 initial={{ opacity: 0, y: 20 }}
@@ -127,12 +133,47 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* 创作积分套餐 */}
+      <section className="pb-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-foreground mb-2">🎨 创作积分（生图）</h2>
+          <p className="text-muted-foreground mb-8">3 大生图引擎统一定价，¥0.70/张，按张购买</p>
+          <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+            {imagePackages.map((pkg, i) => (
+              <motion.div
+                key={pkg.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`relative flex flex-col rounded-2xl sm:rounded-3xl border p-4 sm:p-6 transition-shadow hover:shadow-xl ${
+                  pkg.highlight ? "border-primary bg-white shadow-lg shadow-blue-500/10" : "border-gray-200 bg-white"
+                }`}
+              >
+                {pkg.highlight && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-white">
+                    推荐
+                  </span>
+                )}
+                <h3 className="text-lg font-semibold text-foreground">{pkg.name}</h3>
+                <div className="mt-3">
+                  <span className="text-3xl font-bold text-foreground">{pkg.price}</span>
+                </div>
+                <div className="mt-4 pt-4 border-t border-gray-100">
+                  <p className="text-sm text-muted-foreground">{pkg.usage}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 生图引擎 */}
       <section className="py-16 bg-gray-50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">4 大生图引擎</h2>
-          <p className="text-muted-foreground mb-8">按需选择最适合的引擎，创作积分统一扣减</p>
-          <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
+          <h2 className="text-2xl font-bold text-foreground mb-2">3 大生图引擎</h2>
+          <p className="text-muted-foreground mb-8">基于 Gemini 系列模型，统一 ¥0.70/张，按需选择</p>
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
             {engines.map((engine, i) => (
               <motion.div
                 key={engine.name}
@@ -142,10 +183,11 @@ export default function PricingPage() {
                 transition={{ delay: i * 0.1 }}
                 className="rounded-2xl border border-gray-200 bg-white p-6 hover:shadow-md transition-shadow"
               >
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-1">
                   <h3 className="text-lg font-bold text-foreground">{engine.name}</h3>
                   <span className="text-sm font-semibold text-primary">{engine.cost}</span>
                 </div>
+                <p className="text-xs text-muted-foreground mb-3">{engine.model}</p>
                 <p className="text-sm font-medium text-muted-foreground">{engine.desc}</p>
                 <p className="mt-2 text-xs text-muted-foreground">{engine.features}</p>
               </motion.div>

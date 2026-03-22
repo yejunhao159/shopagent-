@@ -44,7 +44,7 @@ export const conversations: Conversation[] = [
     ],
     user: "帮我生成一组高级感的服装模特图，用在小红书首图",
     agent: "视觉引擎 · 极简美学",
-    reply: "已调度 Seedream 引擎，为您生成 3 个不同风格的高级感方案：",
+    reply: "已调度 Gemini 生图引擎，为您生成 3 个不同风格的高级感方案：",
     agentColor: "bg-purple-50 text-purple-700 border-purple-100",
     images: [
       { src: "/images/gallery/on_2308.webp", label: "方案 A · 极简棚拍" },
