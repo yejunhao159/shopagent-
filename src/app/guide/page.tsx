@@ -74,7 +74,7 @@ const scenarioGroups = [
   {
     group: "生图与创作",
     icon: <ImageIcon className="w-4 h-4" />,
-    items: ["文生图（3 大引擎对比）", "图生图与多轮对话编辑", "提示词库与批量生图", "创意模板与风格迁移"],
+    items: ["Nano Banana Pro 文生图", "图生图与多轮对话编辑", "提示词库与批量生图", "创意模板与风格迁移"],
   },
   {
     group: "小红书运营",
@@ -265,13 +265,11 @@ export default function GuidePage() {
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                 <ImageIcon className="w-5 h-5 text-primary" />
               </div>
-              <h2 className="text-xl font-bold text-foreground">3 大生图引擎</h2>
+              <h2 className="text-xl font-bold text-foreground">Nano Banana Pro 生图引擎</h2>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {[
-                { name: "Gemini 标准版", tag: "量产首选", desc: "Gemini 2.5 Flash，快速出图，日常量产首选，性价比最高", price: "¥0.70/张" },
-                { name: "Gemini 增强版", tag: "画质提升", desc: "Gemini 3.1 Flash，画质提升，细节更精细，创意模板", price: "¥0.70/张" },
-                { name: "Gemini 顶级版", tag: "旗舰品质", desc: "Gemini 3 Pro，顶级画质，多轮对话编辑，人脸保持", price: "¥0.70/张" },
+                { name: "Nano Banana Pro", tag: "AI 生图", desc: "基于 Gemini 驱动，文生图、图生图、多轮对话编辑、高清画质、人脸保持", price: "¥0.70/张" },
               ].map((engine) => (
                 <div key={engine.name} className="rounded-xl border border-border/60 bg-gray-50/50 p-4 hover:bg-white hover:shadow-sm transition-all">
                   <div className="flex items-center justify-between mb-2">

@@ -20,16 +20,18 @@ const imagePackages = [
   { name: "1000 张", price: "¥700", usage: "¥0.70/张" },
 ];
 
-const engines = [
-  { name: "Gemini 标准版", model: "Gemini 2.5 Flash", cost: "¥0.70/张", desc: "快速出图，日常量产首选", features: "文生图 · 图生图 · 速度快 · 多分辨率 · 性价比最高" },
-  { name: "Gemini 增强版", model: "Gemini 3.1 Flash", cost: "¥0.70/张", desc: "画质提升，细节更精细", features: "文生图 · 图生图 · 高画质 · 细节增强 · 创意模板" },
-  { name: "Gemini 顶级版", model: "Gemini 3 Pro", cost: "¥0.70/张", desc: "旗舰品质，专业级输出", features: "文生图 · 图生图 · 顶级画质 · 多轮对话编辑 · 人脸保持" },
-];
+const engine = {
+  name: "Nano Banana Pro",
+  model: "Powered by Gemini",
+  cost: "¥0.70/张",
+  desc: "专业级 AI 生图引擎，一张 7 毛钱",
+  features: "文生图 · 图生图 · 多轮对话编辑 · 高清画质 · 多分辨率 · 人脸保持 · 创意模板",
+};
 
 const faqs = [
   { q: "积分会过期吗？", a: "充值积分永久有效。新用户赠送积分有效期以产品内提示为准。" },
-  { q: "对话积分和创作积分可以互换吗？", a: "不可以。对话积分用于 AI 对话、文案生成、竞品分析等；创作积分专用于 3 大生图引擎。两者独立充值、独立使用。" },
-  { q: "免费赠送的积分能做什么？", a: "注册即送对话积分和创作积分，可以体验全部 AI 对话能力和 3 大生图引擎，功能完全一致。" },
+  { q: "对话积分和创作积分可以互换吗？", a: "不可以。对话积分用于 AI 对话、文案生成、竞品分析等；创作积分专用于 Nano Banana Pro 生图引擎。两者独立充值、独立使用。" },
+  { q: "免费赠送的积分能做什么？", a: "注册即送对话积分和创作积分，可以体验全部 AI 对话能力和 Nano Banana Pro 生图引擎，功能完全一致。" },
   { q: "内测价格会一直保持吗？", a: "内测期间享受优惠价，正式上线后恢复正式价。已充值的积分不受影响。" },
   { q: "和请运营团队相比，成本怎么样？", a: "一个初级运营月薪 6000-10000 元，ShopLoop AI 标准包 ¥79 即可获得 72,000 对话积分，覆盖文案、视频脚本、策略分析等多个岗位的工作。" },
 ];
@@ -137,7 +139,7 @@ export default function PricingPage() {
       <section className="pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-foreground mb-2">🎨 创作积分（生图）</h2>
-          <p className="text-muted-foreground mb-8">3 大生图引擎统一定价，¥0.70/张，按张购买</p>
+          <p className="text-muted-foreground mb-8">Nano Banana Pro 生图引擎，¥0.70/张，按张购买</p>
           <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
             {imagePackages.map((pkg, i) => (
               <motion.div
@@ -170,29 +172,21 @@ export default function PricingPage() {
 
       {/* 生图引擎 */}
       <section className="py-16 bg-gray-50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">3 大生图引擎</h2>
-          <p className="text-muted-foreground mb-8">基于 Gemini 系列模型，统一 ¥0.70/张，按需选择</p>
-          <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
-            {engines.map((engine, i) => (
-              <motion.div
-                key={engine.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="rounded-2xl border border-gray-200 bg-white p-6 hover:shadow-md transition-shadow"
-              >
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="text-lg font-bold text-foreground">{engine.name}</h3>
-                  <span className="text-sm font-semibold text-primary">{engine.cost}</span>
-                </div>
-                <p className="text-xs text-muted-foreground mb-3">{engine.model}</p>
-                <p className="text-sm font-medium text-muted-foreground">{engine.desc}</p>
-                <p className="mt-2 text-xs text-muted-foreground">{engine.features}</p>
-              </motion.div>
-            ))}
-          </div>
+        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 hover:shadow-md transition-shadow"
+          >
+            <div className="flex items-center justify-between mb-1">
+              <h3 className="text-xl font-bold text-foreground">{engine.name}</h3>
+              <span className="text-sm font-semibold text-primary">{engine.cost}</span>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">{engine.model}</p>
+            <p className="text-base font-medium text-foreground">{engine.desc}</p>
+            <p className="mt-3 text-sm text-muted-foreground">{engine.features}</p>
+          </motion.div>
         </div>
       </section>
 

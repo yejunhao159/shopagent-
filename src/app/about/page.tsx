@@ -35,7 +35,7 @@ export default function AboutPage() {
             {
               title: "技术驱动",
               content: [
-                "基于大语言模型和多模态 AI 技术，自研 AgentX 引擎，事件驱动的多 Agent 协作架构。集成 3 大 Gemini 系列生图引擎，深度对接小红书平台，持续追踪 AI 前沿。",
+                "基于大语言模型和多模态 AI 技术，自研 AgentX 引擎，事件驱动的多 Agent 协作架构。集成 Nano Banana Pro 生图引擎，深度对接小红书平台，持续追踪 AI 前沿。",
               ],
             },
           ].map((section, i) => (
