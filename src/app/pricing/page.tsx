@@ -13,18 +13,18 @@ const chatPackages = [
 ];
 
 const imagePackages = [
-  { name: "10 张", price: "¥7", usage: "¥0.70/张" },
-  { name: "50 张", price: "¥35", usage: "¥0.70/张" },
-  { name: "100 张", price: "¥70", usage: "¥0.70/张", highlight: true },
-  { name: "500 张", price: "¥350", usage: "¥0.70/张" },
-  { name: "1000 张", price: "¥700", usage: "¥0.70/张" },
+  { name: "10 张", price: "¥10", usage: "¥1.00/张" },
+  { name: "50 张", price: "¥50", usage: "¥1.00/张" },
+  { name: "100 张", price: "¥100", usage: "¥1.00/张", highlight: true },
+  { name: "500 张", price: "¥500", usage: "¥1.00/张" },
+  { name: "1000 张", price: "¥1000", usage: "¥1.00/张" },
 ];
 
 const engine = {
   name: "Nano Banana Pro",
   model: "Powered by Gemini",
-  cost: "¥0.70/张",
-  desc: "专业级 AI 生图引擎，一张 7 毛钱",
+  cost: "¥1.00/张",
+  desc: "专业级 AI 生图引擎，一块钱一张图",
   features: "文生图 · 图生图 · 多轮对话编辑 · 高清画质 · 多分辨率 · 人脸保持 · 创意模板",
 };
 
@@ -139,7 +139,7 @@ export default function PricingPage() {
       <section className="pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-foreground mb-2">🎨 创作积分（生图）</h2>
-          <p className="text-muted-foreground mb-8">Nano Banana Pro 生图引擎，¥0.70/张，按张购买</p>
+          <p className="text-muted-foreground mb-8">Nano Banana Pro 生图引擎，¥1.00/张，按张购买</p>
           <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
             {imagePackages.map((pkg, i) => (
               <motion.div

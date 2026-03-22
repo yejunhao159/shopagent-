@@ -269,7 +269,7 @@ export default function GuidePage() {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {[
-                { name: "Nano Banana Pro", tag: "AI 生图", desc: "基于 Gemini 驱动，文生图、图生图、多轮对话编辑、高清画质、人脸保持", price: "¥0.70/张" },
+                { name: "Nano Banana Pro", tag: "AI 生图", desc: "基于 Gemini 驱动，文生图、图生图、多轮对话编辑、高清画质、人脸保持", price: "¥1.00/张" },
               ].map((engine) => (
                 <div key={engine.name} className="rounded-xl border border-border/60 bg-gray-50/50 p-4 hover:bg-white hover:shadow-sm transition-all">
                   <div className="flex items-center justify-between mb-2">
