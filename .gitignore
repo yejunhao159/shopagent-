@@ -54,3 +54,7 @@ docs.zip
 
 # design files
 *.pen
+
+# video files (hosted on R2)
+*.mp4
+*.webm

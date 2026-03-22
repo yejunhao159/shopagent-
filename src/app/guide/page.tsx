@@ -5,8 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Sparkles, MessageSquare, BookOpen, Brain, ImageIcon, PenSquare, Video, Database, MessageCircle, BarChart3 } from "lucide-react";
 
-const TUTORIAL_VIDEO_URL = "";
-const TUTORIAL_VIDEO_EMBED_URL = "";
+const TUTORIAL_VIDEO_URL = "https://pub-bcbedef262af471aa4b5838cce9ef9e4.r2.dev/videos/demo.mp4";
 
 const coreGuides = [
   {
@@ -134,37 +133,17 @@ export default function GuidePage() {
               </div>
               <h2 className="text-xl font-bold text-foreground">教学视频</h2>
             </div>
-            {TUTORIAL_VIDEO_EMBED_URL ? (
-              <div className="aspect-video rounded-xl overflow-hidden bg-muted">
-                <iframe
-                  src={TUTORIAL_VIDEO_EMBED_URL}
-                  title="ShopLoop AI 使用教程"
-                  className="w-full h-full"
-                  allowFullScreen
-                />
-              </div>
-            ) : TUTORIAL_VIDEO_URL ? (
-              <a
-                href={TUTORIAL_VIDEO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block aspect-video rounded-xl overflow-hidden bg-muted border border-border hover:border-primary/40 transition-colors"
+            <div className="aspect-video rounded-xl overflow-hidden bg-black">
+              <video
+                src={TUTORIAL_VIDEO_URL}
+                controls
+                preload="metadata"
+                playsInline
+                className="w-full h-full object-contain"
               >
-                <div className="w-full h-full flex items-center justify-center gap-2 text-muted-foreground hover:text-primary">
-                  <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                  <span className="font-medium">点击观看教程视频</span>
-                </div>
-              </a>
-            ) : (
-              <div className="aspect-video rounded-xl bg-muted/50 border border-dashed border-border flex flex-col items-center justify-center gap-2 text-muted-foreground">
-                <svg className="w-14 h-14 opacity-50" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-                <p className="text-sm font-medium">教学视频即将上线</p>
-              </div>
-            )}
+                您的浏览器不支持视频播放
+              </video>
+            </div>
           </motion.div>
 
           {/* 快速开始 */}
@@ -290,10 +269,10 @@ export default function GuidePage() {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {[
-                { name: "Seedream", tag: "量产首选", desc: "文生图 + 图生图，最多 14 张参考图，4K 超高分辨率，组图生成", price: "¥0.50/张" },
-                { name: "Z-Image", tag: "文字渲染", desc: "中文文字清晰不变形，适合带文字的海报和 Banner", price: "¥0.40/张" },
-                { name: "Gemini", tag: "创意编辑", desc: "多轮对话编辑，人脸保持换装，多种创意模板", price: "¥0.60/张" },
-                { name: "Qwen", tag: "多图融合", desc: "1-3 张参考图输入，换装 / 风格迁移 / 物体增删", price: "¥0.80/张" },
+                { name: "Seedream", tag: "量产首选", desc: "文生图 + 图生图，最多 14 张参考图，4K 超高分辨率，组图生成", price: "¥0.70/张" },
+                { name: "Z-Image", tag: "文字渲染", desc: "中文文字清晰不变形，适合带文字的海报和 Banner", price: "¥0.70/张" },
+                { name: "Gemini", tag: "创意编辑", desc: "多轮对话编辑，人脸保持换装，多种创意模板", price: "¥0.70/张" },
+                { name: "Qwen", tag: "多图融合", desc: "1-3 张参考图输入，换装 / 风格迁移 / 物体增删", price: "¥0.70/张" },
               ].map((engine) => (
                 <div key={engine.name} className="rounded-xl border border-border/60 bg-gray-50/50 p-4 hover:bg-white hover:shadow-sm transition-all">
                   <div className="flex items-center justify-between mb-2">
