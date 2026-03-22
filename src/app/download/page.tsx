@@ -23,6 +23,7 @@ type PlatformFile = {
   file: string;
   size: string;
   available: boolean;
+  url?: string;
 };
 
 type VersionInfo = {
@@ -41,7 +42,7 @@ const versions: VersionInfo[] = [
     changelog: "ShopAgent 0.6.5 版本更新",
     platforms: [
       { platform: "Windows x64", file: "ShopAgent-0.6.5-windows-x64-setup.exe", size: "311 MB", available: true },
-      { platform: "macOS (Apple Silicon)", file: "", size: "", available: false },
+      { platform: "macOS (Apple Silicon)", file: "ShopAgent-0.5.5-mac-arm64-2026-03-09.zip", size: "226 MB", available: true, url: "https://download.yongs.top/shopagent-desktop/0.5.5/ShopAgent-0.5.5-mac-arm64-2026-03-09.zip" },
     ],
   },
   {
@@ -126,8 +127,8 @@ const versions: VersionInfo[] = [
 
 const latest = versions[0];
 
-function getDownloadUrl(version: string, file: string) {
-  return `${DOWNLOAD_BASE}/${version}/${file}`;
+function getDownloadUrl(version: string, platform: PlatformFile) {
+  return platform.url ?? `${DOWNLOAD_BASE}/${version}/${platform.file}`;
 }
 
 export default function DownloadPage() {
@@ -192,7 +193,7 @@ export default function DownloadPage() {
 
             {primary.available ? (
               <a
-                href={getDownloadUrl(latest.version, primary.file)}
+                href={getDownloadUrl(latest.version, primary)}
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 px-10 py-3.5 font-semibold text-white shadow-lg shadow-purple-500/25 hover:shadow-xl hover:scale-[1.02] transition-all"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -233,7 +234,7 @@ export default function DownloadPage() {
                 </div>
               </div>
               {item.available ? (
-                <a href={getDownloadUrl(latest.version, item.file)} className="text-sm font-semibold text-primary hover:underline underline-offset-4">
+                <a href={getDownloadUrl(latest.version, item)} className="text-sm font-semibold text-primary hover:underline underline-offset-4">
                   下载
                 </a>
               ) : (
@@ -410,7 +411,7 @@ export default function DownloadPage() {
                             {ver.platforms.map((p) => (
                               <a
                                 key={p.file}
-                                href={p.available ? getDownloadUrl(ver.version, p.file) : undefined}
+                                href={p.available ? getDownloadUrl(ver.version, p) : undefined}
                                 className={`inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${
                                   p.available
                                     ? "border-gray-200 text-foreground hover:border-purple-300 hover:bg-purple-50"
