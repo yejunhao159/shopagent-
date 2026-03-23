@@ -56,7 +56,7 @@ const featureSections = [
     border: "border-rose-100",
     gradient: "from-rose-500/10 to-orange-500/10",
     icon: <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600"><BookOpen className="h-6 w-6" /></div>,
-    video: `${R2_BASE}/videos/shoploop-intro.mp4`,
+    video: `${R2_BASE}/videos/memory-xhs-demo.mp4`,
     features: [
       { title: "对标账号深度分析", desc: "锁定竞品和标杆账号，拆解爆款逻辑、内容结构、发布节奏，找到可复制的增长路径" },
       { title: "定制化种草文案", desc: "基于分析结果量身打造文案，智能去 AI 味，多轮打磨直到完美匹配品牌调性" },
@@ -71,6 +71,7 @@ const featureSections = [
     border: "border-emerald-100",
     gradient: "from-emerald-500/10 to-teal-500/10",
     icon: <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600"><Brain className="h-6 w-6" /></div>,
+    video: `${R2_BASE}/videos/memory-xhs-demo.mp4`,
     features: [
       { title: "品牌调性记忆", desc: "记住你的品牌风格、色彩偏好、文案调性，每次输出都保持一致" },
       { title: "本地知识库", desc: "采集的爆款数据、竞品分析、历史文案全部沉淀到知识库，AI 基于你的数据生成内容" },
