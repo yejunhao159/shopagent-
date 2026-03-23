@@ -34,7 +34,7 @@ export function Hero() {
         <p
           className="mx-auto mt-5 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed text-balance animate-fade-in-up [animation-delay:200ms]"
         >
-          不只是工具，而是一支懂你的超级团队。Claude Sonnet 4.6 + Gemini 3.1 Pro 顶尖大模型组合拳驱动，
+          不只是工具，而是一支懂你的超级团队。顶尖大模型驱动对话 + Nano Banana Pro 一键生图，
           专属记忆越用越懂你，小红书深度优化助力爆款。
         </p>
 
@@ -55,7 +55,7 @@ export function Hero() {
           </Link>
         </div>
         <p className="mt-4 pb-24 text-sm text-muted-foreground animate-fade-in-up [animation-delay:400ms]">
-          无需信用卡 · 注册即送体验积分 · 支持 Windows 与 macOS
+          无需信用卡 · 注册即送 18,000 对话积分 + 5,000 创作积分 · 支持 Windows 与 macOS
         </p>
       </div>
     </section>

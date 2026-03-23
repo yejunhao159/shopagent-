@@ -5,7 +5,10 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Sparkles, MessageSquare, BookOpen, Brain, ImageIcon, PenSquare, Video, Database, MessageCircle, BarChart3 } from "lucide-react";
 
-const TUTORIAL_VIDEO_URL = "https://pub-bcbedef262af471aa4b5838cce9ef9e4.r2.dev/videos/demo.mp4";
+const TUTORIAL_VIDEOS = [
+  { title: "产品演示", url: "https://pub-bcbedef262af471aa4b5838cce9ef9e4.r2.dev/videos/demo.mp4" },
+  { title: "生图教学", url: "https://pub-bcbedef262af471aa4b5838cce9ef9e4.r2.dev/videos/shoploop-image-tutorial.mp4" },
+];
 
 const coreGuides = [
   {
@@ -24,10 +27,10 @@ const coreGuides = [
     icon: <MessageSquare className="w-5 h-5" />,
     color: "blue",
     title: "顶尖大模型组合拳",
-    desc: "Claude Sonnet 4.6 + Gemini 3.1 Pro 双引擎驱动，每个任务都用最优模型。",
+    desc: "顶尖大模型智能对话 + Nano Banana Pro 生图引擎，每个任务都用最优模型。",
     steps: [
-      "Claude Sonnet 4.6 负责文案创作、策略推理、深度分析等语言任务",
-      "Gemini 3.1 Pro 负责图片理解、视觉生成、多模态融合等视觉任务",
+      "顶尖大模型负责文案创作、策略推理、深度分析等语言任务",
+      "Nano Banana Pro 引擎负责 AI 生图、图生图、多轮对话编辑等视觉任务",
       "系统根据任务类型自动调度最优模型，无需手动选择",
       "飞书机器人 + 桌面端多入口协同，随时随地管理你的 AI 团队",
     ],
@@ -133,16 +136,23 @@ export default function GuidePage() {
               </div>
               <h2 className="text-xl font-bold text-foreground">教学视频</h2>
             </div>
-            <div className="aspect-video rounded-xl overflow-hidden bg-black">
-              <video
-                src={TUTORIAL_VIDEO_URL}
-                controls
-                preload="metadata"
-                playsInline
-                className="w-full h-full object-contain"
-              >
-                您的浏览器不支持视频播放
-              </video>
+            <div className="space-y-6">
+              {TUTORIAL_VIDEOS.map((v) => (
+                <div key={v.title}>
+                  <h3 className="text-sm font-medium text-muted-foreground mb-2">{v.title}</h3>
+                  <div className="aspect-video rounded-xl overflow-hidden bg-black">
+                    <video
+                      src={v.url}
+                      controls
+                      preload="metadata"
+                      playsInline
+                      className="w-full h-full object-contain"
+                    >
+                      您的浏览器不支持视频播放
+                    </video>
+                  </div>
+                </div>
+              ))}
             </div>
           </motion.div>
 
@@ -167,7 +177,7 @@ export default function GuidePage() {
                 { step: "1", title: "安装 Git（必需）", desc: "Windows 用户下载 Git 安装包，macOS 用户终端运行 xcode-select --install" },
                 { step: "2", title: "下载 ShopLoop AI", desc: "前往下载页选择对应平台安装包，双击安装" },
                 { step: "3", title: "获取邀请码", desc: "扫码添加客服企业微信，备注「ShopLoop」即刻获取" },
-                { step: "4", title: "注册并开始", desc: "使用邀请码注册，系统赠送体验积分，即刻开始使用" },
+                { step: "4", title: "注册并开始", desc: "使用邀请码注册，系统赠送 18,000 对话积分 + 5,000 创作积分，即刻开始使用" },
               ].map((item) => (
                 <div key={item.step} className="flex gap-4">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold">

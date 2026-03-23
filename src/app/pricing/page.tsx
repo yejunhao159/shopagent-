@@ -62,7 +62,7 @@ export default function PricingPage() {
             用多少付多少
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
-            积分制按量计费，充值永不过期。注册即送体验积分，无需付费即可开始。
+            积分制按量计费，充值永不过期。注册即送 18,000 对话积分 + 5,000 创作积分，无需付费即可开始。
           </p>
         </div>
       </section>
@@ -76,7 +76,7 @@ export default function PricingPage() {
             viewport={{ once: true }}
             className="rounded-2xl sm:rounded-3xl border border-primary/20 bg-white p-6 sm:p-8 text-center shadow-lg shadow-blue-500/5"
           >
-            <h3 className="text-xl font-bold text-foreground">注册即送体验积分</h3>
+            <h3 className="text-xl font-bold text-foreground">注册即送积分</h3>
             <p className="mt-2 text-muted-foreground">无需充值，免费体验 AI 对话与生图功能</p>
             <div className="mt-6 flex justify-center gap-8">
               <div>

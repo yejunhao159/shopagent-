@@ -16,12 +16,12 @@ export const metadata: Metadata = {
     template: "%s | ShopLoop AI",
   },
   description:
-    "女娲为你打造专属 AI 运营团队。Claude Sonnet 4.6 + Gemini 3.1 Pro 双模型驱动，专属记忆越用越懂你，小红书深度优化助力爆款。",
+    "女娲为你打造专属 AI 运营团队。顶尖大模型驱动对话 + Nano Banana Pro 一键生图，专属记忆越用越懂你，小红书深度优化助力爆款。",
   metadataBase: new URL("https://shoploopai.com"),
   openGraph: {
     title: "ShopLoop AI - 智能运营助手",
     description:
-      "女娲为你打造专属 AI 运营团队。Claude Sonnet 4.6 + Gemini 3.1 Pro 双模型驱动，专属记忆越用越懂你，小红书深度优化助力爆款。",
+      "女娲为你打造专属 AI 运营团队。顶尖大模型驱动对话 + Nano Banana Pro 一键生图，专属记忆越用越懂你，小红书深度优化助力爆款。",
     url: "https://shoploopai.com",
     siteName: "ShopLoop AI",
     locale: "zh_CN",

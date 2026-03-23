@@ -16,12 +16,12 @@ const capabilities = [
   },
   {
     name: "顶尖大模型组合拳",
-    role: "Claude Sonnet 4.6 + Gemini 3.1 Pro",
-    desc: "不拼单一模型，而是组合全球最强。Claude Sonnet 4.6 负责深度推理与文案创作，Gemini 3.1 Pro 驱动多模态生图与视觉理解，双引擎协同让每个任务都用最优解。",
+    role: "智能对话 + Nano Banana Pro 生图",
+    desc: "不拼单一模型，而是组合全球最强。顶尖大模型负责深度推理与文案创作，Nano Banana Pro 引擎驱动 AI 生图与视觉理解，多引擎协同让每个任务都用最优解。",
     gradient: "from-blue-500/10 to-cyan-500/10",
     border: "border-blue-100",
     icon: <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600"><MessageSquare className="h-6 w-6" /></div>,
-    highlights: ["Claude Sonnet 4.6 推理", "Gemini 3.1 Pro 多模态", "双模型智能调度"],
+    highlights: ["智能对话深度推理", "Nano Banana Pro 生图", "多引擎智能调度"],
   },
   {
     name: "小红书深度优化",
@@ -55,7 +55,7 @@ export function AgentsGrid() {
             不只是工具，是你的专属运营团队
           </p>
           <p className="mt-4 text-lg text-muted-foreground">
-            女娲动态编排 AI 能力，Claude Sonnet 4.6 + Gemini 3.1 Pro 双模型驱动，小红书深度优化，专属记忆越用越懂你。
+            女娲动态编排 AI 能力，顶尖大模型 + Nano Banana Pro 生图引擎驱动，小红书深度优化，专属记忆越用越懂你。
           </p>
         </div>
 

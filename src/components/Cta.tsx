@@ -19,7 +19,7 @@ export function Cta() {
               让女娲为你打造专属 AI 团队
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto">
-              注册即送体验积分，Claude Sonnet 4.6 + Gemini 3.1 Pro 双模型驱动，专属记忆越用越懂你。
+              注册即送 18,000 对话积分 + 5,000 创作积分，顶尖大模型驱动对话 + Nano Banana Pro 一键生图，专属记忆越用越懂你。
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
@@ -36,7 +36,7 @@ export function Cta() {
               </Link>
             </div>
             <p className="mt-6 text-xs text-muted-foreground">
-              无需绑定信用卡 · 注册即送积分 · 支持 Windows & macOS · 飞书协同
+              无需绑定信用卡 · 注册即送 23,000 积分 · 支持 Windows & macOS · 飞书协同
             </p>
           </motion.div>
       </div>

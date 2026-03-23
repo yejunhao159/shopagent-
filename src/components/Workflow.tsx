@@ -7,7 +7,7 @@ import { MessageCircle, FlaskConical, SlidersHorizontal, Send } from "lucide-rea
 const steps = [
   { num: "01", title: "告诉女娲你的需求", desc: "用自然语言描述目标，女娲自动为你编排最合适的 AI 团队", icon: <MessageCircle className="h-5 w-5" /> },
   { num: "02", title: "AI 团队智能协作", desc: "专属团队自动理解意图并执行，记忆系统让每次都更精准", icon: <FlaskConical className="h-5 w-5" /> },
-  { num: "03", title: "顶尖模型驱动", desc: "Claude Sonnet 4.6 + Gemini 3.1 Pro 双引擎，文案与视觉各取所长", icon: <SlidersHorizontal className="h-5 w-5" /> },
+  { num: "03", title: "顶尖模型驱动", desc: "顶尖大模型 + Nano Banana Pro 生图引擎，文案与视觉各取所长", icon: <SlidersHorizontal className="h-5 w-5" /> },
   { num: "04", title: "一键发布与同步", desc: "内容直接发布到小红书等多平台，深度优化提升流量", icon: <Send className="h-5 w-5" /> },
 ];
 

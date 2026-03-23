@@ -312,7 +312,7 @@ export default function DownloadPage() {
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-foreground text-sm">启动并注册</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    打开 ShopLoop AI，使用邀请码注册账号即可免费使用，新用户赠送体验积分。
+                    打开 ShopLoop AI，使用邀请码注册账号即可免费使用，新用户赠送 18,000 对话积分 + 5,000 创作积分。
                   </p>
                 </div>
               </div>
