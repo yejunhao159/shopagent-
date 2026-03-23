@@ -12,7 +12,6 @@ const navItems = [
   { href: "/features", label: "功能" },
   { href: "/pricing", label: "定价" },
   { href: "/download", label: "下载" },
-  { href: "/guide", label: "使用指南" },
   { href: "/about", label: "关于" },
 ];
 

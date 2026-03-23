@@ -42,10 +42,10 @@ export function VideoTeaser() {
           </div>
           <div className="hidden md:block">
             <Link
-              href="/guide"
+              href="/features"
               className="text-sm font-medium text-primary hover:underline underline-offset-4"
             >
-              查看全部教程 &rarr;
+              查看全部功能 &rarr;
             </Link>
           </div>
         </div>
@@ -59,7 +59,7 @@ export function VideoTeaser() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <Link href="/guide" className="block group">
+              <Link href="/features" className="block group">
                 <div
                   className={`aspect-video rounded-2xl bg-gradient-to-br ${v.gradient} relative overflow-hidden cursor-pointer`}
                 >
@@ -87,10 +87,10 @@ export function VideoTeaser() {
 
         <div className="md:hidden text-center mt-8">
           <Link
-            href="/guide"
+            href="/features"
             className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline underline-offset-4"
           >
-            查看全部教程
+            查看全部功能
             <svg
               className="w-4 h-4"
               fill="none"

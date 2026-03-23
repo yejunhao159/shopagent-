@@ -16,6 +16,8 @@ import {
   Video,
 } from "lucide-react";
 
+const R2_BASE = "https://pub-bcbedef262af471aa4b5838cce9ef9e4.r2.dev";
+
 const featureSections = [
   {
     name: "女娲 · AI 团队编排",
@@ -24,9 +26,10 @@ const featureSections = [
     border: "border-purple-100",
     gradient: "from-purple-500/10 to-pink-500/10",
     icon: <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600"><Sparkles className="h-6 w-6" /></div>,
+    video: `${R2_BASE}/videos/nuwa-intro.mp4`,
     features: [
       { title: "动态 Agent 创建", desc: "根据你的业务场景，女娲自动编排最合适的 AI Agent 组合" },
-      { title: "AI 生图", desc: "Nano Banana Pro 生图引擎，基于 Gemini 驱动，文生图、图生图、多轮对话编辑，¥1.00/张" },
+      { title: "AI 生图", desc: "Nano Banana Pro 生图引擎，基于 Gemini 驱动，文生图、图生图、多轮对话编辑" },
       { title: "智能文案创作", desc: "种草文案、短视频脚本、品牌文案，针对不同平台风格自动适配" },
       { title: "战略分析", desc: "品牌定位、竞品追踪、趋势洞察，AI 帮你做出数据驱动的决策" },
     ],
@@ -38,9 +41,10 @@ const featureSections = [
     border: "border-blue-100",
     gradient: "from-blue-500/10 to-cyan-500/10",
     icon: <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600"><MessageSquare className="h-6 w-6" /></div>,
+    video: `${R2_BASE}/videos/shoploop-image-tutorial.mp4`,
     features: [
       { title: "智能对话深度推理", desc: "顶尖语言模型驱动，负责文案创作、策略分析、复杂推理等深度任务" },
-      { title: "Nano Banana Pro 生图", desc: "专业级 AI 生图引擎，文生图、图生图、多轮对话编辑，¥1.00/张" },
+      { title: "Nano Banana Pro 生图", desc: "专业级 AI 生图引擎，文生图、图生图、多轮对话编辑" },
       { title: "多引擎智能调度", desc: "系统根据任务类型自动选择最优模型，文案与视觉各取所长" },
       { title: "飞书 + 多端协同", desc: "飞书机器人、桌面端、Web 多入口，随时随地指挥你的 AI 团队" },
     ],
@@ -52,6 +56,7 @@ const featureSections = [
     border: "border-rose-100",
     gradient: "from-rose-500/10 to-orange-500/10",
     icon: <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600"><BookOpen className="h-6 w-6" /></div>,
+    video: `${R2_BASE}/videos/shoploop-intro.mp4`,
     features: [
       { title: "爆款种草文案", desc: "基于平台算法逻辑生成高互动率文案，智能去 AI 味，读起来更真实" },
       { title: "评论精准截流", desc: "在热门笔记评论区精准引流，智能生成自然评论话术" },
@@ -103,7 +108,7 @@ export default function FeaturesPage() {
               className={`rounded-2xl sm:rounded-3xl border bg-white p-5 sm:p-8 md:p-10 ${section.border}`}
             >
               <div className="flex flex-col gap-6 sm:gap-8 md:flex-row md:items-start">
-                <div className="md:w-1/3">
+                <div className="md:w-1/3 flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
                     {section.icon}
                     <span className="text-xs font-mono text-muted-foreground bg-gray-100 px-2 py-1 rounded">
@@ -119,6 +124,17 @@ export default function FeaturesPage() {
                     开始使用
                     <ArrowRight className="h-4 w-4 ml-1" />
                   </Link>
+                  {section.video && (
+                    <div className="mt-6 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                      <video
+                        src={section.video}
+                        controls
+                        preload="metadata"
+                        playsInline
+                        className="w-full aspect-video bg-black"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="grid flex-1 gap-4 sm:grid-cols-2">
                   {section.features.map((f) => (
