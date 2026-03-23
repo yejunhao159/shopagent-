@@ -55,6 +55,7 @@ docs.zip
 # design files
 *.pen
 
-# video files (hosted on R2)
+# video files (hosted on R2, local copies in /videos/)
+/videos/
 *.mp4
 *.webm

@@ -5,9 +5,12 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Sparkles, MessageSquare, BookOpen, Brain, ImageIcon, PenSquare, Video, Database, MessageCircle, BarChart3 } from "lucide-react";
 
+const R2_BASE = "https://pub-bcbedef262af471aa4b5838cce9ef9e4.r2.dev/videos";
+
 const TUTORIAL_VIDEOS = [
-  { title: "产品演示", url: "https://pub-bcbedef262af471aa4b5838cce9ef9e4.r2.dev/videos/demo.mp4" },
-  { title: "生图教学", url: "https://pub-bcbedef262af471aa4b5838cce9ef9e4.r2.dev/videos/shoploop-image-tutorial.mp4" },
+  { title: "产品粗略介绍", desc: "1 分钟了解 ShopLoop AI 是什么", url: `${R2_BASE}/shoploop-intro.mp4` },
+  { title: "AI 生图教学", desc: "Nano Banana Pro 文生图、图生图、多轮编辑完整演示", url: `${R2_BASE}/shoploop-image-tutorial.mp4` },
+  { title: "功能演示", desc: "ShopLoop AI 核心功能演示", url: `${R2_BASE}/demo.mp4` },
 ];
 
 const coreGuides = [
@@ -136,10 +139,13 @@ export default function GuidePage() {
               </div>
               <h2 className="text-xl font-bold text-foreground">教学视频</h2>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-8">
               {TUTORIAL_VIDEOS.map((v) => (
                 <div key={v.title}>
-                  <h3 className="text-sm font-medium text-muted-foreground mb-2">{v.title}</h3>
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <h3 className="text-base font-semibold text-foreground">{v.title}</h3>
+                    <span className="text-sm text-muted-foreground">{v.desc}</span>
+                  </div>
                   <div className="aspect-video rounded-xl overflow-hidden bg-black">
                     <video
                       src={v.url}
