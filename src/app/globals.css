@@ -135,7 +135,7 @@
   }
 }
 
-html {
+html[data-scroll-behavior="smooth"] {
   scroll-behavior: smooth;
 }
 
@@ -152,4 +152,12 @@ html {
 
 .animate-fade-in-up {
   animation: fade-in-up 0.6s ease-out both;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

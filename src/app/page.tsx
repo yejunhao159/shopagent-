@@ -4,6 +4,7 @@ import { PromptGallery } from "@/components/PromptGallery";
 import { Metrics } from "@/components/Metrics";
 import { Cta } from "@/components/Cta";
 import { Workflow } from "@/components/Workflow";
+import { VideoTeaser } from "@/components/VideoTeaser";
 import { Testimonials } from "@/components/Testimonials";
 import { ProductDemo } from "@/components/ProductDemo";
 import Image from "next/image";
@@ -46,6 +47,9 @@ export default function Home() {
 
       {/* ===== HOW IT WORKS ===== */}
       <Workflow />
+
+      {/* ===== VIDEO TUTORIALS ===== */}
+      <VideoTeaser />
 
       {/* ===== TESTIMONIALS ===== */}
       <Testimonials />
