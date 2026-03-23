@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 const chatPackages = [
+  { name: "体验包", credits: "12,000", price: "¥69", originalPrice: "¥109", save: "省¥40", usage: "尝鲜体验，轻松入门" },
   { name: "标准包", credits: "20,000", price: "¥99", originalPrice: "¥159", save: "省¥60", usage: "轻度使用，入门首选", highlight: true },
   { name: "进阶包", credits: "50,000", price: "¥199", originalPrice: "¥329", save: "省¥130", usage: "高频使用，性价比之选" },
   { name: "专业包", credits: "120,000", price: "¥499", originalPrice: "¥799", save: "省¥300", usage: "深度运营，效率翻倍" },
@@ -106,7 +107,7 @@ export default function PricingPage() {
             <span className="rounded-full bg-orange-100 text-orange-600 px-2.5 py-0.5 text-xs font-semibold">内测优惠</span>
           </div>
           <p className="text-muted-foreground mb-8">AI 智能体对话、文案生成、竞品分析、内容策划等</p>
-          <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-4">
+          <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
             {chatPackages.map((pkg, i) => (
               <motion.div
                 key={pkg.name}
