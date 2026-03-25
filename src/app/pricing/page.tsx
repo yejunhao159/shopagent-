@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 const chatPackages = [
-  { name: "体验包", credits: "12,000", price: "¥69", originalPrice: "¥109", save: "省¥40", usage: "尝鲜体验，轻松入门" },
-  { name: "标准包", credits: "20,000", price: "¥99", originalPrice: "¥159", save: "省¥60", usage: "轻度使用，入门首选", highlight: true },
-  { name: "进阶包", credits: "50,000", price: "¥199", originalPrice: "¥329", save: "省¥130", usage: "高频使用，性价比之选" },
-  { name: "专业包", credits: "120,000", price: "¥499", originalPrice: "¥799", save: "省¥300", usage: "深度运营，效率翻倍" },
-  { name: "旗舰包", credits: "300,000", price: "¥1,199", originalPrice: "¥1,999", save: "省¥800", usage: "重度使用，全量覆盖" },
+  { name: "体验包", credits: "35,000", price: "¥69", originalPrice: "¥109", save: "省¥40", usage: "尝鲜体验，轻松入门" },
+  { name: "标准包", credits: "55,000", price: "¥99", originalPrice: "¥159", save: "省¥60", usage: "轻度使用，入门首选", highlight: true },
+  { name: "进阶包", credits: "115,000", price: "¥199", originalPrice: "¥329", save: "省¥130", usage: "高频使用，性价比之选" },
+  { name: "专业包", credits: "300,000", price: "¥499", originalPrice: "¥799", save: "省¥300", usage: "深度运营，效率翻倍" },
+  { name: "旗舰包", credits: "740,000", price: "¥1,199", originalPrice: "¥1,999", save: "省¥800", usage: "重度使用，全量覆盖" },
 ];
 
 const imagePackages = [
@@ -31,7 +31,7 @@ const faqs = [
   { q: "内测优惠价会一直保持吗？", a: "不会。内测期间享受专属优惠价（低至正式价 6 折），正式上线后恢复原价。趁现在充值最划算，已充值的积分不受涨价影响。" },
   { q: "积分会过期吗？", a: "充值积分永久有效，不限使用期限。新用户赠送积分有效期以产品内提示为准。" },
   { q: "对话积分和创作积分可以互换吗？", a: "不可以。对话积分用于 AI 对话、文案生成、竞品分析等；创作积分专用于 Nano Banana Pro 生图引擎。两者独立充值、独立使用。" },
-  { q: "¥99 的标准包大概能做什么？", a: "20,000 对话积分大约可以完成 10-15 篇种草文案，或 5 次竞品分析 + 10 篇文案。对于刚起步的小红书卖家足够用一阵子。" },
+  { q: "¥99 的标准包大概能做什么？", a: "55,000 对话积分大约可以完成 25-40 篇种草文案，或 12 次竞品分析 + 25 篇文案。对于刚起步的小红书卖家足够用很长一段时间。" },
   { q: "和请运营相比成本怎么样？", a: "一个初级运营月薪 6000-10000 元。ShopLoop AI 专业包 ¥499 就能覆盖文案撰写、数据分析、SEO 优化等多项工作，成本不到人工的 1%。" },
   { q: "免费积分能做什么？", a: "注册即送 18,000 对话积分 + 5,000 创作积分。对话积分可以体验 AI 文案、竞品分析等全部能力；创作积分可以免费生成 5 张以上 AI 图片。" },
 ];
