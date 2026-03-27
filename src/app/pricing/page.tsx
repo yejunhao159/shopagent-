@@ -209,6 +209,87 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* 企业用户专属服务 */}
+      <section className="py-16">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl sm:rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-6 sm:p-8 shadow-lg"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg">
+                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-foreground">企业用户专属服务</h3>
+                <p className="text-sm text-muted-foreground">累计充值达到企业旗舰版本用户专享</p>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="flex items-start gap-4 rounded-xl bg-white p-4 border border-amber-100">
+                <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">下拉词全量分析</h4>
+                  <p className="mt-1 text-sm text-muted-foreground">深度挖掘搜索下拉词，获取行业关键词全量数据，洞察用户搜索意图</p>
+                  <p className="mt-2 text-xs font-medium text-primary">每月 3 次</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 rounded-xl bg-white p-4 border border-amber-100">
+                <div className="w-10 h-10 rounded-lg bg-rose-100 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">一周热点爆点分析</h4>
+                  <p className="mt-1 text-sm text-muted-foreground">追踪行业热点与爆款内容，预测下一周潜在爆点，抢占流量先机</p>
+                  <p className="mt-2 text-xs font-medium text-primary">每周 3 次</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 rounded-xl bg-white p-4 border border-amber-100">
+                <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">专属标签池</h4>
+                  <p className="mt-1 text-sm text-muted-foreground">获取小红书专属高转化标签池，涵盖各行业热门标签，提升内容曝光率</p>
+                  <p className="mt-2 text-xs font-medium text-primary">持续更新</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 pt-6 border-t border-amber-200 text-center">
+              <p className="text-sm text-muted-foreground">
+                累计充值达 <span className="font-semibold text-foreground">¥1,199</span>（旗舰包）即可解锁企业专属服务
+              </p>
+              <Link
+                href="/download"
+                className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-2.5 font-semibold text-white shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                下载体验
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="py-24 bg-white">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
