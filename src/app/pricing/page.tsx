@@ -13,16 +13,16 @@ const chatPackages = [
 ];
 
 const imagePackages = [
-  { name: "基础包", credits: "10,000", price: "¥10", originalPrice: "¥15", save: "省¥5", usage: "约 10 张图" },
-  { name: "标准包", credits: "50,000", price: "¥45", originalPrice: "¥70", save: "省¥25", usage: "约 50 张图" },
-  { name: "进阶包", credits: "100,000", price: "¥79", originalPrice: "¥130", save: "省¥51", usage: "约 100 张图", highlight: true },
-  { name: "专业包", credits: "500,000", price: "¥349", originalPrice: "¥600", save: "省¥251", usage: "约 500 张图" },
+  { name: "基础包", credits: "15,000", price: "¥10", originalPrice: "¥15", save: "省¥5", usage: "约 10 张图" },
+  { name: "标准包", credits: "75,000", price: "¥45", originalPrice: "¥70", save: "省¥25", usage: "约 50 张图" },
+  { name: "进阶包", credits: "150,000", price: "¥79", originalPrice: "¥130", save: "省¥51", usage: "约 100 张图", highlight: true },
+  { name: "专业包", credits: "750,000", price: "¥349", originalPrice: "¥600", save: "省¥251", usage: "约 500 张图" },
 ];
 
 const engine = {
   name: "Nano Banana Pro",
   model: "Powered by Gemini",
-  cost: "1,000 积分/张",
+  cost: "1,500 积分/张",
   desc: "专业级 AI 生图引擎，内测价 ¥1.00/张，正式价 ¥1.50/张",
   features: "文生图 · 图生图 · 多轮对话编辑 · 高清画质 · 多分辨率 · 人脸保持 · 创意模板",
 };
@@ -33,7 +33,7 @@ const faqs = [
   { q: "对话积分和创作积分可以互换吗？", a: "不可以。对话积分用于 AI 对话、文案生成、竞品分析等；创作积分专用于 Nano Banana Pro 生图引擎。两者独立充值、独立使用。" },
   { q: "¥99 的标准包大概能做什么？", a: "55,000 对话积分大约可以完成 25-40 篇种草文案，或 12 次竞品分析 + 25 篇文案。对于刚起步的小红书卖家足够用很长一段时间。" },
   { q: "和请运营相比成本怎么样？", a: "一个初级运营月薪 6000-10000 元。ShopLoop AI 专业包 ¥499 就能覆盖文案撰写、数据分析、SEO 优化等多项工作，成本不到人工的 1%。" },
-  { q: "免费积分能做什么？", a: "注册即送 18,000 对话积分 + 5,000 创作积分。对话积分可以体验 AI 文案、竞品分析等全部能力；创作积分可以免费生成 5 张以上 AI 图片。" },
+  { q: "邀请码包含什么？", a: "邀请码 ¥199 包含 ShopAgent 账号开通 + 18,000 对话积分 + 5,000 创作积分。对话积分可以体验 AI 文案、赛道分析、博主分析、下拉词分析等全部能力；创作积分可以生成 3 张 AI 图片。用完可按需充值。" },
 ];
 
 function FAQItem({ q, a }: { q: string; a: string }) {
@@ -62,7 +62,7 @@ export default function PricingPage() {
             用多少付多少
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
-            积分制按量计费，充值永不过期。注册即送 18,000 对话积分 + 5,000 创作积分，无需付费即可开始。
+            邀请码 ¥199 开通账号，含体验积分。积分制按量计费，充值永不过期。
           </p>
         </div>
       </section>
@@ -76,8 +76,16 @@ export default function PricingPage() {
             viewport={{ once: true }}
             className="rounded-2xl sm:rounded-3xl border border-primary/20 bg-white p-6 sm:p-8 text-center shadow-lg shadow-blue-500/5"
           >
-            <h3 className="text-xl font-bold text-foreground">注册即送积分</h3>
-            <p className="mt-2 text-muted-foreground">无需充值，免费体验 AI 对话与生图功能</p>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 border border-green-200 mb-4">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-xs font-medium text-green-700">全面升级</span>
+            </div>
+            <h3 className="text-xl font-bold text-foreground">邀请码开通账号</h3>
+            <p className="mt-2 text-muted-foreground">一次购买，永久使用，含体验积分</p>
+            <div className="mt-4">
+              <span className="text-4xl font-bold text-foreground">¥199</span>
+              <span className="text-sm text-muted-foreground ml-2">/ 邀请码</span>
+            </div>
             <div className="mt-6 flex justify-center gap-8">
               <div>
                 <p className="text-3xl font-bold text-foreground">18,000</p>
@@ -89,13 +97,48 @@ export default function PricingPage() {
                 <p className="text-sm text-muted-foreground">🎨 创作积分</p>
               </div>
             </div>
+            <p className="mt-4 text-xs text-muted-foreground">购买邀请码即获得 ShopAgent 账号 + 默认体验积分，积分用完可按需充值</p>
             <Link
               href="/download"
               className="mt-6 inline-block rounded-full bg-foreground px-8 py-3 font-semibold text-white shadow-xl hover:bg-black/80 hover:scale-[1.02] transition-all"
             >
-              免费开始
+              立即开通
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* 核心能力 */}
+      <section className="pb-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-2">
+            <h2 className="text-2xl font-bold text-foreground">核心能力</h2>
+            <span className="rounded-full bg-purple-100 text-purple-600 px-2.5 py-0.5 text-xs font-semibold">0.8.2 重磅更新</span>
+          </div>
+          <p className="text-muted-foreground mb-8">全面数据分析 + 多智能体协同，助你精准运营</p>
+          <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+            {[
+              { icon: "📊", title: "笔记分享量", desc: "独家获取图文笔记分享数据" },
+              { icon: "🏁", title: "赛道分析", desc: "赛道竞争格局与机会洞察" },
+              { icon: "👤", title: "博主分析", desc: "全方位博主数据画像分析" },
+              { icon: "🔍", title: "下拉词分析", desc: "搜索下拉词全量深度挖掘" },
+              { icon: "🎯", title: "差异化运营", desc: "多主体差异化运营策略" },
+              { icon: "🤖", title: "多智能体", desc: "多 Agent 协同智能分析" },
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="flex flex-col items-center text-center rounded-2xl border border-gray-200 bg-white p-4 sm:p-5 hover:shadow-md hover:border-purple-200 transition-all"
+              >
+                <span className="text-2xl mb-2">{item.icon}</span>
+                <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
+                <p className="mt-1 text-xs text-muted-foreground">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -151,7 +194,7 @@ export default function PricingPage() {
             <h2 className="text-2xl font-bold text-foreground">🎨 创作积分（生图）</h2>
             <span className="rounded-full bg-orange-100 text-orange-600 px-2.5 py-0.5 text-xs font-semibold">内测优惠</span>
           </div>
-          <p className="text-muted-foreground mb-8">Nano Banana Pro 生图引擎，1,000 积分 ≈ 1 张图，内测期间 ¥1.00/张</p>
+          <p className="text-muted-foreground mb-8">Nano Banana Pro 生图引擎，1,500 积分 ≈ 1 张图，内测期间 ¥1.00/张</p>
           <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-4">
             {imagePackages.map((pkg, i) => (
               <motion.div

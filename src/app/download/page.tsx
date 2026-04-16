@@ -35,7 +35,28 @@ type VersionInfo = {
 
 const GIT_DOWNLOAD_URL = `${DOWNLOAD_BASE}/git/Git-2.49.0-64-bit.exe`;
 
+const EXTENSION_DOWNLOAD_URL = `${DOWNLOAD_BASE}/0.8.2/ShopAgent-Extension-0.8.2.zip`;
+
+const extensionSteps = [
+  { image: "/images/extension-guide/step1-click-menu.png", title: "打开 Chrome 菜单", desc: "点击浏览器右上角的三个点菜单按钮" },
+  { image: "/images/extension-guide/step2-select-extensions.png", title: "选择扩展程序", desc: "在菜单中找到「扩展程序」并点击「管理扩展程序」" },
+  { image: "/images/extension-guide/step3-developer-mode.png", title: "开启开发者模式", desc: "打开右上角「开发者模式」开关，然后点击「加载已解压的扩展程序」" },
+  { image: "/images/extension-guide/step4-select-folder.png", title: "选择插件文件夹", desc: "将下载的 ZIP 解压后，选择 ShopAgent-Extension 文件夹并确认" },
+  { image: "/images/extension-guide/step5-installed.png", title: "安装成功", desc: "扩展程序列表中出现 ShopAgent Browser 即表示安装成功" },
+  { image: "/images/extension-guide/step6-login-xhs.png", title: "登录小红书", desc: "在浏览器中打开小红书并保持登录状态，插件会自动连接你的账号" },
+];
+
 const versions: VersionInfo[] = [
+  {
+    version: "0.8.2",
+    date: "2026-04-15",
+    changelog: "全面升级：新增浏览器插件、笔记分享量数据、赛道分析、博主分析、下拉词分析、多智能体协同",
+    platforms: [
+      { platform: "Windows x64", file: "ShopAgent-0.8.2-windows-x64-setup.exe", size: "47 MB", available: true },
+      { platform: "macOS (Apple Silicon) DMG", file: "ShopAgent-0.8.2-mac-arm64-2026-04-15.dmg", size: "59 MB", available: true },
+      { platform: "macOS (Apple Silicon) ZIP", file: "ShopAgent-0.8.2-mac-arm64-2026-04-15.zip", size: "59 MB", available: true },
+    ],
+  },
   {
     version: "0.7.0",
     date: "2026-03-27",
@@ -218,7 +239,7 @@ export default function DownloadPage() {
               </div>
             )}
             <p className="mt-3 text-xs text-muted-foreground">
-              {primary.available ? `${primary.size} · ` : ""}邀请码注册 · 免费开始
+              {primary.available ? `${primary.size} · ` : ""}邀请码 ¥199 开通账号 · 含体验积分
             </p>
           </motion.div>
 
@@ -253,6 +274,77 @@ export default function DownloadPage() {
               )}
             </motion.div>
           ))}
+
+          {/* Browser Extension */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12 }}
+            className="mt-6 rounded-2xl sm:rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-6 sm:p-8"
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+                <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-foreground">Chrome 浏览器插件</h3>
+                <p className="text-xs text-muted-foreground">无需安装客户端，浏览器直接使用</p>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              轻量级浏览器插件，连接你的小红书账号，直接在网页端使用 ShopAgent 全部能力。
+            </p>
+            <a
+              href={EXTENSION_DOWNLOAD_URL}
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 px-8 py-3 font-semibold text-white shadow-lg shadow-blue-500/25 hover:shadow-xl hover:scale-[1.02] transition-all"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              下载浏览器插件 v0.8.2
+            </a>
+            <p className="mt-2 text-xs text-muted-foreground">126 KB · 支持 Chrome / Edge 等 Chromium 内核浏览器</p>
+          </motion.div>
+
+          {/* Extension Installation Guide */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.14 }}
+            className="mt-4 rounded-2xl sm:rounded-3xl border border-blue-200 bg-white p-6 sm:p-8"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+                <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-foreground">插件安装教程</h3>
+            </div>
+
+            <div className="space-y-6">
+              {extensionSteps.map((step, i) => (
+                <div key={i} className="flex gap-4">
+                  <div className="flex-shrink-0 w-7 h-7 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-sm font-bold">{i + 1}</div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-foreground text-sm">{step.title}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{step.desc}</p>
+                    <div className="mt-3 rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+                      <Image
+                        src={step.image}
+                        alt={step.title}
+                        width={800}
+                        height={500}
+                        className="w-full h-auto"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
           {/* Installation Guide */}
           <motion.div
@@ -309,9 +401,9 @@ export default function DownloadPage() {
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-7 h-7 rounded-full bg-amber-200 text-amber-800 flex items-center justify-center text-sm font-bold">3</div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-foreground text-sm">获取邀请码</p>
+                  <p className="font-semibold text-foreground text-sm">购买邀请码（¥199）</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    注册需要邀请码，请扫码添加客服企业微信获取。
+                    注册需要邀请码，扫码添加客服企业微信购买，含账号开通和体验积分。
                   </p>
                 </div>
               </div>
@@ -322,7 +414,7 @@ export default function DownloadPage() {
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-foreground text-sm">启动并注册</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    打开 ShopLoop AI，使用邀请码注册账号即可免费使用，新用户赠送 18,000 对话积分 + 5,000 创作积分。
+                    打开 ShopAgent，使用邀请码注册账号，即刻获得 18,000 对话积分 + 5,000 创作积分。
                   </p>
                 </div>
               </div>
@@ -340,10 +432,10 @@ export default function DownloadPage() {
               <svg className="w-5 h-5 text-green-600" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.045c.134 0 .24-.108.24-.243 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.952-7.062-6.122zM14.022 13.248c.533 0 .963.44.963.982a.973.973 0 01-.963.982.973.973 0 01-.963-.982c0-.542.43-.982.963-.982zm4.827 0c.533 0 .963.44.963.982a.973.973 0 01-.963.982.973.973 0 01-.963-.982c0-.542.43-.982.963-.982z"/>
               </svg>
-              <h3 className="text-lg font-bold text-foreground">获取邀请码</h3>
+              <h3 className="text-lg font-bold text-foreground">购买邀请码</h3>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              注册 ShopLoop AI 需要邀请码，扫码添加客服企业微信即可免费获取
+              邀请码 ¥199/个，含账号开通 + 18,000 对话积分 + 5,000 创作积分，扫码联系客服购买
             </p>
             <div className="inline-block rounded-2xl bg-white p-3 shadow-sm border border-gray-100">
               <Image
@@ -356,7 +448,7 @@ export default function DownloadPage() {
               />
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              扫码添加企业微信 · 备注「ShopLoop」· 即刻获取邀请码
+              扫码添加企业微信 · 备注「ShopAgent」· 购买邀请码
             </p>
           </motion.div>
 
