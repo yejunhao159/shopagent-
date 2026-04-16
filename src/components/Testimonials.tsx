@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    quote: "ShopLoop AI 彻底改变了我们的内容工作流。以前做图写文案需要一周，现在只要半天。",
+    quote: "ShopAgent 彻底改变了我们的内容工作流。以前做图写文案需要一周，现在只要半天。",
     name: "李薇",
     title: "独立品牌主理人",
     avatar: "bg-gradient-to-br from-pink-400 to-rose-500",
@@ -16,7 +16,7 @@ const testimonials = [
     avatar: "bg-gradient-to-br from-blue-400 to-indigo-500",
   },
   {
-    quote: "对于我们这种自媒体工作室来说，ShopLoop AI 是性价比最高的『员工』，极大提升了多平台的出稿效率。",
+    quote: "对于我们这种自媒体工作室来说，ShopAgent 是性价比最高的『员工』，极大提升了多平台的出稿效率。",
     name: "陈明",
     title: "自媒体工作室负责人",
     avatar: "bg-gradient-to-br from-emerald-400 to-teal-500",

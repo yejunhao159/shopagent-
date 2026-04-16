@@ -189,7 +189,7 @@ export default function DownloadPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="text-base font-semibold text-primary">下载</h2>
           <h1 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            获取 ShopLoop AI
+            获取 ShopAgent
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
             选择你的平台，开始 AI 电商运营之旅
@@ -369,7 +369,7 @@ export default function DownloadPage() {
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-foreground text-sm">先安装 Git（必需）</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    ShopLoop AI 依赖 Git 进行模型管理和版本控制，请先安装 Git。
+                    ShopAgent 依赖 Git 进行模型管理和版本控制，请先安装 Git。
                   </p>
                   <a
                     href={GIT_DOWNLOAD_URL}
@@ -390,7 +390,7 @@ export default function DownloadPage() {
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-7 h-7 rounded-full bg-amber-200 text-amber-800 flex items-center justify-center text-sm font-bold">2</div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-foreground text-sm">安装 ShopLoop AI</p>
+                  <p className="font-semibold text-foreground text-sm">安装 ShopAgent</p>
                   <p className="text-xs text-muted-foreground mt-1">
                     下载上方安装包，双击运行安装程序，按提示完成安装即可。
                   </p>

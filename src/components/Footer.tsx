@@ -8,8 +8,8 @@ export function Footer() {
         <div className="flex flex-col justify-between gap-10 sm:gap-12 md:flex-row">
           <div>
             <div className="flex items-center gap-2">
-              <Image src="/images/logo-200.png" alt="ShopLoop AI Logo" width={28} height={28} className="rounded-lg shadow-sm object-contain" />
-              <span className="text-lg font-bold text-foreground">ShopLoop AI</span>
+              <Image src="/images/logo-200.png" alt="ShopAgent Logo" width={28} height={28} className="rounded-lg shadow-sm object-contain" />
+              <span className="text-lg font-bold text-foreground">ShopAgent</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
               AI 驱动的智能运营平台，女娲为你打造专属 AI 运营团队。
@@ -43,7 +43,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 sm:mt-12 border-t border-border/40 pt-6 sm:pt-8 text-sm text-muted-foreground">
-          © {new Date().getFullYear()} ShopLoop AI. All rights reserved.
+          © {new Date().getFullYear()} ShopAgent. All rights reserved.
         </div>
       </div>
     </footer>

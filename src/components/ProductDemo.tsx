@@ -82,7 +82,7 @@ export function ProductDemo() {
       <div className="w-56 shrink-0 bg-white/90 border-r border-border/50 hidden md:flex flex-col">
         <div className="p-4 border-b border-border/30 flex items-center gap-2">
            <div className="h-6 w-6 rounded bg-purple-600 flex items-center justify-center text-white text-xs font-bold">S</div>
-           <span className="font-semibold text-sm">ShopLoop AI</span>
+           <span className="font-semibold text-sm">ShopAgent</span>
         </div>
         <div className="flex-1 p-3 space-y-1.5 overflow-y-auto">
           {["小红书种草达人", "视觉引擎 · 极简美学", "短视频脚本师", "资深运营顾问"].map((agent, i) => (
@@ -265,7 +265,7 @@ export function ProductDemo() {
                            <div className="w-6 h-6 rounded-full bg-gray-200 overflow-hidden relative">
                               <Image src="/images/gallery/la_0508YOAAYQ.webp" alt="avatar" fill className="object-cover" />
                            </div>
-                           <span className="text-xs font-medium text-gray-800">ShopLoop 主理人</span>
+                           <span className="text-xs font-medium text-gray-800">ShopAgent 主理人</span>
                         </div>
                         <button className="text-[10px] text-[#ff2442] border border-[#ff2442] px-3 py-0.5 rounded-full font-medium">
                            关注

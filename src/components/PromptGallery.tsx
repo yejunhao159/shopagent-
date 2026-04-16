@@ -377,7 +377,7 @@ export function PromptGallery() {
                     onClick={() => setShowLimitModal(false)}
                     className="w-full py-3.5 bg-gradient-to-r from-purple-600 to-purple-500 text-white rounded-full font-semibold shadow-lg shadow-purple-500/25 hover:shadow-xl hover:scale-[1.02] transition-all"
                   >
-                    免费下载客户端
+                    下载客户端
                   </Link>
                   <button
                     onClick={() => setShowLimitModal(false)}

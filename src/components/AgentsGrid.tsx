@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@/components/Icons";
-import { Sparkles, MessageSquare, BookOpen, Brain } from "lucide-react";
+import { Sparkles, MessageSquare, BookOpen, Brain, BarChart3 } from "lucide-react";
 
 const capabilities = [
   {
@@ -31,6 +31,15 @@ const capabilities = [
     border: "border-rose-100",
     icon: <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600"><BookOpen className="h-6 w-6" /></div>,
     highlights: ["种草文案生成", "评论精准截流", "爆款数据采集"],
+  },
+  {
+    name: "数据分析与竞争洞察",
+    role: "Data Analytics Engine",
+    desc: "独家获取笔记分享量数据，博主分析、赛道分析、下拉词深度挖掘、竞争定位，多智能体协同，数据驱动每一步运营决策。即将上线抖音分析能力。",
+    gradient: "from-orange-500/10 to-amber-500/10",
+    border: "border-orange-100",
+    icon: <div className="h-10 w-10 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600"><BarChart3 className="h-6 w-6" /></div>,
+    highlights: ["笔记分享量", "赛道分析", "博主分析", "下拉词分析"],
   },
   {
     name: "专属记忆系统",

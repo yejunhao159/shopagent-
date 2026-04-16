@@ -36,9 +36,9 @@ export function Header() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5 group">
-          <Image src="/images/logo-200.png" alt="ShopLoop AI Logo" width={32} height={32} className="rounded-lg shadow-sm group-hover:shadow-md transition-shadow object-contain" />
+          <Image src="/images/logo-200.png" alt="ShopAgent Logo" width={32} height={32} className="rounded-lg shadow-sm group-hover:shadow-md transition-shadow object-contain" />
           <span className="text-xl font-bold tracking-tight text-foreground group-hover:text-purple-600 transition-colors duration-300">
-            ShopLoop AI
+            ShopAgent
           </span>
         </Link>
 
@@ -70,7 +70,7 @@ export function Header() {
             href="/download"
             className="rounded-full bg-gradient-to-r from-purple-600 to-purple-500 px-5 py-2 text-sm font-medium text-white shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
           >
-            免费试用
+            立即试用
           </Link>
         </div>
 
@@ -116,7 +116,7 @@ export function Header() {
                   onClick={() => setMobileOpen(false)}
                   className="block w-full rounded-lg bg-gradient-to-r from-purple-600 to-purple-500 px-4 py-3 text-center text-sm font-medium text-white"
                 >
-                  免费试用
+                  立即试用
                 </Link>
               </div>
             </div>

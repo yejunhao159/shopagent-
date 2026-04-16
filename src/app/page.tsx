@@ -24,7 +24,7 @@ export default function Home() {
                  <div className="absolute inset-0">
                     <Image 
                       src="/images/software-bg-sm.png"
-                      alt="ShopLoop AI Interface" 
+                      alt="ShopAgent Interface" 
                       fill
                       className="object-cover opacity-10"
                     />

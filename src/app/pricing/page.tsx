@@ -3,6 +3,16 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import {
+  BarChart3,
+  Flag,
+  User,
+  Search,
+  Target,
+  Bot,
+  MessageSquare,
+  Palette,
+} from "lucide-react";
 
 const chatPackages = [
   { name: "体验包", credits: "35,000", price: "¥69", originalPrice: "¥109", save: "省¥40", usage: "尝鲜体验，轻松入门" },
@@ -32,7 +42,7 @@ const faqs = [
   { q: "积分会过期吗？", a: "充值积分永久有效，不限使用期限。新用户赠送积分有效期以产品内提示为准。" },
   { q: "对话积分和创作积分可以互换吗？", a: "不可以。对话积分用于 AI 对话、文案生成、竞品分析等；创作积分专用于 Nano Banana Pro 生图引擎。两者独立充值、独立使用。" },
   { q: "¥99 的标准包大概能做什么？", a: "55,000 对话积分大约可以完成 25-40 篇种草文案，或 12 次竞品分析 + 25 篇文案。对于刚起步的小红书卖家足够用很长一段时间。" },
-  { q: "和请运营相比成本怎么样？", a: "一个初级运营月薪 6000-10000 元。ShopLoop AI 专业包 ¥499 就能覆盖文案撰写、数据分析、SEO 优化等多项工作，成本不到人工的 1%。" },
+  { q: "和请运营相比成本怎么样？", a: "一个初级运营月薪 6000-10000 元。ShopAgent 专业包 ¥499 就能覆盖文案撰写、数据分析、SEO 优化等多项工作，成本不到人工的 1%。" },
   { q: "邀请码包含什么？", a: "邀请码 ¥199 包含 ShopAgent 账号开通 + 18,000 对话积分 + 5,000 创作积分。对话积分可以体验 AI 文案、赛道分析、博主分析、下拉词分析等全部能力；创作积分可以生成 3 张 AI 图片。用完可按需充值。" },
 ];
 
@@ -89,12 +99,16 @@ export default function PricingPage() {
             <div className="mt-6 flex justify-center gap-8">
               <div>
                 <p className="text-3xl font-bold text-foreground">18,000</p>
-                <p className="text-sm text-muted-foreground">💬 对话积分</p>
+                <p className="text-sm text-muted-foreground flex items-center justify-center gap-1.5">
+                  <MessageSquare className="h-3.5 w-3.5" /> 对话积分
+                </p>
               </div>
               <div className="w-px bg-border" />
               <div>
                 <p className="text-3xl font-bold text-foreground">5,000</p>
-                <p className="text-sm text-muted-foreground">🎨 创作积分</p>
+                <p className="text-sm text-muted-foreground flex items-center justify-center gap-1.5">
+                  <Palette className="h-3.5 w-3.5" /> 创作积分
+                </p>
               </div>
             </div>
             <p className="mt-4 text-xs text-muted-foreground">购买邀请码即获得 ShopAgent 账号 + 默认体验积分，积分用完可按需充值</p>
@@ -118,12 +132,12 @@ export default function PricingPage() {
           <p className="text-muted-foreground mb-8">全面数据分析 + 多智能体协同，助你精准运营</p>
           <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
             {[
-              { icon: "📊", title: "笔记分享量", desc: "独家获取图文笔记分享数据" },
-              { icon: "🏁", title: "赛道分析", desc: "赛道竞争格局与机会洞察" },
-              { icon: "👤", title: "博主分析", desc: "全方位博主数据画像分析" },
-              { icon: "🔍", title: "下拉词分析", desc: "搜索下拉词全量深度挖掘" },
-              { icon: "🎯", title: "差异化运营", desc: "多主体差异化运营策略" },
-              { icon: "🤖", title: "多智能体", desc: "多 Agent 协同智能分析" },
+              { icon: <BarChart3 className="h-5 w-5" />, color: "bg-orange-100 text-orange-600", title: "笔记分享量", desc: "独家获取图文笔记分享数据" },
+              { icon: <Flag className="h-5 w-5" />, color: "bg-indigo-100 text-indigo-600", title: "赛道分析", desc: "赛道竞争格局与机会洞察" },
+              { icon: <User className="h-5 w-5" />, color: "bg-blue-100 text-blue-600", title: "博主分析", desc: "全方位博主数据画像分析" },
+              { icon: <Search className="h-5 w-5" />, color: "bg-teal-100 text-teal-600", title: "下拉词分析", desc: "搜索下拉词全量深度挖掘" },
+              { icon: <Target className="h-5 w-5" />, color: "bg-rose-100 text-rose-600", title: "差异化运营", desc: "多主体差异化运营策略" },
+              { icon: <Bot className="h-5 w-5" />, color: "bg-purple-100 text-purple-600", title: "多智能体", desc: "多 Agent 协同智能分析" },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -133,7 +147,9 @@ export default function PricingPage() {
                 transition={{ delay: i * 0.05 }}
                 className="flex flex-col items-center text-center rounded-2xl border border-gray-200 bg-white p-4 sm:p-5 hover:shadow-md hover:border-purple-200 transition-all"
               >
-                <span className="text-2xl mb-2">{item.icon}</span>
+                <div className={`h-10 w-10 rounded-lg ${item.color} flex items-center justify-center mb-2`}>
+                  {item.icon}
+                </div>
                 <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
                 <p className="mt-1 text-xs text-muted-foreground">{item.desc}</p>
               </motion.div>
@@ -146,7 +162,7 @@ export default function PricingPage() {
       <section className="pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-2">
-            <h2 className="text-2xl font-bold text-foreground">💬 对话积分</h2>
+            <h2 className="text-2xl font-bold text-foreground">对话积分</h2>
             <span className="rounded-full bg-orange-100 text-orange-600 px-2.5 py-0.5 text-xs font-semibold">内测优惠</span>
           </div>
           <p className="text-muted-foreground mb-8">AI 智能体对话、文案生成、竞品分析、内容策划等</p>
@@ -191,7 +207,7 @@ export default function PricingPage() {
       <section className="pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-2">
-            <h2 className="text-2xl font-bold text-foreground">🎨 创作积分（生图）</h2>
+            <h2 className="text-2xl font-bold text-foreground">创作积分（生图）</h2>
             <span className="rounded-full bg-orange-100 text-orange-600 px-2.5 py-0.5 text-xs font-semibold">内测优惠</span>
           </div>
           <p className="text-muted-foreground mb-8">Nano Banana Pro 生图引擎，1,500 积分 ≈ 1 张图，内测期间 ¥1.00/张</p>

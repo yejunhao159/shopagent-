@@ -7,7 +7,7 @@ import { Play } from "lucide-react";
 const VIDEOS = [
   {
     title: "产品介绍",
-    desc: "1 分钟了解 ShopLoop AI 是什么",
+    desc: "1 分钟了解 ShopAgent 是什么",
     duration: "1:00",
     gradient: "from-purple-600/80 to-purple-900/90",
   },
@@ -19,7 +19,7 @@ const VIDEOS = [
   },
   {
     title: "功能演示",
-    desc: "ShopLoop AI 核心功能完整演示",
+    desc: "ShopAgent 核心功能完整演示",
     duration: "5:00",
     gradient: "from-orange-600/80 to-rose-900/90",
   },
@@ -37,7 +37,7 @@ export function VideoTeaser() {
               视频教程
             </h2>
             <p className="mt-3 text-lg text-muted-foreground">
-              观看视频，快速掌握 ShopLoop AI 的核心能力。
+              观看视频，快速掌握 ShopAgent 的核心能力。
             </p>
           </div>
           <div className="hidden md:block">

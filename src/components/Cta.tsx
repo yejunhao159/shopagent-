@@ -19,14 +19,14 @@ export function Cta() {
               让女娲为你打造专属 AI 团队
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto">
-              注册即送 18,000 对话积分 + 5,000 创作积分，顶尖大模型驱动对话 + Nano Banana Pro 一键生图，专属记忆越用越懂你。
+              邀请码 ¥199 开通账号，含 18,000 对话积分 + 5,000 创作积分。顶尖大模型驱动对话 + Nano Banana Pro 一键生图，专属记忆越用越懂你。
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/download"
                 className="w-full sm:w-auto rounded-full bg-gradient-to-r from-purple-600 to-purple-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/35 hover:scale-[1.02] transition-all"
               >
-                免费下载试用
+                立即开通
               </Link>
               <Link
                 href="mailto:contact@deepractice.ai"
@@ -36,7 +36,7 @@ export function Cta() {
               </Link>
             </div>
             <p className="mt-6 text-xs text-muted-foreground">
-              无需绑定信用卡 · 注册即送 23,000 积分 · 支持 Windows & macOS · 飞书协同
+              邀请码 ¥199 · 含 23,000 积分 · 支持 Windows & macOS · 浏览器插件
             </p>
           </motion.div>
       </div>

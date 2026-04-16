@@ -20,7 +20,7 @@ export function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-500 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
           </span>
-            ShopLoop AI 内测进行中
+            ShopAgent 内测进行中
         </div>
 
         <h1
@@ -34,8 +34,8 @@ export function Hero() {
         <p
           className="mx-auto mt-5 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed text-balance animate-fade-in-up [animation-delay:200ms]"
         >
-          不只是工具，而是一支懂你的超级团队。顶尖大模型驱动对话 + Nano Banana Pro 一键生图，
-          专属记忆越用越懂你，小红书深度优化助力爆款。
+          不只是工具，而是一支懂你的超级团队。笔记分享量独家数据、赛道分析、博主分析、下拉词深度挖掘，
+          顶尖大模型 + Nano Banana Pro 生图，专属记忆越用越懂你。
         </p>
 
         <div
@@ -45,7 +45,7 @@ export function Hero() {
             href="/download"
             className="w-full sm:w-auto rounded-full bg-gradient-to-r from-purple-600 to-purple-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/30 hover:scale-[1.02] transition-all"
           >
-            立即免费开始
+            立即开始
           </Link>
           <Link
             href="/features"
@@ -55,7 +55,7 @@ export function Hero() {
           </Link>
         </div>
         <p className="mt-4 pb-24 text-sm text-muted-foreground animate-fade-in-up [animation-delay:400ms]">
-          无需信用卡 · 注册即送 18,000 对话积分 + 5,000 创作积分 · 支持 Windows 与 macOS
+          邀请码 ¥199 开通 · 含 18,000 对话积分 + 5,000 创作积分 · 支持 Windows 与 macOS
         </p>
       </div>
     </section>
