@@ -27,7 +27,6 @@ const featureSections = [
     border: "border-purple-100",
     gradient: "from-purple-500/10 to-pink-500/10",
     icon: <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600"><Sparkles className="h-6 w-6" /></div>,
-    video: `${R2_BASE}/videos/nuwa-intro.mp4`,
     features: [
       { title: "动态 Agent 创建", desc: "根据你的业务场景，女娲自动编排最合适的 AI Agent 组合" },
       { title: "AI 生图", desc: "Nano Banana Pro 生图引擎，基于 Gemini 驱动，文生图、图生图、多轮对话编辑" },
@@ -42,7 +41,6 @@ const featureSections = [
     border: "border-blue-100",
     gradient: "from-blue-500/10 to-cyan-500/10",
     icon: <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600"><MessageSquare className="h-6 w-6" /></div>,
-    video: `${R2_BASE}/videos/shoploop-image-tutorial.mp4`,
     features: [
       { title: "多轮深度打磨", desc: "文案和图片都支持多轮对话式修改，反复打磨直到满意，不是一次性生成" },
       { title: "Nano Banana Pro 生图", desc: "专业级 AI 生图引擎，文生图、图生图、多轮编辑，一张图反复迭代" },
@@ -57,7 +55,6 @@ const featureSections = [
     border: "border-rose-100",
     gradient: "from-rose-500/10 to-orange-500/10",
     icon: <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600"><BookOpen className="h-6 w-6" /></div>,
-    video: `${R2_BASE}/videos/memory-xhs-demo.mp4`,
     features: [
       { title: "对标账号深度分析", desc: "锁定竞品和标杆账号，拆解爆款逻辑、内容结构、发布节奏，找到可复制的增长路径" },
       { title: "定制化种草文案", desc: "基于分析结果量身打造文案，智能去 AI 味，多轮打磨直到完美匹配品牌调性" },
@@ -86,7 +83,6 @@ const featureSections = [
     border: "border-emerald-100",
     gradient: "from-emerald-500/10 to-teal-500/10",
     icon: <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600"><Brain className="h-6 w-6" /></div>,
-    video: `${R2_BASE}/videos/memory-xhs-demo.mp4`,
     features: [
       { title: "品牌调性记忆", desc: "记住你的品牌风格、色彩偏好、文案调性，每次输出都保持一致" },
       { title: "本地知识库", desc: "采集的爆款数据、竞品分析、历史文案全部沉淀到知识库，AI 基于你的数据生成内容" },
@@ -96,19 +92,28 @@ const featureSections = [
   },
 ];
 
+const demoVideos = [
+  { title: "女娲 · AI 团队编排", src: `${R2_BASE}/videos/nuwa-intro.mp4` },
+  { title: "AI 生图教学", src: `${R2_BASE}/videos/shoploop-image-tutorial.mp4` },
+  { title: "记忆系统 + 小红书运营", src: `${R2_BASE}/videos/memory-xhs-demo.mp4` },
+];
+
 export default function FeaturesPage() {
   return (
     <div className="bg-background overflow-hidden">
+      {/* Hero */}
       <section className="relative pt-32 pb-16 overflow-hidden">
+        <div className="absolute inset-0 bg-[#f8f7f4] -z-20" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-3xl -z-10" />
         <div className="absolute top-20 right-0 w-[300px] h-[300px] bg-orange-500/5 rounded-full blur-3xl -z-10" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808006_1px,transparent_1px)] bg-[size:48px_48px]" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-3 py-1 text-xs font-semibold mb-4">
-              功能介绍
+            <span className="inline-flex items-center gap-2 rounded-full bg-foreground/5 text-foreground/70 border border-foreground/10 px-4 py-1.5 text-xs font-semibold tracking-wide uppercase mb-4">
+              Features
             </span>
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              五大核心能力，打造专属运营团队
+              五大核心能力，打造专属<span className="font-serif italic">运营团队</span>
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-muted-foreground leading-relaxed">
               女娲智能编排、顶尖大模型组合拳、小红书深度运营、数据分析与竞争洞察、专属记忆系统——覆盖运营全链路。
@@ -117,8 +122,214 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      <section className="pb-16 sm:pb-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-16">
+      {/* ===== 数据分析截图展示（放在最前面）===== */}
+      <section className="pb-16 sm:pb-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-flex items-center gap-2 rounded-full bg-amber-50 text-amber-700 border border-amber-200 px-4 py-1.5 text-xs font-semibold mb-4">
+              0.8.2 重磅更新
+            </span>
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
+              数据分析<span className="font-serif italic">实战效果</span>
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              独家获取笔记分享量数据，全方位博主画像、赛道竞争定位、多智能体深度分析
+            </p>
+          </motion.div>
+
+          <div className="space-y-8">
+            {/* 博主深度分析 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl sm:rounded-3xl border border-gray-200 bg-white p-5 sm:p-8 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-10 w-10 rounded-lg bg-purple-50 flex items-center justify-center text-purple-600">
+                  <BarChart3 className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">博主深度分析</h3>
+                  <p className="text-sm text-muted-foreground">AI 自动生成博主画像、选题策略、标题公式、视觉风格全维度拆解</p>
+                </div>
+              </div>
+              <div className="grid gap-4 md:grid-cols-3">
+                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
+                  <Image src="/images/features/blogger-analysis-top.png" alt="博主分析 - 内容概览与选题策略" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                </div>
+                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
+                  <Image src="/images/features/blogger-analysis-mid.png" alt="博主分析 - 标题公式与视觉风格" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                </div>
+                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
+                  <Image src="/images/features/blogger-analysis-bottom.png" alt="博主分析 - 高频话题与数据趋势" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 多博主管理 & 爆款库 */}
+            <div className="grid gap-8 md:grid-cols-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="rounded-2xl sm:rounded-3xl border border-gray-200 bg-white p-5 sm:p-8 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                    <Database className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-foreground">多博主管理</h3>
+                    <p className="text-xs text-muted-foreground">批量管理对标博主，实时追踪竞品动态</p>
+                  </div>
+                </div>
+                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
+                  <Image src="/images/features/blogger-management.png" alt="博主管理界面" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="rounded-2xl sm:rounded-3xl border border-gray-200 bg-white p-5 sm:p-8 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-10 w-10 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600">
+                    <BookOpen className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-foreground">爆款库采集</h3>
+                    <p className="text-xs text-muted-foreground">按关键词搜索采集爆款笔记，一键复刻</p>
+                  </div>
+                </div>
+                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
+                  <Image src="/images/features/viral-library.png" alt="爆款库采集界面" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                </div>
+              </motion.div>
+            </div>
+
+            {/* 下拉词分析 + AI 需求洞察 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl sm:rounded-3xl border border-teal-100 bg-gradient-to-br from-white to-teal-50/30 p-5 sm:p-8 overflow-hidden"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-10 w-10 rounded-lg bg-teal-50 flex items-center justify-center text-teal-600">
+                  <MessageCircle className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">下拉词分析 · AI 需求洞察</h3>
+                  <p className="text-sm text-muted-foreground">160+ 高频下拉词深度挖掘，JTBD 任务族分析，商业方向与趋势信号一键生成</p>
+                </div>
+                <span className="ml-auto hidden sm:inline-flex items-center gap-1 rounded-full bg-teal-50 text-teal-700 border border-teal-200 px-3 py-1 text-xs font-semibold">
+                  全新功能
+                </span>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
+                  <Image src="/images/features/dropdown-keyword-analysis.png" alt="下拉词高频热词与 AI 需求洞察报告" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                  <div className="px-4 py-3 bg-gradient-to-r from-gray-50 to-teal-50/50 border-t border-gray-100">
+                    <p className="text-xs font-medium text-foreground">高频热词 + JTBD 任务族分析</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">跨策略交叉命中，按商业潜力排序，自动评估蓝海程度</p>
+                  </div>
+                </div>
+                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
+                  <Image src="/images/features/business-direction-trends.png" alt="商业方向与趋势信号分析" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                  <div className="px-4 py-3 bg-gradient-to-r from-gray-50 to-teal-50/50 border-t border-gray-100">
+                    <p className="text-xs font-medium text-foreground">商业方向 + 趋势信号</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">AI 推导引流→培育→转化全链路，识别痛点细分化与消费趋势</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 赛道分析 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl sm:rounded-3xl border border-indigo-100 bg-gradient-to-br from-white to-indigo-50/30 p-5 sm:p-8 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-10 w-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+                  <BarChart3 className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">赛道分析 · 机会矩阵</h3>
+                  <p className="text-sm text-muted-foreground">需求-供给四象限定位，AI 自动推荐最优赛道与行动计划</p>
+                </div>
+                <span className="ml-auto hidden sm:inline-flex items-center gap-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 px-3 py-1 text-xs font-semibold">
+                  全新功能
+                </span>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
+                  <Image src="/images/features/track-analysis-matrix.png" alt="赛道机会矩阵 - 蓝海红海定位" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                  <div className="px-4 py-3 bg-gradient-to-r from-gray-50 to-indigo-50/50 border-t border-gray-100">
+                    <p className="text-xs font-medium text-foreground">机会矩阵 + 需求族分析</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">自动评估蓝海/红海程度，量化需求与供给比</p>
+                  </div>
+                </div>
+                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
+                  <Image src="/images/features/track-analysis-action-plan.png" alt="AI 赛道推荐与行动计划" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                  <div className="px-4 py-3 bg-gradient-to-r from-gray-50 to-indigo-50/50 border-t border-gray-100">
+                    <p className="text-xs font-medium text-foreground">AI 赛道推荐 + 行动计划</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">切入策略、内容方向、变现路径、避坑指南一键生成</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 竞争定位 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl sm:rounded-3xl border border-gray-200 bg-white p-5 sm:p-8 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-10 w-10 rounded-lg bg-rose-50 flex items-center justify-center text-rose-600">
+                  <Sparkles className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">对标头部账号 · 竞争定位</h3>
+                  <p className="text-sm text-muted-foreground">多维度对比核心指标，AI 生成对比分析报告与差异化运营建议</p>
+                </div>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
+                  <Image src="/images/features/competitor-comparison.png" alt="对标博主对比 - 数据维度" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                </div>
+                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
+                  <Image src="/images/features/ai-comparison-report.png" alt="AI 对比分析报告" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 五大核心能力（功能卡片，无视频）===== */}
+      <section className="py-16 sm:py-24 relative">
+        <div className="absolute inset-0 bg-[#f8f7f4]/50" />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 space-y-8 sm:space-y-12">
+          <div className="text-center mb-4">
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
+              五大核心<span className="font-serif italic">能力</span>
+            </h2>
+            <p className="mt-3 text-muted-foreground max-w-lg mx-auto">每项能力都为电商运营深度优化</p>
+          </div>
+
           {featureSections.map((section) => (
             <motion.div
               key={section.name}
@@ -155,213 +366,44 @@ export default function FeaturesPage() {
                   ))}
                 </div>
               </div>
-              {section.video && (
-                <div className="mt-6 sm:mt-8 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ===== 视频演示（放在最后）===== */}
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
+              视频<span className="font-serif italic">演示</span>
+            </h2>
+            <p className="mt-3 text-muted-foreground max-w-lg mx-auto">观看视频，快速了解 ShopAgent 核心功能</p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {demoVideos.map((v, i) => (
+              <motion.div
+                key={v.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="rounded-2xl border border-gray-200 bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="rounded-t-2xl overflow-hidden">
                   <video
-                    src={section.video}
+                    src={v.src}
                     controls
                     preload="metadata"
                     playsInline
                     className="w-full aspect-video bg-black"
                   />
                 </div>
-              )}
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 数据分析截图展示 */}
-      <section className="pb-16 sm:pb-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 text-orange-600 px-4 py-1.5 text-xs font-semibold mb-4 shadow-sm">
-              0.8.2 重磅更新
-            </span>
-            <h2 className="text-3xl font-bold text-foreground sm:text-4xl">数据分析实战效果</h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              独家获取笔记分享量数据，全方位博主画像、赛道竞争定位、多智能体深度分析
-            </p>
-          </motion.div>
-
-          <div className="space-y-8">
-            {/* 博主深度分析 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-2xl sm:rounded-3xl border border-purple-100 bg-white p-5 sm:p-8 overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
-                  <BarChart3 className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-foreground">博主深度分析</h3>
-                  <p className="text-sm text-muted-foreground">AI 自动生成博主画像、选题策略、标题公式、视觉风格全维度拆解</p>
-                </div>
-              </div>
-              <div className="grid gap-4 md:grid-cols-3">
-                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
-                  <Image src="/images/features/blogger-analysis-top.png" alt="博主分析 - 内容概览与选题策略" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
-                </div>
-                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
-                  <Image src="/images/features/blogger-analysis-mid.png" alt="博主分析 - 标题公式与视觉风格" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
-                </div>
-                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
-                  <Image src="/images/features/blogger-analysis-bottom.png" alt="博主分析 - 高频话题与数据趋势" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* 多博主管理 & 爆款库 */}
-            <div className="grid gap-8 md:grid-cols-2">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="rounded-2xl sm:rounded-3xl border border-blue-100 bg-white p-5 sm:p-8 overflow-hidden hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
-                    <Database className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-foreground">多博主管理</h3>
-                    <p className="text-xs text-muted-foreground">批量管理对标博主，实时追踪竞品动态</p>
-                  </div>
-                </div>
-                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
-                  <Image src="/images/features/blogger-management.png" alt="博主管理界面" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
+                <div className="p-4">
+                  <h3 className="text-sm font-bold text-foreground">{v.title}</h3>
                 </div>
               </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="rounded-2xl sm:rounded-3xl border border-amber-100 bg-white p-5 sm:p-8 overflow-hidden hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-600">
-                    <BookOpen className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-foreground">爆款库采集</h3>
-                    <p className="text-xs text-muted-foreground">按关键词搜索采集爆款笔记，一键复刻</p>
-                  </div>
-                </div>
-                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
-                  <Image src="/images/features/viral-library.png" alt="爆款库采集界面" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
-                </div>
-              </motion.div>
-            </div>
-
-            {/* 下拉词分析 + AI 需求洞察 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-2xl sm:rounded-3xl border border-teal-100 bg-gradient-to-br from-white to-teal-50/30 p-5 sm:p-8 overflow-hidden"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-10 w-10 rounded-lg bg-teal-100 flex items-center justify-center text-teal-600">
-                  <MessageCircle className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-foreground">下拉词分析 · AI 需求洞察</h3>
-                  <p className="text-sm text-muted-foreground">160+ 高频下拉词深度挖掘，JTBD 任务族分析，商业方向与趋势信号一键生成</p>
-                </div>
-                <span className="ml-auto hidden sm:inline-flex items-center gap-1 rounded-full bg-teal-100 text-teal-700 px-3 py-1 text-xs font-semibold">
-                  全新功能
-                </span>
-              </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
-                  <Image src="/images/features/dropdown-keyword-analysis.png" alt="下拉词高频热词与 AI 需求洞察报告" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
-                  <div className="px-4 py-3 bg-gradient-to-r from-gray-50 to-teal-50/50 border-t border-gray-100">
-                    <p className="text-xs font-medium text-foreground">高频热词 + JTBD 任务族分析</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">跨策略交叉命中，按商业潜力排序，自动评估蓝海程度</p>
-                  </div>
-                </div>
-                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
-                  <Image src="/images/features/business-direction-trends.png" alt="商业方向与趋势信号分析" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
-                  <div className="px-4 py-3 bg-gradient-to-r from-gray-50 to-teal-50/50 border-t border-gray-100">
-                    <p className="text-xs font-medium text-foreground">商业方向 + 趋势信号</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">AI 推导引流→培育→转化全链路，识别痛点细分化与消费趋势</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* 赛道分析 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-2xl sm:rounded-3xl border border-indigo-100 bg-gradient-to-br from-white to-indigo-50/30 p-5 sm:p-8 overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600">
-                  <BarChart3 className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-foreground">赛道分析 · 机会矩阵</h3>
-                  <p className="text-sm text-muted-foreground">需求-供给四象限定位，AI 自动推荐最优赛道与行动计划</p>
-                </div>
-                <span className="ml-auto hidden sm:inline-flex items-center gap-1 rounded-full bg-indigo-100 text-indigo-700 px-3 py-1 text-xs font-semibold">
-                  全新功能
-                </span>
-              </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
-                  <Image src="/images/features/track-analysis-matrix.png" alt="赛道机会矩阵 - 蓝海红海定位" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
-                  <div className="px-4 py-3 bg-gradient-to-r from-gray-50 to-indigo-50/50 border-t border-gray-100">
-                    <p className="text-xs font-medium text-foreground">机会矩阵 + 需求族分析</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">自动评估蓝海/红海程度，量化需求与供给比</p>
-                  </div>
-                </div>
-                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
-                  <Image src="/images/features/track-analysis-action-plan.png" alt="AI 赛道推荐与行动计划" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
-                  <div className="px-4 py-3 bg-gradient-to-r from-gray-50 to-indigo-50/50 border-t border-gray-100">
-                    <p className="text-xs font-medium text-foreground">AI 赛道推荐 + 行动计划</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">切入策略、内容方向、变现路径、避坑指南一键生成</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* 竞争定位 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-2xl sm:rounded-3xl border border-rose-100 bg-white p-5 sm:p-8 overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600">
-                  <Sparkles className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-foreground">对标头部账号 · 竞争定位</h3>
-                  <p className="text-sm text-muted-foreground">多维度对比核心指标，AI 生成对比分析报告与差异化运营建议</p>
-                </div>
-              </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
-                  <Image src="/images/features/competitor-comparison.png" alt="对标博主对比 - 数据维度" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
-                </div>
-                <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group/img">
-                  <Image src="/images/features/ai-comparison-report.png" alt="AI 对比分析报告" width={800} height={500} className="w-full h-auto group-hover/img:scale-[1.02] transition-transform duration-300" />
-                </div>
-              </div>
-            </motion.div>
+            ))}
           </div>
         </div>
       </section>
