@@ -15,6 +15,13 @@ import {
   Database,
   BarChart3,
   Video,
+  Layers,
+  Eye,
+  MessageSquareQuote,
+  ShieldAlert,
+  Gauge,
+  IdCard,
+  Wand2,
 } from "lucide-react";
 
 const R2_BASE = "https://pub-bcbedef262af471aa4b5838cce9ef9e4.r2.dev";
@@ -122,6 +129,233 @@ export default function FeaturesPage() {
         </div>
       </section>
 
+      {/* ===== v0.9.1 三大重磅更新 ===== */}
+      <section className="pb-16 sm:pb-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#BD5C3C]/8 text-[#BD5C3C] border border-[#BD5C3C]/20 px-4 py-1.5 text-xs font-semibold mb-4">
+              v0.9.1 重磅更新 · 2026-05-08
+            </span>
+            <h2 className="text-3xl font-semibold text-foreground sm:text-5xl">
+              三大能力<span className="font-serif italic font-normal"> 同步上线</span>
+            </h2>
+            <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              沉浸式创作工作台、评论采集飞跃式提速、运营主体记忆中枢，全部加入桌面端
+            </p>
+          </motion.div>
+
+          <div className="space-y-6 sm:space-y-8">
+            {/* 卡片 1 — 沉浸式创作 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl sm:rounded-3xl border border-[#E2D9CC] bg-[#FBF8F2] p-6 sm:p-10 hover:border-[#BD5C3C]/40 transition-colors duration-300"
+            >
+              <div className="flex flex-col gap-6 md:flex-row md:items-start">
+                <div className="md:w-1/3">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-10 w-10 rounded-lg bg-[#BD5C3C]/10 flex items-center justify-center text-[#BD5C3C]">
+                      <Layers className="h-6 w-6" />
+                    </div>
+                    <span className="text-xs font-mono text-muted-foreground bg-[#EDE5DA] px-2 py-1 rounded">
+                      Immersive Workspace
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-foreground"><span className="font-serif italic font-normal">沉浸式</span>创作</h3>
+                  <p className="mt-3 text-muted-foreground leading-relaxed">
+                    一个角色开多条对话线程，AI 自动看图配文，告别一次性生成、不断切窗的旧工作流。
+                  </p>
+                  <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#BD5C3C]/25 bg-[#BD5C3C]/8 text-[#BD5C3C] px-3 py-1.5 text-xs font-semibold">
+                    <Wand2 className="h-3.5 w-3.5" />
+                    全新工作流
+                  </div>
+                </div>
+                <div className="grid flex-1 gap-4 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Layers className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">多 thread 并行</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      主笔、选题策划师、博主分析师每个角色都能同时挂多条对话，A 笔记打磨中可随手开 B 笔记新对话，互不串味。
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Eye className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">AI 自动看图</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      开局并发下载草稿配图，本地路径直接注入 systemPrompt，子 Agent 真的“看图说话”，封面与正文协同打磨。
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <MessageSquareQuote className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">引用即上下文</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      支持引用爆款笔记，AI 自动看见配图与文案，一键“分析共性”，把对标拆解直接喂给创作。
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Wand2 className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">右栏可视化</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      草稿配图可点改图、拖拽排序，生图任务在 ~300px 紧凑右栏实时跑，左聊右创作不打断。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 卡片 2 — 评论采集 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.05 }}
+              className="rounded-2xl sm:rounded-3xl border border-[#E2D9CC] bg-[#FBF8F2] p-6 sm:p-10 hover:border-[#BD5C3C]/40 transition-colors duration-300"
+            >
+              <div className="flex flex-col gap-6 md:flex-row md:items-start">
+                <div className="md:w-1/3">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-10 w-10 rounded-lg bg-[#BD5C3C]/10 flex items-center justify-center text-[#BD5C3C]">
+                      <Gauge className="h-6 w-6" />
+                    </div>
+                    <span className="text-xs font-mono text-muted-foreground bg-[#EDE5DA] px-2 py-1 rounded">
+                      Comment Harvester
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-foreground">评论采集<span className="font-serif italic font-normal"> 飞跃</span></h3>
+                  <p className="mt-3 text-muted-foreground leading-relaxed">
+                    全新 header replay 引擎，1000 条评论 100 秒拉完，且无数量上限。竞品评论区不再是黑箱。
+                  </p>
+                  <div className="mt-5 inline-flex items-baseline gap-2">
+                    <span className="text-4xl font-semibold text-[#BD5C3C] tabular-nums">10×</span>
+                    <span className="text-sm text-muted-foreground">vs 旧方案</span>
+                  </div>
+                </div>
+                <div className="grid flex-1 gap-4 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Gauge className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">100 条仅 3 秒</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      旧方案靠真滚轮 + DOM 合并，100 条要 15 秒、1000 条根本拉不完。新签名复用方案 100 条 3 秒、1000 条 100 秒。
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <BookOpen className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">无上限 · 全量模式</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      不再卡 500 条上限，传 0 即“采到 hasMore=false 自然停”。爆款笔记十万评论也能完整入库。
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <ShieldAlert className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">风控自检</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      命中小红书风控立即停采 + 红色独立态告警，避免账号被进一步限流，自动重新触发新签名续命。
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Sparkles className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">全局进度浮层</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      挂在主界面顶层的实时浮层：进度条 / shimmer 全量动画 / 风控告警三态自动切换，切页不丢进度。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 卡片 3 — 运营主体 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="rounded-2xl sm:rounded-3xl border border-[#E2D9CC] bg-[#FBF8F2] p-6 sm:p-10 hover:border-[#BD5C3C]/40 transition-colors duration-300"
+            >
+              <div className="flex flex-col gap-6 md:flex-row md:items-start">
+                <div className="md:w-1/3">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-10 w-10 rounded-lg bg-[#BD5C3C]/10 flex items-center justify-center text-[#BD5C3C]">
+                      <IdCard className="h-6 w-6" />
+                    </div>
+                    <span className="text-xs font-mono text-muted-foreground bg-[#EDE5DA] px-2 py-1 rounded">
+                      Operator Profile
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-foreground"><span className="font-serif italic font-normal">运营主体</span>记忆</h3>
+                  <p className="mt-3 text-muted-foreground leading-relaxed">
+                    一处填写、全 Agent 同步：账号体量、推广项、品牌调性都进了 AI 的“档案”，按账号当前阶段自动调档生成。
+                  </p>
+                  <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#BD5C3C]/25 bg-[#BD5C3C]/8 text-[#BD5C3C] px-3 py-1.5 text-xs font-semibold">
+                    <Brain className="h-3.5 w-3.5" />
+                    新版 /profile 页面
+                  </div>
+                </div>
+                <div className="grid flex-1 gap-4 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Sparkles className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">「我的账号」一键同步</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      点 ✨ 按钮，AI 自动同步当前账号的粉丝量、互动率、定位关键词，运营主体随之更新——无需手填。
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Brain className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">按体量调档生成</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      AI 知道你是 0-1 起号还是 10w+ 进阶，文案语气、选题难度、互动钩子自动差异化适配。
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <PenSquare className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">Auto-save 即所见即所得</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      停手 1.5 秒自动保存；编辑态裸 markdown，浏览态实时渲染 `##/-` 为标题与列表，编辑顺滑且可读。
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-[#E2D9CC] bg-[#F3ECE4]/60 p-5 hover:bg-[#F3ECE4] transition-colors">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Database className="h-4 w-4 text-[#BD5C3C]" />
+                      <h4 className="text-sm font-semibold text-foreground">支持非电商场景</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      推广项不再绑定“货盘”概念——KOL 个人 IP、本地服务商、知识付费同样能填，运营场景全覆盖。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== 数据分析截图展示（放在最前面）===== */}
       <section className="pb-16 sm:pb-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -132,7 +366,7 @@ export default function FeaturesPage() {
             className="text-center mb-12"
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-amber-50 text-amber-700 border border-amber-200 px-4 py-1.5 text-xs font-semibold mb-4">
-              0.8.2 重磅更新
+              数据分析能力
             </span>
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
               数据分析<span className="font-serif italic">实战效果</span>

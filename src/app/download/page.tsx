@@ -48,6 +48,16 @@ const extensionSteps = [
 
 const versions: VersionInfo[] = [
   {
+    version: "0.9.1",
+    date: "2026-05-08",
+    changelog: "重磅更新：沉浸式创作工作台（多 thread + AI 自动看图）、评论采集 10x 提速（1000 条 100 秒 + 风控自检）、运营主体记忆中枢",
+    platforms: [
+      { platform: "Windows x64", file: "ShopAgent-0.9.1-windows-x64-setup.exe", size: "48 MB", available: true },
+      { platform: "macOS (Apple Silicon) DMG", file: "ShopAgent-0.9.1-mac-arm64-2026-05-07.dmg", size: "59 MB", available: true },
+      { platform: "macOS (Apple Silicon) ZIP", file: "ShopAgent-0.9.1-mac-arm64-2026-05-07.zip", size: "59 MB", available: true },
+    ],
+  },
+  {
     version: "0.8.2",
     date: "2026-04-15",
     changelog: "全面升级：新增浏览器插件、笔记分享量数据、赛道分析、博主分析、下拉词分析、多智能体协同",
