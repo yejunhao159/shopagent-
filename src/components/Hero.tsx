@@ -19,7 +19,7 @@ export function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#BD5C3C] opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#BD5C3C]"></span>
           </span>
-            v0.9.1 已发布 · 沉浸式创作 + 评论采集 10x 提速
+            v0.9.2 已发布 · 稳定性升级 + 草稿防丢失保护
         </div>
 
         <h1

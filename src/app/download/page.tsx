@@ -48,6 +48,16 @@ const extensionSteps = [
 
 const versions: VersionInfo[] = [
   {
+    version: "0.9.2",
+    date: "2026-05-09",
+    changelog: "稳定性升级：草稿主表防丢失保护（自动备份历史版本）、生图号池故障自动切换 + 健康监测、AI 工具调用稳定性修复、my_account 运营矩阵工具",
+    platforms: [
+      { platform: "Windows x64", file: "ShopAgent-0.9.2-windows-x64-setup.exe", size: "48 MB", available: true },
+      { platform: "Windows x64 (MSI)", file: "ShopAgent-0.9.2-windows-x64.msi", size: "70 MB", available: true },
+      { platform: "macOS (Apple Silicon)", file: "", size: "", available: false },
+    ],
+  },
+  {
     version: "0.9.1",
     date: "2026-05-08",
     changelog: "重磅更新：沉浸式创作工作台（多 thread + AI 自动看图）、评论采集 10x 提速（1000 条 100 秒 + 风控自检）、运营主体记忆中枢",
